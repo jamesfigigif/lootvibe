@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Clock } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
+import { supabase } from '../services/supabaseClient';
 
 interface Drop {
    id: string;
@@ -15,26 +16,41 @@ interface Drop {
 export const LiveDrops: React.FC = () => {
    const [drops, setDrops] = useState<Drop[]>([]);
    const [loading, setLoading] = useState(true);
-   const BACKEND_URL = (import.meta as any).env.VITE_BACKEND_URL || 'http://localhost:3001';
-
-   const fetchDrops = async () => {
-      try {
-         const res = await fetch(`${BACKEND_URL}/api/admin/live-drops`);
-         if (res.ok) {
-            const data = await res.json();
-            setDrops(data.drops || []);
-         }
-      } catch (e) {
-         console.error('Live drops fetch error', e);
-      } finally {
-         setLoading(false);
-      }
-   };
 
    useEffect(() => {
+      // Fetch initial drops
+      const fetchDrops = async () => {
+         try {
+            const { data, error } = await supabase
+               .from('live_drops')
+               .select('*')
+               .order('created_at', { ascending: false })
+               .limit(10);
+
+            if (data) {
+               setDrops(data);
+            }
+         } catch (e) {
+            console.error('Live drops fetch error', e);
+         } finally {
+            setLoading(false);
+         }
+      };
+
       fetchDrops();
-      const interval = setInterval(fetchDrops, 15000);
-      return () => clearInterval(interval);
+
+      // Subscribe to new drops
+      const subscription = supabase
+         .channel('live_drops_admin_channel')
+         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'live_drops' }, (payload) => {
+            const newDrop = payload.new as Drop;
+            setDrops(prev => [newDrop, ...prev].slice(0, 10));
+         })
+         .subscribe();
+
+      return () => {
+         subscription.unsubscribe();
+      };
    }, []);
 
    return (

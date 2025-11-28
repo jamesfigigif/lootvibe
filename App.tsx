@@ -295,23 +295,34 @@ export default function App() {
 
     const handleSellItem = React.useCallback(async () => {
         if (!user || !rollResult) return;
-        await addTransaction(user.id, 'WIN', rollResult.item.value, `Sold item: ${rollResult.item.name} `);
-        const updatedUser = await getUser(user.id);
-        setUser(updatedUser);
-        resetOpenState();
+        try {
+            console.log('💰 Selling item:', rollResult.item.name, 'for $', rollResult.item.value);
+            await addTransaction(user.id, 'WIN', rollResult.item.value, `Sold item: ${rollResult.item.name} `);
+            const updatedUser = await getUser(user.id);
+            console.log('✅ Balance updated:', updatedUser.balance);
+            setUser(updatedUser);
+            resetOpenState();
+        } catch (error) {
+            console.error('❌ Error selling item:', error);
+            alert('Failed to sell item. Please try again.');
+        }
     }, [user, rollResult, resetOpenState]);
 
     const handleKeepItem = React.useCallback(async () => {
         if (!user || !rollResult) return;
-        console.log('🎒 Adding item to inventory:', rollResult.item.name);
-        // In real app, add to inventory service
-        const updatedInventory = [...user.inventory, rollResult.item];
-        console.log('📦 Updated inventory:', updatedInventory.length, 'items');
-        await updateUserState(user.id, { inventory: updatedInventory });
-        const updatedUser = await getUser(user.id);
-        console.log('✅ User inventory after update:', updatedUser.inventory.length, 'items');
-        setUser(updatedUser);
-        resetOpenState();
+        try {
+            console.log('🎒 Adding item to inventory:', rollResult.item.name);
+            const updatedInventory = [...user.inventory, rollResult.item];
+            console.log('📦 Updated inventory:', updatedInventory.length, 'items');
+            await updateUserState(user.id, { inventory: updatedInventory });
+            const updatedUser = await getUser(user.id);
+            console.log('✅ User inventory after update:', updatedUser.inventory.length, 'items');
+            setUser(updatedUser);
+            resetOpenState();
+        } catch (error) {
+            console.error('❌ Error adding item to inventory:', error);
+            alert('Failed to add item to inventory. Please try again.');
+        }
     }, [user, rollResult, resetOpenState]);
 
     const handleShipItems = (items: LootItem[]) => {
