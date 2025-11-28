@@ -24,7 +24,7 @@ import { generateCustomBox, generateBoxImage } from './services/geminiService';
 import { getUser, addTransaction, updateUserState, markFreeBoxClaimed } from './services/walletService';
 import { createOrder } from './services/orderService';
 import { createShipment } from './services/shippingService';
-import { X, Loader2, Sparkles, RefreshCw, DollarSign, Package, Filter, Search, Bitcoin, CreditCard, ChevronRight, Paintbrush, ArrowRight, Check, Shield, Info, Gift, Users, Skull, Swords, Truck, Pencil } from 'lucide-react';
+import { X, Loader2, Sparkles, RefreshCw, DollarSign, Package, Filter, Search, Bitcoin, CreditCard, ChevronRight, Paintbrush, ArrowRight, Check, Shield, Info, Gift, Users, Skull, Swords, Truck, Pencil, Trophy } from 'lucide-react';
 
 export default function App() {
     const { user: clerkUser, isSignedIn, isLoaded } = useUser();
@@ -69,6 +69,12 @@ export default function App() {
     // Profile Edit State
     const [isEditingName, setIsEditingName] = useState(false);
     const [newUsername, setNewUsername] = useState('');
+
+    // Balance Animation State
+    const [balanceIncrease, setBalanceIncrease] = useState<number | null>(null);
+
+    // Demo Mode State
+    const [isDemoMode, setIsDemoMode] = useState(false);
 
     // Scroll to top on view change
     useEffect(() => {
@@ -287,6 +293,60 @@ export default function App() {
         }
     };
 
+    const handleDemoOpen = async () => {
+        if (!selectedBox) return;
+
+        try {
+            // Set demo mode
+            setIsDemoMode(true);
+
+            // Show "Generating seed" suspense
+            setIsOpening(true);
+            setView({ page: 'OPENING' });
+
+            // Add 1.5 second delay for suspense
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Generate outcome (no balance deduction)
+            const demoSeed = 'demo-seed-' + Date.now();
+            const result = await generateOutcome(selectedBox.items, demoSeed, 0);
+            console.log('\ud83c\udfae DEMO: Generated outcome:', result.item.name, '| Value:', result.item.value);
+
+            // Generate the reel
+            const WINNER_INDEX = 60;
+            const totalItems = WINNER_INDEX + 10;
+            const reelItems: LootItem[] = [];
+            const highTierItems = selectedBox.items.filter(i => i.rarity === 'LEGENDARY' || i.rarity === 'EPIC');
+
+            for (let i = 0; i < totalItems; i++) {
+                if (i === WINNER_INDEX) {
+                    reelItems.push({ ...result.item, id: `winner - ${result.item.id} ` });
+                } else if (i === WINNER_INDEX + 1 || i === WINNER_INDEX - 1) {
+                    if (Math.random() > 0.5 && highTierItems.length > 0) {
+                        const randomTease = highTierItems[Math.floor(Math.random() * highTierItems.length)];
+                        reelItems.push(randomTease.id !== result.item.id ? randomTease : selectedBox.items[0]);
+                    } else {
+                        const randomItem = selectedBox.items[Math.floor(Math.random() * selectedBox.items.length)];
+                        reelItems.push({ ...randomItem, id: `${randomItem.id} -${i} ` });
+                    }
+                } else {
+                    const randomItem = selectedBox.items[Math.floor(Math.random() * selectedBox.items.length)];
+                    reelItems.push({ ...randomItem, id: `${randomItem.id} -${i} ` });
+                }
+            }
+
+            // Set result with pre-generated reel (no balance/nonce update)
+            setRollResult({ ...result, preGeneratedReel: reelItems });
+
+        } catch (error) {
+            console.error("Demo Open Error:", error);
+            alert("Failed to run demo. Please try again.");
+            setIsOpening(false);
+            setView({ page: 'BOX_DETAIL' });
+            setIsDemoMode(false);
+        }
+    };
+
     const handleAnimationComplete = React.useCallback(() => {
         setIsOpening(false);
         setTimeout(() => {
@@ -304,11 +364,18 @@ export default function App() {
         if (!user || !rollResult) return;
         try {
             console.log('💰 Selling item:', rollResult.item.name, 'for $', rollResult.item.value);
+
+            // Trigger balance animation
+            setBalanceIncrease(rollResult.item.value);
+
+            // Close modal immediately
+            resetOpenState();
+
+            // Add transaction and update balance
             await addTransaction(user.id, 'WIN', rollResult.item.value, `Sold item: ${rollResult.item.name} `);
             const updatedUser = await getUser(user.id);
             console.log('✅ Balance updated:', updatedUser.balance);
             setUser(updatedUser);
-            resetOpenState();
         } catch (error) {
             console.error('❌ Error selling item:', error);
             alert('Failed to sell item. Please try again.');
@@ -539,6 +606,8 @@ export default function App() {
                 onRaces={() => setView({ page: 'RACES' })}
                 onAffiliates={() => setView({ page: 'AFFILIATES' })}
                 onAdmin={() => setView({ page: 'ADMIN' })}
+                balanceIncrease={balanceIncrease}
+                onBalanceAnimationComplete={() => setBalanceIncrease(null)}
             />
 
 
@@ -725,6 +794,13 @@ export default function App() {
                                             className="relative z-20 w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-4 rounded-xl shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all transform active:scale-95 border-t border-white/10"
                                         >
                                             {user ? 'OPEN NOW' : 'SIGN IN TO OPEN'}
+                                        </button>
+
+                                        <button
+                                            onClick={handleDemoOpen}
+                                            className="relative z-20 w-full mt-3 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-bold py-3 rounded-xl border border-white/10 transition-all transform active:scale-95"
+                                        >
+                                            \ud83c\udfae TRY FOR FREE
                                         </button>
                                     </div>
 
@@ -988,29 +1064,49 @@ export default function App() {
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3 mb-4">
-                                    <button
-                                        onClick={handleSellItem}
-                                        className="group relative overflow-hidden bg-[#0b0f19] hover:bg-red-500/10 border border-white/10 hover:border-red-500/50 rounded-2xl py-4 transition-all duration-300"
-                                    >
-                                        <div className="flex flex-col items-center gap-1 relative z-10">
-                                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide group-hover:text-red-400 transition-colors">Exchange For</span>
-                                            <span className="flex items-center gap-1 font-mono font-bold text-lg group-hover:text-white transition-colors">
-                                                <DollarSign className="w-4 h-4 text-emerald-500" /> {rollResult.item.value}
-                                            </span>
-                                        </div>
-                                    </button>
+                                    {!isDemoMode ? (
+                                        <>
+                                            <button
+                                                onClick={handleSellItem}
+                                                className="group relative overflow-hidden bg-[#0b0f19] hover:bg-red-500/10 border border-white/10 hover:border-red-500/50 rounded-2xl py-4 transition-all duration-300"
+                                            >
+                                                <div className="flex flex-col items-center gap-1 relative z-10">
+                                                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide group-hover:text-red-400 transition-colors">Exchange For</span>
+                                                    <span className="flex items-center gap-1 font-mono font-bold text-lg group-hover:text-white transition-colors">
+                                                        <DollarSign className="w-4 h-4 text-emerald-500" /> {rollResult.item.value}
+                                                    </span>
+                                                </div>
+                                            </button>
 
-                                    <button
-                                        onClick={handleKeepItem}
-                                        className="group relative overflow-hidden bg-white hover:bg-slate-200 text-black rounded-2xl py-4 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
-                                    >
-                                        <div className="flex flex-col items-center gap-1 relative z-10">
-                                            <span className="text-[10px] font-bold opacity-60 uppercase tracking-wide">Add To Inventory</span>
-                                            <span className="flex items-center gap-2 font-bold text-lg">
-                                                Collect <Check className="w-4 h-4" />
-                                            </span>
-                                        </div>
-                                    </button>
+                                            <button
+                                                onClick={handleKeepItem}
+                                                className="group relative overflow-hidden bg-white hover:bg-slate-200 text-black rounded-2xl py-4 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                                            >
+                                                <div className="flex flex-col items-center gap-1 relative z-10">
+                                                    <span className="text-[10px] font-bold opacity-60 uppercase tracking-wide">Add To Inventory</span>
+                                                    <span className="flex items-center gap-2 font-bold text-lg">
+                                                        Collect <Check className="w-4 h-4" />
+                                                    </span>
+                                                </div>
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <button
+                                            onClick={() => {
+                                                resetOpenState();
+                                                setIsDemoMode(false);
+                                                handleOpenBox();
+                                            }}
+                                            className="col-span-2 group relative overflow-hidden bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-2xl py-4 transition-all duration-300 shadow-[0_0_30px_rgba(147,51,234,0.3)]"
+                                        >
+                                            <div className="flex flex-col items-center gap-1 relative z-10">
+                                                <span className="text-[10px] font-bold opacity-80 uppercase tracking-wide">That was a demo!</span>
+                                                <span className="flex items-center gap-2 font-bold text-lg">
+                                                    PLAY FOR REAL <Trophy className="w-4 h-4" />
+                                                </span>
+                                            </div>
+                                        </button>
+                                    )}
                                 </div>
 
                                 <button

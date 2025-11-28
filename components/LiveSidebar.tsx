@@ -20,6 +20,16 @@ const MOCK_BOXES = ['Tech Box', 'Streetwear Box', 'Luxury Box', 'Crypto Box', 'B
 // Collect all items from all boxes and filter to under $1500
 const ALL_PRIZE_ITEMS = INITIAL_BOXES.flatMap(box => box.items).filter(item => item.value <= 1500);
 
+// Helper to preload images
+const preloadImage = (src: string): Promise<void> => {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve();
+        img.onerror = () => resolve(); // Resolve anyway to avoid blocking
+    });
+};
+
 export const LiveSidebar = () => {
     const [drops, setDrops] = useState<Drop[]>([]);
 
@@ -42,38 +52,56 @@ export const LiveSidebar = () => {
         // 2. Subscribe to new drops
         const subscription = supabase
             .channel('live_drops_channel')
-            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'live_drops' }, (payload) => {
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'live_drops' }, async (payload) => {
                 const newDrop = payload.new as Drop;
+                // Preload image before showing
+                if (newDrop.item_image) {
+                    await preloadImage(newDrop.item_image);
+                }
                 setDrops(prev => [newDrop, ...prev].slice(0, 50));
             })
             .subscribe();
 
-        // 3. Mock Drops Generator
-        const mockInterval = setInterval(() => {
-            if (Math.random() > 0.3) return; // Only trigger 30% of the time per interval
+        // 3. Mock Drops Generator (Recursive timeout for random intervals)
+        let mockTimeout: NodeJS.Timeout;
 
-            // Use real prize items under $1500
-            const randomItem = ALL_PRIZE_ITEMS[Math.floor(Math.random() * ALL_PRIZE_ITEMS.length)];
-            const randomUser = MOCK_USERNAMES[Math.floor(Math.random() * MOCK_USERNAMES.length)] + Math.floor(Math.random() * 100);
-            const randomBox = MOCK_BOXES[Math.floor(Math.random() * MOCK_BOXES.length)];
+        const scheduleNextDrop = () => {
+            const randomDelay = Math.floor(Math.random() * 4000) + 8000; // 8-12 seconds
 
-            const mockDrop: Drop = {
-                id: `mock-${Date.now()}-${Math.random()}`,
-                user_name: randomUser,
-                item_name: randomItem.name,
-                item_image: randomItem.image,
-                box_name: randomBox,
-                value: randomItem.value,
-                created_at: new Date().toISOString()
-            };
+            mockTimeout = setTimeout(async () => {
+                // Use real prize items under $1500
+                const randomItem = ALL_PRIZE_ITEMS[Math.floor(Math.random() * ALL_PRIZE_ITEMS.length)];
+                const randomUser = MOCK_USERNAMES[Math.floor(Math.random() * MOCK_USERNAMES.length)] + Math.floor(Math.random() * 100);
+                const randomBox = MOCK_BOXES[Math.floor(Math.random() * MOCK_BOXES.length)];
 
-            setDrops(prev => [mockDrop, ...prev].slice(0, 50));
+                const mockDrop: Drop = {
+                    id: `mock-${Date.now()}-${Math.random()}`,
+                    user_name: randomUser,
+                    item_name: randomItem.name,
+                    item_image: randomItem.image,
+                    box_name: randomBox,
+                    value: randomItem.value,
+                    created_at: new Date().toISOString()
+                };
 
-        }, 3000); // Check every 3 seconds
+                // Preload image before showing
+                if (mockDrop.item_image) {
+                    await preloadImage(mockDrop.item_image);
+                }
+
+                setDrops(prev => [mockDrop, ...prev].slice(0, 50));
+
+                // Schedule next drop
+                scheduleNextDrop();
+
+            }, randomDelay);
+        };
+
+        scheduleNextDrop();
 
         return () => {
             subscription.unsubscribe();
-            clearInterval(mockInterval);
+            clearTimeout(mockTimeout);
         };
     }, []);
 
@@ -127,7 +155,7 @@ export const LiveSidebar = () => {
                             </div>
 
                             {/* Info */}
-                            <div className="flex-1 min-w-0">
+                            <div className="flex-1 min-w-0 pr-12">
                                 <div className={`text-xs font-bold truncate ${rarity === Rarity.LEGENDARY ? 'text-yellow-400 drop-shadow-sm' : 'text-slate-200'}`}>
                                     {drop.item_name}
                                 </div>
