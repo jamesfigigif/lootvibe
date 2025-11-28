@@ -19,6 +19,44 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDeposit, onWithdraw, onHome, onProfile, onBattles, onRaces, onAffiliates, onAdmin }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [displayedBalance, setDisplayedBalance] = useState(0);
+
+  // Animate balance changes
+  React.useEffect(() => {
+    if (!user) {
+      setDisplayedBalance(0);
+      return;
+    }
+
+    const targetBalance = user.balance;
+    const startBalance = displayedBalance;
+    const diff = targetBalance - startBalance;
+
+    if (Math.abs(diff) < 0.01) {
+      setDisplayedBalance(targetBalance);
+      return;
+    }
+
+    const duration = 1000; // 1 second animation
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Ease out expo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+
+      const current = startBalance + (diff * ease);
+      setDisplayedBalance(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [user?.balance]);
 
   const NavLinks = () => (
     <>
@@ -80,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
                 </div>
                 <div className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-emerald-500/80 font-bold uppercase">Balance</span>
-                  <span className="font-mono font-bold text-emerald-400">${user.balance.toFixed(2)}</span>
+                  <span className="font-mono font-bold text-emerald-400">${displayedBalance.toFixed(2)}</span>
                 </div>
                 <div className="w-6 h-6 rounded bg-emerald-500 text-black flex items-center justify-center font-bold text-xs group-hover:bg-white transition-colors">+</div>
               </button>

@@ -868,20 +868,22 @@ export default function App() {
                                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                                             {selectedBox.items.sort((a, b) => b.value - a.value).map(item => (
                                                 <div key={item.id} className={`
-                                            group relative p-4 rounded-xl border bg-[#0b0f19] flex flex-col items-center text-center transition-all hover:bg-[#131b2e] hover:-translate-y-1 shadow-lg
+                                            group relative rounded-xl border bg-[#0b0f19] flex flex-col items-center text-center transition-all hover:bg-[#131b2e] hover:-translate-y-1 shadow-lg overflow-hidden
                                             ${RARITY_COLORS[item.rarity]}
                                         `}>
-                                                    <div className={`absolute top-0 inset-x-0 h-1 rounded-t-xl bg-gradient-to-r ${RARITY_GRADIENTS[item.rarity]}`}></div>
-                                                    <div className="absolute top-2 right-2 text-[10px] font-bold opacity-60 bg-black/40 px-1.5 rounded backdrop-blur">{item.odds}%</div>
+                                                    <div className={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r ${RARITY_GRADIENTS[item.rarity]} z-10`}></div>
+                                                    <div className="absolute top-2 right-2 text-[10px] font-bold text-white bg-black/80 border border-white/10 px-2 py-1 rounded shadow-lg z-20">{item.odds}%</div>
 
-                                                    <LazyImage
-                                                        src={item.image}
-                                                        alt={item.name}
-                                                        className="w-24 h-24 object-contain mb-3 mt-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-xl"
-                                                    />
+                                                    <div className="w-full h-48 p-4 flex items-center justify-center bg-gradient-to-b from-transparent to-black/20">
+                                                        <LazyImage
+                                                            src={item.image}
+                                                            alt={item.name}
+                                                            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-2xl"
+                                                        />
+                                                    </div>
 
-                                                    <div className="w-full relative z-10">
-                                                        <div className="text-sm font-bold leading-tight mb-1 line-clamp-2 text-slate-200 group-hover:text-white">{item.name}</div>
+                                                    <div className="w-full relative z-10 p-3 bg-[#0b0f19] border-t border-white/5">
+                                                        <div className="text-sm font-bold leading-tight mb-1 line-clamp-2 text-slate-200 group-hover:text-white h-10 flex items-center justify-center">{item.name}</div>
                                                         <div className="text-xs font-mono text-emerald-500">${item.value.toLocaleString()}</div>
                                                     </div>
                                                 </div>
