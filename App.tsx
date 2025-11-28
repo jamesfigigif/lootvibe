@@ -298,22 +298,17 @@ export default function App() {
         if (!selectedBox) return;
 
         try {
-            // Set demo mode
-            setIsDemoMode(true);
-
-            // Show "Generating seed" suspense
+            // 1. Immediate Feedback
             setIsOpening(true);
+            setIsDemoMode(true);
             setView({ page: 'OPENING' });
 
-            // Add 1.5 second delay for suspense
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // Generate outcome (no balance deduction)
+            // 2. Generate outcome (no balance deduction)
             const demoSeed = 'demo-seed-' + Date.now();
             const result = await generateOutcome(selectedBox.items, demoSeed, 0);
-            console.log('\ud83c\udfae DEMO: Generated outcome:', result.item.name, '| Value:', result.item.value);
+            console.log('🎮 DEMO: Generated outcome:', result.item.name, '| Value:', result.item.value);
 
-            // Generate the reel
+            // 3. Generate the reel
             const WINNER_INDEX = 60;
             const totalItems = WINNER_INDEX + 10;
             const reelItems: LootItem[] = [];
@@ -321,23 +316,26 @@ export default function App() {
 
             for (let i = 0; i < totalItems; i++) {
                 if (i === WINNER_INDEX) {
-                    reelItems.push({ ...result.item, id: `winner - ${result.item.id} ` });
+                    reelItems.push({ ...result.item, id: `winner-${result.item.id}` });
                 } else if (i === WINNER_INDEX + 1 || i === WINNER_INDEX - 1) {
                     if (Math.random() > 0.5 && highTierItems.length > 0) {
                         const randomTease = highTierItems[Math.floor(Math.random() * highTierItems.length)];
                         reelItems.push(randomTease.id !== result.item.id ? randomTease : selectedBox.items[0]);
                     } else {
                         const randomItem = selectedBox.items[Math.floor(Math.random() * selectedBox.items.length)];
-                        reelItems.push({ ...randomItem, id: `${randomItem.id} -${i} ` });
+                        reelItems.push({ ...randomItem, id: `${randomItem.id}-${i}` });
                     }
                 } else {
                     const randomItem = selectedBox.items[Math.floor(Math.random() * selectedBox.items.length)];
-                    reelItems.push({ ...randomItem, id: `${randomItem.id} -${i} ` });
+                    reelItems.push({ ...randomItem, id: `${randomItem.id}-${i}` });
                 }
             }
 
-            // Set result with pre-generated reel (no balance/nonce update)
-            setRollResult({ ...result, preGeneratedReel: reelItems });
+            // 4. Set result with pre-generated reel (no balance/nonce update)
+            // Small delay to ensure the view transition has happened before setting result (optional but safer)
+            setTimeout(() => {
+                setRollResult({ ...result, preGeneratedReel: reelItems });
+            }, 100);
 
         } catch (error) {
             console.error("Demo Open Error:", error);

@@ -67,7 +67,9 @@ export const LiveSidebar = () => {
                 .limit(20);
 
             if (data) {
-                setDrops(data);
+                // Filter out items > $1500 as per user request
+                const filteredData = data.filter(drop => drop.value <= 1500);
+                setDrops(filteredData);
             }
         };
 
