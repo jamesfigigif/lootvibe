@@ -349,7 +349,7 @@ export default function App() {
         console.log('👤 Fetching user from database:', clerkUser.id);
 
         // Get Clerk token for authenticated user creation
-        const clerkToken = await getToken();
+        const clerkToken = await getToken({ template: 'supabase' });
         console.log('🔑 Got Clerk token for user creation:', !!clerkToken);
 
         const loggedInUser = await getUser(clerkUser.id, clerkToken || undefined);
@@ -422,7 +422,7 @@ export default function App() {
 
         try {
             // Get Clerk session token
-            const token = await clerk.session?.getToken();
+            const token = await clerk.session?.getToken({ template: 'supabase' });
             if (!token) {
                 console.error('❌ No Clerk token available');
                 alert('Authentication error. Please sign in again.');
@@ -716,7 +716,7 @@ export default function App() {
         try {
             // SECURITY: Use edge function to exchange item (prevents manipulation)
             // Get Clerk JWT token for authentication
-            const clerkToken = await getToken();
+            const clerkToken = await getToken({ template: 'supabase' });
             if (!clerkToken) {
                 throw new Error('Not authenticated with Clerk');
             }
@@ -1246,7 +1246,7 @@ export default function App() {
             console.log(`🏆 Claiming battle prize via Secure Edge Function: ${prizeChoice}`);
 
             // Get Clerk session token for authentication
-            const clerkToken = await getToken();
+            const clerkToken = await getToken({ template: 'supabase' });
             console.log('🔑 Clerk Token Debug:', {
                 hasToken: !!clerkToken,
                 tokenStart: clerkToken ? clerkToken.substring(0, 30) + '...' : 'NULL',
