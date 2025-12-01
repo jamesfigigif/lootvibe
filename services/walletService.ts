@@ -83,11 +83,6 @@ export const getUser = async (userId: string = 'user-1', clerkToken?: string): P
                     const SUPABASE_ANON_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || '';
 
                     clientToUse = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-                        auth: {
-                            persistSession: false,
-                            autoRefreshToken: false,
-                            detectSessionInUrl: false
-                        },
                         global: {
                             headers: {
                                 Authorization: `Bearer ${clerkToken}`
@@ -109,6 +104,16 @@ export const getUser = async (userId: string = 'user-1', clerkToken?: string): P
                         nonce: newUser.nonce,
                         free_box_claimed: false,
                     });
+
+                if (insertError) {
+                    // Ignore 409 conflict if another request created it
+                    if (insertError.code !== '23505') {
+                        console.error('❌ Error creating user in database:', insertError);
+                        console.error('Details:', JSON.stringify(insertError, null, 2));
+                    }
+                } else {
+                    console.log('✅ User created successfully in database:', newUser.id);
+                }
 
                 if (insertError) {
                     // Ignore 409 conflict if another request created it
