@@ -333,11 +333,11 @@ const FREE_BOX_ITEMS: LootItem[] = [
 
   // MEDIUM PRIZES - Extremely Rare (0.0001% each = 1 in 1,000,000)
   createItem('cz1', 'Charizard ex 151 SIR PSA 10', 200, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/cz1.webp'),
-  createItem('ap5', 'Apple AirPods Max', 549, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/ap5.webp'),
-  createItem('ap6', 'Apple iPad Pro 12.9" M2', 1099, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/ap6.webp'),
-  createItem('rtx5', 'Nvidia GeForce RTX 4080 Super', 999, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/rtx5.webp'),
-  createItem('sam3', 'Samsung Galaxy S24 Ultra', 1199, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/sam3.webp'),
-  createItem('sw3', 'Nintendo Switch OLED', 349, Rarity.RARE, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/sw3.webp'),
+  createItem('t3', 'iPhone 15 Pro 256GB', 999, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/t3.webp'),
+  createItem('t4', 'iPad Pro 11" M2', 799, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/t4.webp'),
+  createItem('su3', 'Supreme x TNF Nuptse Jacket', 800, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/su3.webp'),
+  createItem('su4', 'Supreme x Nike SB Dunk Low', 600, Rarity.EPIC, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/su4.webp'),
+  createItem('t7', 'Apple Watch Series 9 GPS', 399, Rarity.RARE, 0.0001, 'https://hpflcuyxmwzrknxjgavd.supabase.co/storage/v1/object/public/game-assets/items/t7.webp'),
 ];
 
 // SUPREME OR NOT BOX
