@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ClerkProvider, SignedIn, SignedOut, UserButton, useUser, SignInButton, SignUpButton, useClerk, useAuth } from '@clerk/clerk-react';
 import { Navbar } from './components/Navbar';
 import { OpeningStage } from './components/OpeningStage';
+import { WelcomeOpeningStage } from './components/WelcomeOpeningStage';
 import { StatsHeader } from './components/StatsHeader';
 
 import { LiveSidebar } from './components/LiveSidebar';
@@ -456,8 +457,43 @@ export default function App() {
 
             console.log('✅ Free box claimed successfully:', data);
 
-            // Set the roll result from the server
-            setRollResult(data.rollResult);
+            // --- RIGGED REEL GENERATION FOR FREE BOX ---
+            // We want to tease high value items right before the winner (Index 60)
+            const WINNER_INDEX = 60;
+            const totalItems = WINNER_INDEX + 10;
+            const reelItems: LootItem[] = [];
+
+            // Get high value items (Legendary/Epic) for the tease
+            const highValueItems = box.items.filter(i => i.rarity === 'LEGENDARY' || i.rarity === 'EPIC');
+            const winnerItem = data.item;
+
+            for (let i = 0; i < totalItems; i++) {
+                if (i === WINNER_INDEX) {
+                    // The Winner (Index 60)
+                    reelItems.push({ ...winnerItem, id: `winner-${winnerItem.id}` });
+                } else if (i === WINNER_INDEX - 1) {
+                    // TEASER: Place a high value item RIGHT BEFORE the winner
+                    // This creates the "slow down on Charizard" effect
+                    const teaser = highValueItems.length > 0
+                        ? highValueItems[Math.floor(Math.random() * highValueItems.length)]
+                        : box.items[0];
+                    reelItems.push({ ...teaser, id: `teaser-${teaser.id}-${i}` });
+                } else if (i === WINNER_INDEX + 1) {
+                    // Item right after winner (also visible)
+                    const nextItem = box.items[Math.floor(Math.random() * box.items.length)];
+                    reelItems.push({ ...nextItem, id: `next-${nextItem.id}-${i}` });
+                } else {
+                    // Random filler items
+                    const randomItem = box.items[Math.floor(Math.random() * box.items.length)];
+                    reelItems.push({ ...randomItem, id: `filler-${randomItem.id}-${i}` });
+                }
+            }
+
+            // Set the roll result with our custom rigged reel
+            setRollResult({
+                ...data.rollResult,
+                preGeneratedReel: reelItems
+            });
 
             // Wait for animation
             setTimeout(async () => {
@@ -1310,6 +1346,10 @@ export default function App() {
     };
 
     const filteredBoxes = boxes.filter(box => {
+        // Hide welcome box if already claimed
+        if (box.id === 'welcome_gift' && user?.freeBoxClaimed) {
+            return false;
+        }
         const matchesCategory = activeCategory === 'ALL' || box.category === activeCategory;
         const matchesSearch = box.name.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesCategory && matchesSearch;
@@ -1654,19 +1694,28 @@ export default function App() {
                             </div>
                         </div>
                     ) : view.page === 'OPENING' && selectedBox ? (
-                        <OpeningStage
-                            key={rollResult?.randomValue || Date.now()} // Force new instance per opening
-                            box={selectedBox}
-                            winner={rollResult?.item || null}
-                            onBack={() => {
-                                setView({ page: 'BOX_DETAIL' });
-                                setIsDemoMode(false);
-                            }}
-                            onComplete={handleAnimationComplete}
-                            isOpening={isOpening}
-                            isDemoMode={isDemoMode}
-                            rollResult={rollResult}
-                        />
+                        selectedBox.id === 'welcome_gift' ? (
+                            <WelcomeOpeningStage
+                                box={selectedBox}
+                                winner={rollResult?.item || null}
+                                onComplete={handleAnimationComplete}
+                                rollResult={rollResult}
+                            />
+                        ) : (
+                            <OpeningStage
+                                key={rollResult?.randomValue || Date.now()} // Force new instance per opening
+                                box={selectedBox}
+                                winner={rollResult?.item || null}
+                                onBack={() => {
+                                    setView({ page: 'BOX_DETAIL' });
+                                    setIsDemoMode(false);
+                                }}
+                                onComplete={handleAnimationComplete}
+                                isOpening={isOpening}
+                                isDemoMode={isDemoMode}
+                                rollResult={rollResult}
+                            />
+                        )
                     ) : view.page === 'PROFILE' && user ? (
                         <div className="max-w-6xl mx-auto px-4 pt-8">
                             <div className="flex flex-col md:flex-row gap-8 items-start">
