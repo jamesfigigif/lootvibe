@@ -355,22 +355,6 @@ export default function App() {
         const loggedInUser = await getUser(clerkUser.id, clerkToken || undefined);
         console.log('✅ User fetched:', loggedInUser.username, 'freeBoxClaimed:', loggedInUser.freeBoxClaimed);
 
-        // DEBUG: Inspect JWT claims by decoding the token
-        if (clerkToken) {
-            try {
-                // Decode JWT (base64 decode the payload part)
-                const parts = clerkToken.split('.');
-                if (parts.length === 3) {
-                    const payload = JSON.parse(atob(parts[1]));
-                    console.log('🔍 JWT Inspection (Clerk Token):', payload);
-                } else {
-                    console.log('🔍 JWT Inspection: Invalid token format');
-                }
-            } catch (e) {
-                console.log('🔍 JWT Inspection Error:', e);
-            }
-        }
-
         // Check for pending referral
         const pendingReferral = localStorage.getItem('referralCode');
         if (pendingReferral) {
@@ -1520,7 +1504,7 @@ export default function App() {
 
                                             <div className="aspect-square relative p-6 flex items-center justify-center bg-gradient-to-b from-[#1a2336] to-[#131b2e] overflow-hidden">
                                                 <div className={`absolute inset-0 bg-gradient-to-br ${box.color} opacity-0 group-hover:opacity-30 transition-opacity duration-500`}></div>
-                                                <img
+                                                <LazyImage
                                                     src={box.image}
                                                     alt={box.name}
                                                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out drop-shadow-2xl"
@@ -1564,7 +1548,7 @@ export default function App() {
                                         <div className={`absolute inset-0 blur-3xl opacity-20 bg-gradient-to-br ${selectedBox.color}`}></div>
 
                                         <div className="relative w-64 h-64 mx-auto mb-6 z-10">
-                                            <img src={selectedBox.image} className="w-full h-full object-cover rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] animate-[float_4s_ease-in-out_infinite]" />
+                                            <LazyImage src={selectedBox.image} alt={selectedBox.name} className="w-full h-full object-cover rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] animate-[float_4s_ease-in-out_infinite]" />
                                         </div>
 
                                         <h1 className="relative z-10 font-display text-4xl font-bold mb-2 uppercase tracking-wide text-white drop-shadow-lg">{selectedBox.name}</h1>
@@ -1875,7 +1859,7 @@ export default function App() {
                                     onClick={() => finalizeCreateBattle(box)}
                                     className="bg-[#0b0f19] border border-white/5 rounded-xl p-4 hover:border-purple-500 hover:bg-purple-500/5 transition-all flex flex-col items-center gap-3 group"
                                 >
-                                    <img src={box.image} className="w-20 h-20 object-cover rounded-lg group-hover:scale-105 transition-transform" />
+                                    <LazyImage src={box.image} alt={box.name} className="w-20 h-20 object-cover rounded-lg group-hover:scale-105 transition-transform" />
                                     <div className="text-center">
                                         <div className="font-bold text-sm truncate w-full">{box.name}</div>
                                         <div className="text-emerald-400 font-mono text-xs font-bold">${(box.salePrice || box.price).toFixed(2)}</div>
