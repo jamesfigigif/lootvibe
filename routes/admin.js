@@ -424,44 +424,266 @@ function createAdminRoutes(supabase) {
 
     /**
      * GET /api/admin/stats
-     * Get dashboard statistics
+     * Get comprehensive dashboard statistics
      */
     router.get('/stats', authenticateAdmin(authService), async (req, res) => {
         try {
-            // Get user count
-            const { count: userCount } = await supabase
+            const now = new Date();
+            const today = new Date(now);
+            today.setHours(0, 0, 0, 0);
+            
+            const thisWeek = new Date(now);
+            thisWeek.setDate(now.getDate() - 7);
+            
+            const thisMonth = new Date(now);
+            thisMonth.setMonth(now.getMonth() - 1);
+
+            // ========== USER STATISTICS ==========
+            const { count: totalUsers } = await supabase
                 .from('users')
                 .select('*', { count: 'exact', head: true });
 
-            // Get pending deposits
-            const { count: pendingDeposits } = await supabase
-                .from('crypto_deposits')
+            const { count: bannedUsers } = await supabase
+                .from('users')
                 .select('*', { count: 'exact', head: true })
-                .in('status', ['PENDING', 'CONFIRMING']);
+                .eq('banned', true);
 
-            // Get pending shipments
-            const { count: pendingShipments } = await supabase
-                .from('shipments')
+            const { count: newUsersToday } = await supabase
+                .from('users')
                 .select('*', { count: 'exact', head: true })
-                .eq('status', 'PENDING');
+                .gte('created_at', today.toISOString());
 
-            // Get today's revenue (sum of all deposits today)
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
+            const { count: newUsersThisWeek } = await supabase
+                .from('users')
+                .select('*', { count: 'exact', head: true })
+                .gte('created_at', thisWeek.toISOString());
 
+            // ========== REVENUE STATISTICS ==========
+            // Today's revenue
             const { data: todayDeposits } = await supabase
                 .from('crypto_deposits')
                 .select('usd_value')
                 .eq('status', 'CREDITED')
                 .gte('credited_at', today.toISOString());
-
             const todayRevenue = todayDeposits?.reduce((sum, d) => sum + (parseFloat(d.usd_value) || 0), 0) || 0;
 
+            // This week's revenue
+            const { data: weekDeposits } = await supabase
+                .from('crypto_deposits')
+                .select('usd_value')
+                .eq('status', 'CREDITED')
+                .gte('credited_at', thisWeek.toISOString());
+            const weekRevenue = weekDeposits?.reduce((sum, d) => sum + (parseFloat(d.usd_value) || 0), 0) || 0;
+
+            // This month's revenue
+            const { data: monthDeposits } = await supabase
+                .from('crypto_deposits')
+                .select('usd_value')
+                .eq('status', 'CREDITED')
+                .gte('credited_at', thisMonth.toISOString());
+            const monthRevenue = monthDeposits?.reduce((sum, d) => sum + (parseFloat(d.usd_value) || 0), 0) || 0;
+
+            // All-time revenue
+            const { data: allDeposits } = await supabase
+                .from('crypto_deposits')
+                .select('usd_value')
+                .eq('status', 'CREDITED');
+            const allTimeRevenue = allDeposits?.reduce((sum, d) => sum + (parseFloat(d.usd_value) || 0), 0) || 0;
+
+            // ========== BOX STATISTICS ==========
+            const { count: totalBoxes } = await supabase
+                .from('boxes')
+                .select('*', { count: 'exact', head: true });
+
+            const { count: enabledBoxes } = await supabase
+                .from('boxes')
+                .select('*', { count: 'exact', head: true })
+                .eq('enabled', true);
+
+            // Box openings today
+            const { count: openingsToday } = await supabase
+                .from('box_openings')
+                .select('*', { count: 'exact', head: true })
+                .gte('created_at', today.toISOString());
+
+            // Box openings this week
+            const { count: openingsThisWeek } = await supabase
+                .from('box_openings')
+                .select('*', { count: 'exact', head: true })
+                .gte('created_at', thisWeek.toISOString());
+
+            // Total box openings
+            const { count: totalOpenings } = await supabase
+                .from('box_openings')
+                .select('*', { count: 'exact', head: true });
+
+            // Revenue from box purchases (transactions of type DEPOSIT or purchases)
+            const { data: boxTransactions } = await supabase
+                .from('transactions')
+                .select('amount')
+                .ilike('description', '%box%')
+                .gte('created_at', today.toISOString());
+            const boxRevenueToday = boxTransactions?.reduce((sum, t) => sum + (parseFloat(t.amount) || 0), 0) || 0;
+
+            // ========== BATTLE STATISTICS ==========
+            const { count: totalBattles } = await supabase
+                .from('battles')
+                .select('*', { count: 'exact', head: true });
+
+            const { count: activeBattles } = await supabase
+                .from('battles')
+                .select('*', { count: 'exact', head: true })
+                .eq('status', 'ACTIVE');
+
+            const { count: waitingBattles } = await supabase
+                .from('battles')
+                .select('*', { count: 'exact', head: true })
+                .eq('status', 'WAITING');
+
+            // ========== PENDING ITEMS ==========
+            const { count: pendingDeposits } = await supabase
+                .from('crypto_deposits')
+                .select('*', { count: 'exact', head: true })
+                .in('status', ['PENDING', 'CONFIRMING']);
+
+            const { count: pendingShipments } = await supabase
+                .from('shipments')
+                .select('*', { count: 'exact', head: true })
+                .eq('status', 'PENDING');
+
+            const { count: pendingWithdrawals } = await supabase
+                .from('withdrawals')
+                .select('*', { count: 'exact', head: true })
+                .eq('status', 'PENDING');
+
+            // ========== WITHDRAWAL STATISTICS ==========
+            const { data: withdrawals } = await supabase
+                .from('withdrawals')
+                .select('amount, status')
+                .gte('created_at', today.toISOString());
+            
+            const withdrawalsToday = withdrawals?.length || 0;
+            const withdrawalAmountToday = withdrawals?.reduce((sum, w) => {
+                if (w.status === 'APPROVED' || w.status === 'PENDING') {
+                    return sum + (parseFloat(w.amount) || 0);
+                }
+                return sum;
+            }, 0) || 0;
+
+            // ========== INVENTORY STATISTICS ==========
+            const { count: totalInventoryItems } = await supabase
+                .from('inventory_items')
+                .select('*', { count: 'exact', head: true });
+
+            // ========== AFFILIATE STATISTICS ==========
+            const { count: totalAffiliates } = await supabase
+                .from('affiliate_codes')
+                .select('*', { count: 'exact', head: true });
+
+            const { count: totalReferrals } = await supabase
+                .from('affiliate_referrals')
+                .select('*', { count: 'exact', head: true });
+
+            // ========== RECENT ACTIVITY ==========
+            // Recent users (last 5)
+            const { data: recentUsers } = await supabase
+                .from('users')
+                .select('id, username, email, created_at, balance')
+                .order('created_at', { ascending: false })
+                .limit(5);
+
+            // Recent deposits (last 5)
+            const { data: recentDeposits } = await supabase
+                .from('crypto_deposits')
+                .select('id, user_id, usd_value, currency, status, created_at')
+                .order('created_at', { ascending: false })
+                .limit(5);
+
+            // Recent box openings (last 5)
+            const { data: recentOpenings } = await supabase
+                .from('box_openings')
+                .select('id, user_id, box_id, created_at')
+                .order('created_at', { ascending: false })
+                .limit(5);
+
+            // ========== TOP USERS ==========
+            // Top users by balance
+            const { data: topUsersByBalance } = await supabase
+                .from('users')
+                .select('id, username, email, balance')
+                .order('balance', { ascending: false })
+                .limit(5);
+
             res.json({
-                userCount: userCount || 0,
-                pendingDeposits: pendingDeposits || 0,
-                pendingShipments: pendingShipments || 0,
-                todayRevenue
+                // User stats
+                users: {
+                    total: totalUsers || 0,
+                    banned: bannedUsers || 0,
+                    active: (totalUsers || 0) - (bannedUsers || 0),
+                    newToday: newUsersToday || 0,
+                    newThisWeek: newUsersThisWeek || 0,
+                },
+                
+                // Revenue stats
+                revenue: {
+                    today: todayRevenue,
+                    thisWeek: weekRevenue,
+                    thisMonth: monthRevenue,
+                    allTime: allTimeRevenue,
+                },
+                
+                // Box stats
+                boxes: {
+                    total: totalBoxes || 0,
+                    enabled: enabledBoxes || 0,
+                    openingsToday: openingsToday || 0,
+                    openingsThisWeek: openingsThisWeek || 0,
+                    totalOpenings: totalOpenings || 0,
+                    revenueToday: boxRevenueToday,
+                },
+                
+                // Battle stats
+                battles: {
+                    total: totalBattles || 0,
+                    active: activeBattles || 0,
+                    waiting: waitingBattles || 0,
+                },
+                
+                // Pending items
+                pending: {
+                    deposits: pendingDeposits || 0,
+                    shipments: pendingShipments || 0,
+                    withdrawals: pendingWithdrawals || 0,
+                },
+                
+                // Withdrawal stats
+                withdrawals: {
+                    today: withdrawalsToday,
+                    amountToday: withdrawalAmountToday,
+                },
+                
+                // Inventory stats
+                inventory: {
+                    totalItems: totalInventoryItems || 0,
+                },
+                
+                // Affiliate stats
+                affiliates: {
+                    totalAffiliates: totalAffiliates || 0,
+                    totalReferrals: totalReferrals || 0,
+                },
+                
+                // Recent activity
+                recentActivity: {
+                    users: recentUsers || [],
+                    deposits: recentDeposits || [],
+                    boxOpenings: recentOpenings || [],
+                },
+                
+                // Top users
+                topUsers: {
+                    byBalance: topUsersByBalance || [],
+                },
             });
         } catch (error) {
             console.error('Get stats error:', error);

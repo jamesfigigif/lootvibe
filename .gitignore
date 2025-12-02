@@ -3,3 +3,11 @@ node_modules/
 .env.local
 *.log
 .DS_Store
+dist/
+public/
+.netlify/
+.vercel/
+*.log
+backend/node_modules/
+backend/.env
+backend/.env.local
