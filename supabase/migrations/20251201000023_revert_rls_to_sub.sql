@@ -104,32 +104,3 @@ WITH CHECK (
     OR 
     (auth.jwt() ->> 'sub') = user_id
 );
-
--- Battles
-DROP POLICY IF EXISTS "Users can view own battles" ON public.battles;
-CREATE POLICY "Users can view own battles" 
-ON public.battles FOR SELECT 
-USING (
-    (auth.jwt() ->> 'user_id') = creator_id 
-    OR 
-    (auth.jwt() ->> 'sub') = creator_id
-);
-
-DROP POLICY IF EXISTS "Users can insert own battles" ON public.battles;
-CREATE POLICY "Users can insert own battles" 
-ON public.battles FOR INSERT 
-WITH CHECK (
-    (auth.jwt() ->> 'user_id') = creator_id 
-    OR 
-    (auth.jwt() ->> 'sub') = creator_id
-);
-
--- Battle Results
-DROP POLICY IF EXISTS "Users can view own battle results" ON public.battle_results;
-CREATE POLICY "Users can view own battle results" 
-ON public.battle_results FOR SELECT 
-USING (
-    (auth.jwt() ->> 'user_id') = winner_id 
-    OR 
-    (auth.jwt() ->> 'sub') = winner_id
-);
