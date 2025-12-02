@@ -30,10 +30,10 @@ export const AdminPanel: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        if (authenticated) {
+        if (authenticated && admin) {
             fetchData();
         }
-    }, [authenticated, activeTab]);
+    }, [authenticated, activeTab, admin]);
 
     const checkAuth = async () => {
         try {
