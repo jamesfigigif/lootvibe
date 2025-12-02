@@ -537,6 +537,12 @@ export default function App() {
             return;
         }
 
+        // Redirect Welcome Gift to special handler
+        if (selectedBox.id === 'welcome_gift') {
+            handleWelcomeSpin(selectedBox);
+            return;
+        }
+
         // Ensure we are NOT in demo mode for a real opening
         setIsDemoMode(false);
 
