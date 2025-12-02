@@ -1,0 +1,252 @@
+[
+    {
+        "name": "p1",
+        "folder": "items",
+        "prompt": "PSA 10 Charizard Base Set 1st Edition Pokemon Card. Holographic foil, fiery background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p2",
+        "folder": "items",
+        "prompt": "PSA 10 Moonbreon (Umbreon VMAX Alt Art) Pokemon Card. Glowing moon background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p3",
+        "folder": "items",
+        "prompt": "Sealed Pokemon Team Up Booster Box. Plastic wrap reflection, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p4",
+        "folder": "items",
+        "prompt": "PSA 10 Giratina V Alt Art Pokemon Card. Distorted dimension background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p5",
+        "folder": "items",
+        "prompt": "Sealed Evolving Skies Pokemon Booster Box. Dragon sky background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p6",
+        "folder": "items",
+        "prompt": "Pokemon 151 Ultra Premium Collection Box. Mew theme, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p7",
+        "folder": "items",
+        "prompt": "Charizard ex 151 Special Illustration Rare Pokemon Card. Volcano background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p8",
+        "folder": "items",
+        "prompt": "Iono Special Illustration Rare Pokemon Card. Electric city background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p9",
+        "folder": "items",
+        "prompt": "Pokemon Crown Zenith Elite Trainer Box. Lucario theme, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p10",
+        "folder": "items",
+        "prompt": "Pokemon Lost Origin Booster Box. Giratina theme, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p11",
+        "folder": "items",
+        "prompt": "Charizard Ultra Premium Collection Promo Card. Etched foil, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p12",
+        "folder": "items",
+        "prompt": "Arceus VSTAR Gold Pokemon Card. Golden glow, divine background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p13",
+        "folder": "items",
+        "prompt": "Sleeved Pokemon Booster Pack (Latest Set). Foil wrapper, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p14",
+        "folder": "items",
+        "prompt": "Pokemon 3-Pack Blister. Cardboard packaging, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p15",
+        "folder": "items",
+        "prompt": "Pokemon Sticker Pack. Colorful, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "p16",
+        "folder": "items",
+        "prompt": "Single Holo Rare Pokemon Card. Holographic shine, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz1",
+        "folder": "items",
+        "prompt": "Charizard ex 151 SIR PSA 10 Slab. Pristine case, fiery glow, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz2",
+        "folder": "items",
+        "prompt": "Charizard VMAX Rainbow Rare Pokemon Card. Rainbow holographic finish, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz3",
+        "folder": "items",
+        "prompt": "Charizard V Alt Art Brilliant Stars Pokemon Card. Battle scene art, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz4",
+        "folder": "items",
+        "prompt": "Charizard ex 151 Regular Pokemon Card. Fire type background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz5",
+        "folder": "items",
+        "prompt": "Charizard VSTAR Pokemon Card. White and gold foil, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz6",
+        "folder": "items",
+        "prompt": "Charizard Holo Base Set Reprint Pokemon Card. Classic art, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz7",
+        "folder": "items",
+        "prompt": "Charizard V Regular Pokemon Card. Dark fire background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "cz8",
+        "folder": "items",
+        "prompt": "Charizard Reverse Holo Pokemon Card. Shiny foil pattern, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pb1",
+        "folder": "items",
+        "prompt": "Pokemon 151 Elite Trainer Box. Snorlax theme, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pb2",
+        "folder": "items",
+        "prompt": "Iono Full Art Trainer Pokemon Card. Colorful background, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pb3",
+        "folder": "items",
+        "prompt": "Pokemon Booster Bundle (3 Packs). Box packaging, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pb4",
+        "folder": "items",
+        "prompt": "Random Holo Rare Pokemon Card. Sparkles, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pb5",
+        "folder": "items",
+        "prompt": "Single Pokemon Booster Pack. Crinkled foil, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pb6",
+        "folder": "items",
+        "prompt": "Reverse Holo Rare Pokemon Card. Metallic shine, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pb7",
+        "folder": "items",
+        "prompt": "Pokemon TCG Coin. Gold metallic, holographic shine, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh1",
+        "folder": "items",
+        "prompt": "Iono Special Illustration Rare Pokemon Card. Anime style art, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh2",
+        "folder": "items",
+        "prompt": "Giratina V Alt Art Pokemon Card. Distorted reality art, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh3",
+        "folder": "items",
+        "prompt": "Umbreon VMAX Evolving Skies Pokemon Card. Giant moon art, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh4",
+        "folder": "items",
+        "prompt": "Rayquaza VMAX Alt Art Pokemon Card. Dragon flying in forest, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh5",
+        "folder": "items",
+        "prompt": "Crown Zenith Elite Trainer Box. Gold and black design, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh6",
+        "folder": "items",
+        "prompt": "Pokemon Booster Box Latest Set. Sealed plastic, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh7",
+        "folder": "items",
+        "prompt": "Pokemon Elite Trainer Box. Box packaging, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh8",
+        "folder": "items",
+        "prompt": "Pokemon 3-Pack Blister with Promo. Cardboard packaging, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mh9",
+        "folder": "items",
+        "prompt": "Single Pokemon Booster Pack. Foil wrapper, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv1",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Base Set Booster Box Unlimited. Green wing Charizard art, sealed, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv2",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Fossil Booster Box 1st Edition. Brown rock texture, sealed, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv3",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Team Rocket Booster Box. Dark R logo, sealed, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv4",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Neo Genesis Booster Box. Lugia art, sealed, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv5",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Gym Heroes Booster Box. Brock and Misty art, sealed, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv6",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Base Set 2 Booster Box. Purple packaging, sealed, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv7",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Jungle Booster Pack. Flareon art, foil wrapper, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv8",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Holo Card Lot. Fan of 5 cards, holographic, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv9",
+        "folder": "items",
+        "prompt": "Vintage WOTC Common Uncommon Card Lot. Stack of old cards, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vv10",
+        "folder": "items",
+        "prompt": "Vintage Pokemon Energy Cards. Stack of 10 cards, floating in void, Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    }
+]

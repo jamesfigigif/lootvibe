@@ -1,0 +1,952 @@
+[
+    {
+        "name": "s1",
+        "folder": "items",
+        "prompt": "Dior x Air Jordan 1 High sneakers. Grey and white, Dior monogram swoosh, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s2",
+        "folder": "items",
+        "prompt": "Travis Scott x Air Jordan 1 Low Mocha. Reverse swoosh, brown and black, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s3",
+        "folder": "items",
+        "prompt": "Off-White x Nike Dunk Low Pine Green. Orange zip tie, extra laces, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s4",
+        "folder": "items",
+        "prompt": "Air Jordan 4 Military Black. Black and white, netting detail, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s5",
+        "folder": "items",
+        "prompt": "Air Jordan 1 High University Blue. Blue and white leather, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s6",
+        "folder": "items",
+        "prompt": "Adidas Yeezy Boost 350 V2 Beluga. Grey primeknit, orange stripe, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s7",
+        "folder": "items",
+        "prompt": "Nike Dunk Low Panda. Black and white leather, simple design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s8",
+        "folder": "items",
+        "prompt": "New Balance 550 White Green. Retro basketball sneaker, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "s9",
+        "folder": "items",
+        "prompt": "Nike Air Force 1 White. Classic white sneaker, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su1",
+        "folder": "items",
+        "prompt": "Supreme x Louis Vuitton Box Logo Hoodie. Red with white monogram, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su2",
+        "folder": "items",
+        "prompt": "Supreme Box Logo Hoodie Red. Classic red bogo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su3",
+        "folder": "items",
+        "prompt": "Supreme x The North Face Nuptse Jacket. Puffer jacket, patches, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su4",
+        "folder": "items",
+        "prompt": "Supreme x Nike SB Dunk Low. Stars pattern, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su5",
+        "folder": "items",
+        "prompt": "Supreme Box Logo T-Shirt White. Red bogo, folded, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su6",
+        "folder": "items",
+        "prompt": "Supreme Hoodie Season Drop. Unique graphic, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su7",
+        "folder": "items",
+        "prompt": "Supreme Accessories Lot. Belt, bag, bottle, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su8",
+        "folder": "items",
+        "prompt": "Supreme Camp Cap. 5-panel hat, box logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "su9",
+        "folder": "items",
+        "prompt": "Supreme Sticker Pack and Keychain. Red box logo sticker, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn1",
+        "folder": "items",
+        "prompt": "Supreme Meissen Porcelain Cupid statue. White porcelain with Supreme branding, luxury art collectible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn2",
+        "folder": "items",
+        "prompt": "Supreme x Tiffany & Co Box Logo Tee. Blue Tiffany color with white box logo, luxury collab, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn3",
+        "folder": "items",
+        "prompt": "Supreme x Louis Vuitton Keepall Bandouliere bag. Red LV monogram with Supreme, luxury travel bag, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn4",
+        "folder": "items",
+        "prompt": "Supreme x Louis Vuitton Christopher Backpack. Red LV monogram with Supreme branding, luxury backpack, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn5",
+        "folder": "items",
+        "prompt": "Supreme x Louis Vuitton Danube bag. Red LV monogram crossbody, compact luxury bag, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn6",
+        "folder": "items",
+        "prompt": "Supreme x Rimowa Topas Multiwheel suitcase. Silver aluminum with red Supreme, luxury luggage, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn7",
+        "folder": "items",
+        "prompt": "Supreme x Rimowa Cabin Multiwheel suitcase. Silver aluminum carry-on with Supreme, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn8",
+        "folder": "items",
+        "prompt": "Supreme x Rimowa Salsa Deluxe suitcase. Black polycarbonate with Supreme branding, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn9",
+        "folder": "items",
+        "prompt": "Supreme x Lacoste Wool Varsity Jacket. Red and white varsity with Supreme and Lacoste logos, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn10",
+        "folder": "items",
+        "prompt": "Supreme x Lacoste Track Jacket. Navy blue with white stripes, athletic luxury, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn11",
+        "folder": "items",
+        "prompt": "Supreme x Lacoste Pique Polo. White polo with Supreme and Lacoste branding, classic style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn12",
+        "folder": "items",
+        "prompt": "Supreme x Lacoste Shoulder Bag. Navy blue crossbody with logos, compact bag, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn13",
+        "folder": "items",
+        "prompt": "Supreme x Lacoste Waist Bag. Red fanny pack with branding, streetwear accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn14",
+        "folder": "items",
+        "prompt": "Supreme x Lacoste Beanie. Navy blue knit beanie with logos, winter accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn15",
+        "folder": "items",
+        "prompt": "Supreme x Lacoste 6-Panel Cap. White cap with embroidered logos, classic headwear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn16",
+        "folder": "items",
+        "prompt": "Supreme Box Logo Hoodie. Red hoodie with white box logo, iconic streetwear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn17",
+        "folder": "items",
+        "prompt": "Supreme x The North Face Mountain Baltoro Jacket. Yellow puffer with Supreme TNF branding, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn18",
+        "folder": "items",
+        "prompt": "Supreme x The North Face Nuptse Jacket. Black puffer with patches, winter essential, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn19",
+        "folder": "items",
+        "prompt": "Supreme x The North Face Expedition Backpack. Red backpack with map print, adventure gear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn20",
+        "folder": "items",
+        "prompt": "Supreme x The North Face Waist Bag. Black fanny pack with branding, utility accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn21",
+        "folder": "items",
+        "prompt": "Supreme x Nike SB Dunk Low. Red and white sneakers with stars, skateboarding collab, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn22",
+        "folder": "items",
+        "prompt": "Supreme x Nike Air Force 1 Low. White sneakers with Supreme branding, classic silhouette, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn23",
+        "folder": "items",
+        "prompt": "Supreme Box Logo Tee. White t-shirt with red box logo, essential streetwear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn24",
+        "folder": "items",
+        "prompt": "Supreme Shoulder Bag. Red crossbody with box logo, compact carry, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn25",
+        "folder": "items",
+        "prompt": "Supreme Backpack. Black backpack with red box logo, daily essential, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn26",
+        "folder": "items",
+        "prompt": "Supreme Beanie. Red knit beanie with box logo, winter accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn27",
+        "folder": "items",
+        "prompt": "Supreme Camp Cap. Red 5-panel cap with box logo, classic headwear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn28",
+        "folder": "items",
+        "prompt": "Supreme Sticker Pack. Red box logo stickers, collectible accessories, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sn29",
+        "folder": "items",
+        "prompt": "LootVibe Sticker. Purple LootVibe logo sticker, brand swag, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb1",
+        "folder": "items",
+        "prompt": "Rolex Daytona - 116509 Silver Dial. Luxury silver watch, chronograph, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb2",
+        "folder": "items",
+        "prompt": "Rolex Datejust 36 - 126200 Blue Dial. Luxury blue dial watch, classic design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb3",
+        "folder": "items",
+        "prompt": "Tudor Black Bay. Luxury dive watch, black dial, vintage inspired, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb4",
+        "folder": "items",
+        "prompt": "Louis Vuitton x Nigo Monogram Patchwork Denim Hoodie. Denim hoodie with LV monogram patches, streetwear luxury, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb5",
+        "folder": "items",
+        "prompt": "Gucci x The North Face Down Vest. Puffer vest with Gucci branding, luxury outdoor wear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb6",
+        "folder": "items",
+        "prompt": "Louis Vuitton x Murakami Neverfull MM Bag. Monogram tote bag with colorful Murakami design, luxury handbag, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb7",
+        "folder": "items",
+        "prompt": "Louis Vuitton Speedy Bandouliere Monogram 25. Classic monogram handbag, luxury leather, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb8",
+        "folder": "items",
+        "prompt": "Dior Zipped Pouch with Strap. Small luxury pouch with Dior logo, leather accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb9",
+        "folder": "items",
+        "prompt": "Dior Oblique Short-Sleeved Shirt Silk Twill. Luxury silk shirt with Dior oblique pattern, high fashion, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb10",
+        "folder": "items",
+        "prompt": "Apple Watch Series 10 Titanium (GPS+Cellular). Premium titanium smartwatch, sleek design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb11",
+        "folder": "items",
+        "prompt": "Dolce & Gabbana Logo-print T-shirt. Luxury t-shirt with D&G logo print, Italian fashion, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb12",
+        "folder": "items",
+        "prompt": "Nike Jordan 4 Retro University Blue. Classic basketball sneakers, blue and white colorway, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb13",
+        "folder": "items",
+        "prompt": "Saint Laurent Crocodile-embossed Cardholder. Luxury leather cardholder with crocodile texture, YSL logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb14",
+        "folder": "items",
+        "prompt": "Nike Jordan 1 Retro High Shadow (2018). Classic basketball sneakers, black and grey colorway, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb15",
+        "folder": "items",
+        "prompt": "Off-White x Jordan T-Shirt Black. Black t-shirt with Off-White and Jordan branding, streetwear collaboration, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb16",
+        "folder": "items",
+        "prompt": "CDG x Nike T-shirt White. White t-shirt with CDG and Nike logos, Japanese streetwear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb17",
+        "folder": "items",
+        "prompt": "Fear of God Essentials Pull-Over Hoodie (SS21). Minimalist hoodie with Essentials branding, luxury streetwear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb18",
+        "folder": "items",
+        "prompt": "Seletti Sitting Mouse Lamp. Decorative mouse-shaped lamp, Italian design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb19",
+        "folder": "items",
+        "prompt": "Travis Scott x McDonald's All American 92' Basketball. Collectible basketball with Travis Scott and McDonald's branding, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb20",
+        "folder": "items",
+        "prompt": "Supreme Nalgene 32 oz. Bottle. Water bottle with Supreme branding, streetwear accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb21",
+        "folder": "items",
+        "prompt": "Aston Martin x PLAYMOBIL James Bond Goldfinger DB5. Collectible toy car, luxury collaboration, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb22",
+        "folder": "items",
+        "prompt": "Pokémon x Van Gogh Museum Pikachu Plush. Collectible Pikachu plush toy, art collaboration, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb23",
+        "folder": "items",
+        "prompt": "Supreme Nerf Rival Takedown Blaster. Toy blaster with Supreme branding, streetwear collectible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb24",
+        "folder": "items",
+        "prompt": "StockX Tag. Authentication tag from StockX marketplace, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bb25",
+        "folder": "items",
+        "prompt": "Squid Game Ddakji. Traditional Korean paper tile game piece, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah1",
+        "folder": "items",
+        "prompt": "Louis Vuitton Louis Buffalo. Luxury collectible figure, LV monogram, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah2",
+        "folder": "items",
+        "prompt": "Kaws Resting Place Vinyl Figure. Grey figure sitting, X eyes, art toy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah3",
+        "folder": "items",
+        "prompt": "Virgil Abloh x IKEA KEEP OFF Rug. Grey rug with text, industrial design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah4",
+        "folder": "items",
+        "prompt": "MediCom Toy x Pokémon Bearbrick Pikachu Flocky 1000%. Giant yellow bearbrick, fuzzy texture, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah5",
+        "folder": "items",
+        "prompt": "Pokémon TCG XY Evolutions Kanto Power Collection. Sealed box set, Charizard art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah6",
+        "folder": "items",
+        "prompt": "Pokémon TCG Sword & Shield 25th Anniversary Golden Box. Gold box, Pikachu theme, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah7",
+        "folder": "items",
+        "prompt": "Virgil Abloh x IKEA MARKERAD WET GRASS Rug. Green rug with text, art piece, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah8",
+        "folder": "items",
+        "prompt": "MediCom Toy x Pokémon Bearbrick Pikachu. Yellow bearbrick, Pokemon collab, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah9",
+        "folder": "items",
+        "prompt": "Kaws THE PROMISE Vinyl Figure. Two figures hugging, emotional art toy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah10",
+        "folder": "items",
+        "prompt": "Medicom Toy Bearbrick Clear Red Heart. Translucent red bearbrick with heart, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah11",
+        "folder": "items",
+        "prompt": "Kaws Family Figure. Set of Kaws figures, family group, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah12",
+        "folder": "items",
+        "prompt": "Pokémon TCG Sword & Shield Special Box Kanazawa. Special edition box, Japanese art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah13",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick My First Baby Marble. Marbled pattern bearbrick, colorful, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah14",
+        "folder": "items",
+        "prompt": "Pokémon TCG Sword & Shield High Class Pack VMAX. Booster box, shiny cards, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah15",
+        "folder": "items",
+        "prompt": "Pokémon TCG x Van Gogh Museum Pikachu PSA 9. Graded card, Pikachu with hat, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah16",
+        "folder": "items",
+        "prompt": "Kaws Holiday Shanghai Vinyl Figure. Figure holding moon, art toy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah17",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick Andy Warhol x Basquiat #4. Art print bearbrick, colorful graffiti, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah18",
+        "folder": "items",
+        "prompt": "Virgil Abloh x IKEA MARKERAD RECEIPT Rug. White rug looking like receipt, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah19",
+        "folder": "items",
+        "prompt": "Kaws KAWS Holiday UK Vinyl Figure. Figure standing, grey color, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah20",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh Pikachu Canvas. Art print on canvas, Pikachu style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah21",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick Marble. Swirled color pattern, artistic toy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah22",
+        "folder": "items",
+        "prompt": "BigBuy Home Ethereal Horizon Canvas. Abstract art print, colorful, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah23",
+        "folder": "items",
+        "prompt": "Kaws Holiday Changbai Mountain Vinyl Figure. White figure sitting with small figure, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah24",
+        "folder": "items",
+        "prompt": "DKD Home Decor Mystic Flow Abstract Canvas. Modern art print, flowing lines, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah25",
+        "folder": "items",
+        "prompt": "Virgil Abloh x IKEA Markerad Mona Lisa Artwork. Light up art piece, Mona Lisa, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah26",
+        "folder": "items",
+        "prompt": "Medicom Toy x Van Gogh Bearbrick Self Portrait. Bearbrick with Van Gogh art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah27",
+        "folder": "items",
+        "prompt": "MediCom Toy x Nike Bearbrick SB 2020 Set. Nike branded bearbricks, sneaker culture, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah28",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick The Starry Night Set. Van Gogh Starry Night art on bearbrick, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah29",
+        "folder": "items",
+        "prompt": "Kaws x Hirake! Ponkikki KACHAMUKKU. Red and green figure, split design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah30",
+        "folder": "items",
+        "prompt": "MediCom Toy x Clot x Nike Bearbrick Set. Blue silk pattern bearbrick, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah31",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick Series 42 Sealed Case. Box of blind box toys, collectible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah32",
+        "folder": "items",
+        "prompt": "Pokémon TCG Vivid Voltage Booster Box. Sealed card box, Pikachu art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah33",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick Jean-Michel Basquiat Set. Graffiti art bearbrick, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah34",
+        "folder": "items",
+        "prompt": "Pokémon TCG 25th Anniversary Charizard. Holo card, classic art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah35",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick Series 43 Sealed Case. Box of blind box toys, collectible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah36",
+        "folder": "items",
+        "prompt": "Kaws x Human Made Duck Plush Down Doll. Duck plush with X eyes, soft toy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah37",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh Pikachu & Eevee Canvas. Art print, cute Pokemon, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah38",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick Superman. Superman costume bearbrick, comic hero, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah39",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh Eevee Canvas. Eevee art print, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah40",
+        "folder": "items",
+        "prompt": "MediCom Toy x Public Image Bearbrick Set. Band logo bearbrick, punk rock, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah41",
+        "folder": "items",
+        "prompt": "Kaws Brooklyn Museum TIDE Poster. Art poster, colorful waves, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah42",
+        "folder": "items",
+        "prompt": "Medicom Toy x Van Gogh Bearbrick Museum. Art bearbrick, museum collab, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah43",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh Sunflora Canvas. Sunflora art print, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah44",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick Warhol x Basquiat. Collab art bearbrick, pop art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah45",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh 6 Pack Posters. Set of art posters, Pokemon theme, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah46",
+        "folder": "items",
+        "prompt": "Pokémon TCG Sword & Shield Expansion Pack S7D. Booster pack, Japanese cards, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah47",
+        "folder": "items",
+        "prompt": "Kaws x Uniqlo Cookie Monster Plush Toy. Blue plush with X eyes, Sesame Street, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah48",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh Pin Box Set. Enamel pins set, Pokemon art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah49",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh 12 Pack Postcards. Art postcards, Pokemon theme, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah50",
+        "folder": "items",
+        "prompt": "Bearbrick x Care Bears Cheer Bear 400%. Pink bearbrick with rainbow belly, cute toy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah51",
+        "folder": "items",
+        "prompt": "Kaws x Uniqlo Elmo Plush Toy. Red plush with X eyes, Sesame Street, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah52",
+        "folder": "items",
+        "prompt": "Pokémon TCG Shining Fates Elite Trainer Box. Eevee on box, purple theme, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah53",
+        "folder": "items",
+        "prompt": "MediCom Toy Bearbrick BAPE 28th Anniversary. Camo pattern bearbrick, streetwear toy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah54",
+        "folder": "items",
+        "prompt": "Virgil Abloh x Nike ICONS Book. Green book cover, sneaker design history, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah55",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh Bedroom Playmat. Card game mat, art print, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah56",
+        "folder": "items",
+        "prompt": "Kaws x Uniqlo Bert Plush Toy. Yellow plush with X eyes, Sesame Street, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah57",
+        "folder": "items",
+        "prompt": "Pokémon TCG Squishmallow 20 inch Pikachu Plush. Giant soft Pikachu, round shape, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah58",
+        "folder": "items",
+        "prompt": "Pokémon Center x Van Gogh Deck 65 Card. Card sleeves, art design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah59",
+        "folder": "items",
+        "prompt": "Kaws Phaidon Uniqlo Book. Art book, colorful cover, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah60",
+        "folder": "items",
+        "prompt": "Fruugo Aztec Death Whistle Loud. Skull shaped whistle, ancient artifact style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah61",
+        "folder": "items",
+        "prompt": "Lego Amelia Earhart Tribute. Red plane lego set, historical figure, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah62",
+        "folder": "items",
+        "prompt": "Funko x Pokémon Pop! Eevee Diamond Figure. Glittery Eevee figure, collectible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah63",
+        "folder": "items",
+        "prompt": "LootVibe Sticker. Purple logo sticker, brand swag, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ah64",
+        "folder": "items",
+        "prompt": "Werthers Original Classic Vanilla Caramels. Bag of caramel candies, sweet treat, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls1",
+        "folder": "items",
+        "prompt": "Louis Vuitton Trainer Maxi Sneaker. White and green chunky sneaker, LV monogram, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls2",
+        "folder": "items",
+        "prompt": "Dolce & Gabbana Rome Crocodile Leather. Black crocodile texture sneakers, luxury, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls3",
+        "folder": "items",
+        "prompt": "Zegna Monte Sneakers. Sleek grey slip-on sneakers, premium wool, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls4",
+        "folder": "items",
+        "prompt": "Amiri Skel Top Sneakers. Black and white sneakers with bone design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls5",
+        "folder": "items",
+        "prompt": "Zegna Triple Stitch Calf Leather Sneakers. White leather sneakers with triple elastic, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls6",
+        "folder": "items",
+        "prompt": "Balenciaga Track Sneakers. Complex layered design, orange and blue, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls7",
+        "folder": "items",
+        "prompt": "Prada Downtown Sneakers. White leather with black triangle logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls8",
+        "folder": "items",
+        "prompt": "TOM FORD Crocodile Effect Sneakers. Brown crocodile leather sneakers, luxury, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls9",
+        "folder": "items",
+        "prompt": "Zegna Triple Stitch Suede Sneakers. Navy blue suede sneakers, elegant, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls10",
+        "folder": "items",
+        "prompt": "Amiri Shimmer Skel-top Low. Glittery bone design sneakers, flashy, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls11",
+        "folder": "items",
+        "prompt": "Maison Margiela New Evolution Layered Sneakers. Deconstructed design, white and beige, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls12",
+        "folder": "items",
+        "prompt": "Dolce & Gabbana Crown Sneakers. White sneakers with gold crown logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls13",
+        "folder": "items",
+        "prompt": "Balenciaga Triple S Sneaker. Chunky sole, red and black, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls14",
+        "folder": "items",
+        "prompt": "Philipp Plein Nappa Leather Lo-Top Sneakers. Black leather with skull logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls15",
+        "folder": "items",
+        "prompt": "TOM FORD Leather Sneakers. Brown burnished leather, classic style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls16",
+        "folder": "items",
+        "prompt": "Valentino Rockstud Low Top. White sneakers with studs, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls17",
+        "folder": "items",
+        "prompt": "Philipp Plein Predator. High top sneakers with metal details, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls18",
+        "folder": "items",
+        "prompt": "Dolce & Gabbana Portofino Jacquard Sneakers. Patterned fabric sneakers, luxury, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls19",
+        "folder": "items",
+        "prompt": "Philipp Plein Lace-up Leather Trainers. White leather with logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls20",
+        "folder": "items",
+        "prompt": "Burberry Vintage Check Low-top Sneakers. Beige check pattern, classic Burberry, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls21",
+        "folder": "items",
+        "prompt": "Amiri Skel Top Hi Sneakers. Black and white high tops, bone design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls22",
+        "folder": "items",
+        "prompt": "Saint Laurent Court Classic SL/06. White distressed sneakers with logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls23",
+        "folder": "items",
+        "prompt": "Tom Ford Velvet Sneakers. Black velvet texture, luxury evening sneaker, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls24",
+        "folder": "items",
+        "prompt": "Gucci Ace Supreme. Beige canvas with GG logo and web stripe, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls25",
+        "folder": "items",
+        "prompt": "Jimmy Choo Palma/M. White leather sneakers with star studs, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls26",
+        "folder": "items",
+        "prompt": "Golden Goose Super-Star Low-top Sneakers. Distressed white leather with star, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls27",
+        "folder": "items",
+        "prompt": "Golden Goose Dad-Star Sneakers. Silver chunky sneakers, retro style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls28",
+        "folder": "items",
+        "prompt": "Alexander McQueen Oversized Sneakers. White with black heel tab, thick sole, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls29",
+        "folder": "items",
+        "prompt": "Amiri Court High-stop Sneakers. White and black high tops, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls30",
+        "folder": "items",
+        "prompt": "Maison Mihara Yasuhiro Blakey Low-top Sneakers. Melted sole design, black canvas, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls31",
+        "folder": "items",
+        "prompt": "Versace Greca Embroidered Sneakers. White with greek key pattern, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls32",
+        "folder": "items",
+        "prompt": "Golden Goose Super-Star Sneakers. White with grey star, distressed, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls33",
+        "folder": "items",
+        "prompt": "Maison Mihara Hank OG Sole Canvas Low. White canvas with wavy sole, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls34",
+        "folder": "items",
+        "prompt": "Dolce & Gabbana CUSHION Sneakers. Mesh and leather, sporty luxury, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls35",
+        "folder": "items",
+        "prompt": "Maison MIHARA YASUHIRO HANK Sneakers. Black canvas, melted sole look, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls36",
+        "folder": "items",
+        "prompt": "Off-white Low Vulcanized Sneakers. Black canvas with arrow logo and zip tie, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls37",
+        "folder": "items",
+        "prompt": "Common Projects Tennis Classic Sneakers. Minimalist white leather, gold serial number, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls38",
+        "folder": "items",
+        "prompt": "Golden Goose Matchstar Sneakers. High top distressed sneakers, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls39",
+        "folder": "items",
+        "prompt": "Palm Angels University Sneakers. White and cream vintage style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls40",
+        "folder": "items",
+        "prompt": "Hackett Hackney Sneakers. Navy blue suede and mesh, casual, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls41",
+        "folder": "items",
+        "prompt": "Hackett Leather Sneakers. Brown leather, classic design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls42",
+        "folder": "items",
+        "prompt": "Axel Arigato Dice Lo Leather Sneakers. White and green, vintage basketball style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls43",
+        "folder": "items",
+        "prompt": "Autry Medalist Sneakers. White leather with American flag logo, retro 80s, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls44",
+        "folder": "items",
+        "prompt": "Autry Action low-top Sneakers. White and red leather, vintage vibes, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls45",
+        "folder": "items",
+        "prompt": "GUESS USA Monogram-panel Sneakers. Brown monogram print, chunky sole, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls46",
+        "folder": "items",
+        "prompt": "Levi's Chunky Sole Sneakers. White denim texture, thick sole, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls47",
+        "folder": "items",
+        "prompt": "Autry Medalist Suede-panel Sneakers. White and beige suede, retro look, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls48",
+        "folder": "items",
+        "prompt": "VEJA V10 ChromeFree Sneakers. White with red V logo, sustainable leather, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls49",
+        "folder": "items",
+        "prompt": "Hugo Panelled Sneakers. Black and grey panels, modern design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls50",
+        "folder": "items",
+        "prompt": "VEJA Campo Low-top Sneakers. White with green V logo, clean design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls51",
+        "folder": "items",
+        "prompt": "GUESS USA Logo-plaque Sneakers. White sneakers with gold logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls52",
+        "folder": "items",
+        "prompt": "Veja Super-Star Sneakers. White leather, classic style, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls53",
+        "folder": "items",
+        "prompt": "Kappa Chossuni Socks. White socks with Kappa logo, sporty, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ls54",
+        "folder": "items",
+        "prompt": "Shoelace. Single white shoelace, coiled, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    }
+]

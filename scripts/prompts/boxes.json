@@ -1,0 +1,142 @@
+[
+    {
+        "name": "pokemon_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Pokemon Treasure Box'. Gold and yellow theme, luxury design, Pokemon cards spilling out. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "food_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Food Delivery Box'. Orange and red theme, featuring 3D food icons like burgers and pizza. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sneaker_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Sneaker Grails Box'. Purple and indigo theme, featuring a high-end sneaker box design. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "steam_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Steam Vault Box'. Blue and black theme, featuring steam/gaming icons and gears. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "tech_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Tech Premium Box'. Slate and black theme, sleek metallic Apple-style design. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "supreme_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Supreme Legacy Box'. Red and white theme, street fashion aesthetic with box logo style. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "apple_budget",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Apple Budget Box'. Silver and white theme, clean minimal Apple aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "samsung_budget",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Samsung Budget Box'. Blue and white theme, sleek android futuristic aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gamer_budget",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Gamer Budget Box'. Green and black theme, matrix/gaming aesthetic with peripherals. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "charizard_chase",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Charizard Chase Box'. Fiery red and orange theme, dragon scales texture, intense glow. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pokemon_budget",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Pokemon Budget Box'. Yellow and blue theme, playful design with booster packs. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "modern_hits",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Modern Hits Box'. Purple and pink neon theme, modern card designs. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "vintage_vault",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box icon for 'Vintage Vault Box'. Slate and gold theme, ancient vault design, dusty and mysterious. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "apple_2025",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for '2025 Apple Box'. Sleek silver and white theme, futuristic Apple aesthetic, iPhone 17 and Apple Watch floating around it, premium tech vibes. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc_components",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Crypto Miner Box'. Red and orange gradient, high-end GPU graphics cards, motherboards, mining rig aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "switch_2",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Nintendo Switch 2 Box'. Red and white Nintendo theme, Joy-Con controllers, Mario Kart imagery, playful gaming aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx_1_percent",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'RTX 1% Box'. Green and black Nvidia theme, RTX 5090 graphics card, ray tracing effects, premium gaming hardware. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "supreme_or_not",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Supreme or Not Box'. Red and white Supreme aesthetic, box logo style, streetwear collectibles, hype beast vibes. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "big_mix",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Big Mix Box'. Purple and pink gradient, mixed items floating (sneakers, tech, Supreme), ultimate variety aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rich_club",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for '1% Rich Club Box'. Gold and yellow luxury theme, Porsche, Rolex, diamonds, ultra-premium wealth aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "poker_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Poker Box'. Green and emerald casino theme, poker chips, cards, WSOP branding, professional poker aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "golf_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Golf Box'. Green grass theme, golf clubs, Titleist branding, country club premium aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "big_baller",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Big Baller Box'. Purple and pink gradient, Rolex watches, Louis Vuitton bags, luxury lifestyle aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "mixed_sports",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Mixed Sports Box'. Orange and red theme, pool table, basketballs, signed jerseys, sports memorabilia aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "football_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Football Box'. Dark green NFL theme, football helmets, jerseys, Tom Brady imagery, American football aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "basketball_box",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Basketball Box'. Orange NBA theme, basketballs, hoops, Michael Jordan imagery, basketball aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "artsy_hustle",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Artsy Hustle Box'. Pink and purple gradient, Kaws figures, Bearbricks, Virgil Abloh art, designer toy aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "luxury_sneakers",
+        "folder": "boxes",
+        "prompt": "A high-quality, 3D-rendered loot box for 'Luxury Sneakers Box'. Indigo and purple gradient, Louis Vuitton sneakers, Balenciaga, Gucci, high-end designer footwear aesthetic. Cyberpunk style, dark background, glowing neon effects, cinematic lighting, volumetric fog, detailed texture, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    }
+]

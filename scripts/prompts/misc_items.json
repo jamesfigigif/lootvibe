@@ -1,0 +1,357 @@
+[
+    {
+        "name": "f1",
+        "folder": "items",
+        "prompt": "$500 DoorDash Gift Card. Red card, DoorDash logo, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f2",
+        "folder": "items",
+        "prompt": "$200 Uber Eats Credit Card. Green card, Uber Eats logo, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f3",
+        "folder": "items",
+        "prompt": "$100 Grubhub Gift Card. Orange card, Grubhub logo, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f4",
+        "folder": "items",
+        "prompt": "$75 Multi-Restaurant Gift Card. Colorful food icons, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f5",
+        "folder": "items",
+        "prompt": "$50 DoorDash Gift Card. Red card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f6",
+        "folder": "items",
+        "prompt": "$30 Restaurant.com eGift Card. Blue card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f7",
+        "folder": "items",
+        "prompt": "$20 Fast Food Gift Card. Burger and fries icon, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f8",
+        "folder": "items",
+        "prompt": "$10 Coffee Shop Gift Card. Coffee cup icon, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "f9",
+        "folder": "items",
+        "prompt": "$5 Snack Credit. Chip bag icon, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st1",
+        "folder": "items",
+        "prompt": "Steam Deck OLED 1TB Handheld Console. Screen on, steam logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st2",
+        "folder": "items",
+        "prompt": "ASUS ROG Ally Handheld Console. White, RGB lighting, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st3",
+        "folder": "items",
+        "prompt": "$200 Steam Gift Card Digital Code. Blue steam card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st4",
+        "folder": "items",
+        "prompt": "$100 Steam Gift Card Digital Code. Blue steam card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st5",
+        "folder": "items",
+        "prompt": "Premium PC Game Bundle. Stack of 5 game cases, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st6",
+        "folder": "items",
+        "prompt": "$50 Steam Gift Card. Blue steam card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st7",
+        "folder": "items",
+        "prompt": "AAA Game Key Card (Elden Ring). Game art, glowing code, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st8",
+        "folder": "items",
+        "prompt": "Indie Game Bundle. Pixel art style, stack of games, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "st9",
+        "folder": "items",
+        "prompt": "$10 Steam Gift Card. Blue steam card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm1",
+        "folder": "items",
+        "prompt": "Nike x Dior Jordan 1 Retro High sneakers. Grey and white with Dior monogram swoosh, ultimate grail, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm2",
+        "folder": "items",
+        "prompt": "Supreme x Louis Vuitton Box Logo Hoodie. Red with white LV monogram, luxury streetwear, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm3",
+        "folder": "items",
+        "prompt": "MacBook Pro 16 inch M3 Max. Space Black laptop, powerful workstation, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm4",
+        "folder": "items",
+        "prompt": "iPhone 15 Pro Max Titanium. Natural titanium finish, triple camera, flagship phone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm5",
+        "folder": "items",
+        "prompt": "Travis Scott x Air Jordan 1 Low Mocha sneakers. Reverse swoosh, brown suede, hype sneaker, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm6",
+        "folder": "items",
+        "prompt": "Off-White x Nike Dunk Low Pine Green sneakers. Green with orange zip tie, Virgil design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm7",
+        "folder": "items",
+        "prompt": "Supreme Box Logo Hoodie. Classic red with white logo, streetwear essential, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm8",
+        "folder": "items",
+        "prompt": "PlayStation 5 Slim Digital Edition. White console, next-gen gaming, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm9",
+        "folder": "items",
+        "prompt": "Air Jordan 4 Military Black sneakers. Black and white with netting, classic Jordan, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm10",
+        "folder": "items",
+        "prompt": "Supreme x The North Face Nuptse Jacket. Black puffer with patches, winter grail, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm11",
+        "folder": "items",
+        "prompt": "iPad Pro 12.9 inch M2. Large tablet with Apple Pencil, creative tool, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm12",
+        "folder": "items",
+        "prompt": "Air Jordan 1 High University Blue sneakers. Blue and white leather, classic colorway, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm13",
+        "folder": "items",
+        "prompt": "Supreme x Nike SB Dunk Low. Red and white with stars, skateboarding collab, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm14",
+        "folder": "items",
+        "prompt": "Apple Watch Ultra 2 Titanium. Rugged outdoor smartwatch, adventure ready, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm15",
+        "folder": "items",
+        "prompt": "Adidas Yeezy Boost 350 V2 Beluga. Grey primeknit with orange stripe, Kanye design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm16",
+        "folder": "items",
+        "prompt": "Supreme Box Logo Tee. White with red logo, streetwear staple, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm17",
+        "folder": "items",
+        "prompt": "AirPods Pro 2nd Gen. White charging case with earbuds, premium audio, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm18",
+        "folder": "items",
+        "prompt": "Nike Dunk Low Panda. Black and white leather, simple classic, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm19",
+        "folder": "items",
+        "prompt": "Supreme Shoulder Bag. Red crossbody with box logo, daily carry, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm20",
+        "folder": "items",
+        "prompt": "Steam Deck OLED 1TB. Handheld gaming console, portable PC gaming, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm21",
+        "folder": "items",
+        "prompt": "New Balance 550 White Green. Retro basketball sneaker, clean colorway, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm22",
+        "folder": "items",
+        "prompt": "Supreme Beanie. Red knit with box logo, winter essential, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm23",
+        "folder": "items",
+        "prompt": "$200 Steam Gift Card. Blue digital card, gaming credit, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm24",
+        "folder": "items",
+        "prompt": "Nike Air Force 1 White. Classic white sneaker, timeless design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm25",
+        "folder": "items",
+        "prompt": "Supreme Camp Cap. Red 5-panel with box logo, classic hat, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm26",
+        "folder": "items",
+        "prompt": "$100 DoorDash Gift Card. Red digital card, food delivery credit, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm27",
+        "folder": "items",
+        "prompt": "Supreme Sticker Pack. Red box logo stickers, collectibles, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm28",
+        "folder": "items",
+        "prompt": "$50 Steam Gift Card. Blue digital card, gaming credit, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm29",
+        "folder": "items",
+        "prompt": "Pokemon Booster Pack. Foil wrapper with Pokemon artwork, trading cards, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm30",
+        "folder": "items",
+        "prompt": "$20 Fast Food Gift Card. Colorful digital card, quick meal credit, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm31",
+        "folder": "items",
+        "prompt": "Supreme Keychain. Red box logo keychain, small accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm32",
+        "folder": "items",
+        "prompt": "$10 Steam Gift Card. Blue digital card, small gaming credit, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm33",
+        "folder": "items",
+        "prompt": "Pokemon Sticker Pack. Colorful Pokemon stickers, collectible fun, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm34",
+        "folder": "items",
+        "prompt": "$5 Snack Credit. Small digital voucher, quick snack, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm35",
+        "folder": "items",
+        "prompt": "Corsair LL120 RGB PC cooling fan. Premium 120mm case fan with dual RGB light loops, black frame, vibrant purple blue and pink lighting effects, high-tech cooling solution, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm36",
+        "folder": "items",
+        "prompt": "505 Games Control Ultimate Edition Steam Digital Code. Holographic game code card with Steam logo, Control game artwork, purple and blue neon accents, digital key card, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm37",
+        "folder": "items",
+        "prompt": "Capcom Resident Evil 3 Steam Digital Code. Holographic game code card with Steam logo, RE3 logo and Jill Valentine artwork, red and black horror theme, digital key card, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "bm38",
+        "folder": "items",
+        "prompt": "LootVibe Keychain. Purple branded keychain, small accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab10",
+        "folder": "items",
+        "prompt": "Apple logo sticker. White Apple logo on a glossy vinyl sticker with subtle drop shadow, minimalistic and clean, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc1",
+        "folder": "items",
+        "prompt": "Porsche 2023 Taycan Turbo S electric car. Sleek black sports car, luxury EV, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc2",
+        "folder": "items",
+        "prompt": "Rolex Daytona Platinum watch. Platinum case with ice blue dial, ultimate luxury timepiece, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc3",
+        "folder": "items",
+        "prompt": "5 Carat Diamond Ring. Brilliant cut diamond in platinum setting, luxury jewelry, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc4",
+        "folder": "items",
+        "prompt": "Rolex Submariner Date watch. Black dial with green bezel, iconic dive watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc5",
+        "folder": "items",
+        "prompt": "Patek Philippe Nautilus watch. Blue dial with steel case, luxury sports watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc6",
+        "folder": "items",
+        "prompt": "1 Kilogram Gold Bar. Shiny gold bullion with stamp, precious metal investment, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc7",
+        "folder": "items",
+        "prompt": "Audemars Piguet Royal Oak watch. Octagonal bezel with tapisserie dial, luxury icon, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc8",
+        "folder": "items",
+        "prompt": "100 Gram Gold Bar. Small gold bullion with stamp, precious metal, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc9",
+        "folder": "items",
+        "prompt": "Omega Seamaster Diver 300M watch. Blue dial with wave pattern, James Bond watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc10",
+        "folder": "items",
+        "prompt": "10 Gram Gold Bar. Tiny gold bullion with stamp, starter precious metal, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc11",
+        "folder": "items",
+        "prompt": "TAG Heuer Carrera Chronograph watch. Black dial with steel case, racing-inspired watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc12",
+        "folder": "items",
+        "prompt": "1 Gram Gold Bar. Miniature gold bullion with stamp, small precious metal, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc13",
+        "folder": "items",
+        "prompt": "LootVibe $1 Voucher. Purple digital voucher, small credit, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rc14",
+        "folder": "items",
+        "prompt": "LootVibe $0.01 Voucher. Tiny purple voucher, humorous prize, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    }
+]

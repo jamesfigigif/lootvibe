@@ -1,0 +1,602 @@
+[
+    {
+        "name": "t1",
+        "folder": "items",
+        "prompt": "MacBook Pro 14 inch M3 Pro Space Black. Screen open, wallpaper visible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t2",
+        "folder": "items",
+        "prompt": "MacBook Air 15 inch Midnight. Thin profile, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t3",
+        "folder": "items",
+        "prompt": "iPhone 15 Pro Titanium Natural. Triple camera system, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t4",
+        "folder": "items",
+        "prompt": "iPad Pro 11 inch M2. Screen on, apple pencil nearby, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t5",
+        "folder": "items",
+        "prompt": "iPhone 15 Blue 128GB. Dual camera, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t6",
+        "folder": "items",
+        "prompt": "iPad Air M1 Blue. Screen on, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t7",
+        "folder": "items",
+        "prompt": "Apple Watch Series 9 Midnight. Sport band, screen on, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t8",
+        "folder": "items",
+        "prompt": "AirPods Pro 2nd Gen. Open case, buds visible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "t9",
+        "folder": "items",
+        "prompt": "Apple Magic Keyboard and Mouse. White, sleek, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab1",
+        "folder": "items",
+        "prompt": "iPhone 12 Blue (Refurbished). Dual camera, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab2",
+        "folder": "items",
+        "prompt": "iPad 9th Gen Silver. Screen on, home button, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab3",
+        "folder": "items",
+        "prompt": "AirPods 2nd Gen. Long stem, charging case, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab4",
+        "folder": "items",
+        "prompt": "Apple Pencil 2nd Gen. White stylus, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab5",
+        "folder": "items",
+        "prompt": "Apple AirTag 4-Pack. White discs, silver back, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab6",
+        "folder": "items",
+        "prompt": "Apple MagSafe Charger. White puck, cable, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab7",
+        "folder": "items",
+        "prompt": "Apple AirTag Single. White disc, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab8",
+        "folder": "items",
+        "prompt": "Apple Polishing Cloth. Grey fabric, apple logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ab9",
+        "folder": "items",
+        "prompt": "USB-C to Lightning Cable. White cable, coiled, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb1",
+        "folder": "items",
+        "prompt": "Samsung Galaxy A54 Lime. Triple camera, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb2",
+        "folder": "items",
+        "prompt": "Samsung Galaxy Watch 6. Round face, sport band, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb3",
+        "folder": "items",
+        "prompt": "Samsung Galaxy Buds 2 Pro Purple. Open case, buds visible, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb4",
+        "folder": "items",
+        "prompt": "Samsung T7 SSD 1TB Blue. Portable drive, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb5",
+        "folder": "items",
+        "prompt": "Samsung Wireless Charger Trio. Black pad, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb6",
+        "folder": "items",
+        "prompt": "Samsung SmartTag2 4-Pack. Black and white tags, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb7",
+        "folder": "items",
+        "prompt": "Samsung 45W Power Adapter. Black block, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb8",
+        "folder": "items",
+        "prompt": "Samsung SmartTag2 Single. White tag, ring, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sb9",
+        "folder": "items",
+        "prompt": "USB-C Cable Black. Coiled cable, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb1",
+        "folder": "items",
+        "prompt": "Razer Huntsman Mini Keyboard. 60% size, RGB lighting, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb2",
+        "folder": "items",
+        "prompt": "Logitech G502 Hero Mouse. Wired, RGB logo, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb3",
+        "folder": "items",
+        "prompt": "HyperX Cloud Stinger 2 Headset. Black, red accents, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb4",
+        "folder": "items",
+        "prompt": "Xbox Wireless Controller Robot White. Floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb5",
+        "folder": "items",
+        "prompt": "Steam Gift Card $20. Blue card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb6",
+        "folder": "items",
+        "prompt": "Razer Gigantus V2 Mouse Pad. Black with green edge, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb7",
+        "folder": "items",
+        "prompt": "Steam Gift Card $10. Blue card, glowing, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb8",
+        "folder": "items",
+        "prompt": "Random Steam Key Code. Digital glitch effect, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "gb9",
+        "folder": "items",
+        "prompt": "Cat 6 Ethernet Cable Blue. Coiled cable, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_1",
+        "folder": "items",
+        "prompt": "iPhone 17 Pro Max in Cosmic Orange color. Titanium frame, triple camera system, glowing OLED screen, premium flagship smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_2",
+        "folder": "items",
+        "prompt": "iPhone 17 Pro in Deep Blue color. Titanium frame, triple camera, sleek premium design, flagship smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_3",
+        "folder": "items",
+        "prompt": "iPhone 17 Pro in Silver color. Titanium frame, triple camera, classic elegant design, premium smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_4",
+        "folder": "items",
+        "prompt": "iPhone Air in Cloud White color. Ultra-thin design, dual camera, lightweight premium smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_5",
+        "folder": "items",
+        "prompt": "iPhone Air Space in Light Gold color. Thin aluminum frame, elegant premium design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_6",
+        "folder": "items",
+        "prompt": "iPhone Air Space in Sky Blue color. Thin design, vibrant blue finish, premium smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_7",
+        "folder": "items",
+        "prompt": "iPhone Air Space in Black color. Sleek matte black finish, thin premium design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_8",
+        "folder": "items",
+        "prompt": "iPhone 17 in Black color. Dual camera, aluminum frame, classic design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_9",
+        "folder": "items",
+        "prompt": "iPhone 17 in Mist Blue color. Soft blue finish, dual camera, elegant smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_10",
+        "folder": "items",
+        "prompt": "iPhone 17 in Sage color. Green-grey finish, nature-inspired design, premium smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_11",
+        "folder": "items",
+        "prompt": "iPhone 17 in White color. Clean white finish, dual camera, minimalist design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_12",
+        "folder": "items",
+        "prompt": "iPhone 17 in Lavender color. Soft purple finish, elegant design, premium smartphone, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_13",
+        "folder": "items",
+        "prompt": "Apple Watch Ultra 3 Titanium with Milanese Loop in Black. Rugged outdoor smartwatch, titanium case, premium black metal band, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_14",
+        "folder": "items",
+        "prompt": "Apple Watch Ultra 3 Titanium with Milanese Loop in Natural. Titanium case, silver metal band, premium outdoor watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_15",
+        "folder": "items",
+        "prompt": "Apple Watch Ultra 3 Natural with Ocean Band in Neon Green. Titanium case, bright green sport band, adventure watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_16",
+        "folder": "items",
+        "prompt": "Apple Watch Ultra 3 with Alpine Loop in Black. Titanium case, black woven band, outdoor adventure watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_17",
+        "folder": "items",
+        "prompt": "Apple Watch Series 11 Titanium with Milanese Loop in Slate. Premium titanium case, grey metal band, elegant smartwatch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_18",
+        "folder": "items",
+        "prompt": "Apple Watch Series 11 Titanium with Milanese Loop in Gold. Titanium case, gold metal band, luxury smartwatch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_19",
+        "folder": "items",
+        "prompt": "Apple Watch Series 11 Titanium with Milanese Loop in Natural. Silver titanium case, classic metal band, premium watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_20",
+        "folder": "items",
+        "prompt": "Apple Watch Series 11 Aluminum in Jet Black with Sport Band. Sleek black aluminum case, black sport band, modern smartwatch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_21",
+        "folder": "items",
+        "prompt": "Apple Watch Series 11 Aluminum in Rose Gold with Pride Edition Sport Loop. Pink gold case, rainbow pride band, inclusive design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_22",
+        "folder": "items",
+        "prompt": "Apple Watch Series 11 Aluminum in Silver with Nike Sport Loop in Veiled Grey. Silver case, grey Nike band, athletic watch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_23",
+        "folder": "items",
+        "prompt": "Apple Watch Series 11 Aluminum in Space Gray with Sport Loop in Anchor Blue. Dark grey case, blue sport band, modern smartwatch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_24",
+        "folder": "items",
+        "prompt": "Apple Watch SE 3 with Rubber Sport Band in Light Blush. Aluminum case, soft pink band, affordable smartwatch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_25",
+        "folder": "items",
+        "prompt": "Apple Watch SE 3 with Rubber Sport Band in Midnight. Black aluminum case, dark blue band, sleek smartwatch, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_26",
+        "folder": "items",
+        "prompt": "AirPods Pro 3. White charging case open showing earbuds, premium wireless earphones, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_27",
+        "folder": "items",
+        "prompt": "Apple Gift Card $250. Digital gift card with Apple logo, glowing white and silver design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "ap25_28",
+        "folder": "items",
+        "prompt": "Red Delicious Apple fruit. Shiny red apple with stem, realistic fruit, humorous contrast to tech items, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc1",
+        "folder": "items",
+        "prompt": "AMD Radeon RX 6900 XT graphics card. High-end red and black GPU, RGB lighting, powerful gaming hardware, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc2",
+        "folder": "items",
+        "prompt": "AMD Radeon RX 6800 graphics card. Premium red GPU, dual fans, gaming hardware, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc3",
+        "folder": "items",
+        "prompt": "AMD Radeon RX 6800 XT graphics card. High-performance red GPU, triple fan design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc4",
+        "folder": "items",
+        "prompt": "AMD Radeon RX 6700 XT graphics card. Mid-range red GPU, dual fans, gaming card, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc5",
+        "folder": "items",
+        "prompt": "ASUS TUF Gaming X570-Plus motherboard. Black and yellow ATX board, RGB lighting, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc6",
+        "folder": "items",
+        "prompt": "Corsair RM850x power supply. Black modular PSU, 850W, premium cables, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc7",
+        "folder": "items",
+        "prompt": "Corsair Vengeance RGB Pro RAM. Black memory sticks with RGB lighting, DDR4, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc8",
+        "folder": "items",
+        "prompt": "Corsair Vengeance LPX RAM. Black low-profile memory, DDR4, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc9",
+        "folder": "items",
+        "prompt": "SanDisk SSD Plus. Black 2.5 inch solid state drive, fast storage, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc10",
+        "folder": "items",
+        "prompt": "Noctua NF-F12 PWM fan. Beige and brown premium case fan, quiet cooling, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc11",
+        "folder": "items",
+        "prompt": "Corsair AF140 case fan. Black fan with RGB lighting, 140mm, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc12",
+        "folder": "items",
+        "prompt": "LootVibe $10 Voucher. Glowing purple digital voucher card, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "pc13",
+        "folder": "items",
+        "prompt": "LootVibe $9 Voucher. Glowing purple digital voucher card, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_1",
+        "folder": "items",
+        "prompt": "Nintendo Switch 2 Mario Kart World Bundle. Red console with game, Joy-Cons attached, Mario Kart box art, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_2",
+        "folder": "items",
+        "prompt": "Nintendo Switch 2 console. Red and blue Joy-Cons, OLED screen, next-gen gaming, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_3",
+        "folder": "items",
+        "prompt": "Nintendo Switch 2 Dock Set. Black charging dock with HDMI, USB ports, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_4",
+        "folder": "items",
+        "prompt": "Nintendo Gamecube Controller. Purple classic controller, nostalgic design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_5",
+        "folder": "items",
+        "prompt": "Nintendo Switch 2 All-In-One Carrying Case. Black protective case, storage compartments, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_6",
+        "folder": "items",
+        "prompt": "Joy-Con 2 Pair. Red and blue wireless controllers, HD rumble, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_7",
+        "folder": "items",
+        "prompt": "Nintendo Switch 2 Pro Controller. Black ergonomic controller, premium buttons, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_8",
+        "folder": "items",
+        "prompt": "Donkey Kong Bananza game. Game case with DK artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_9",
+        "folder": "items",
+        "prompt": "Nintendo x SanDisk microSDXC Express Card. Red Nintendo-branded SD card, 512GB, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_10",
+        "folder": "items",
+        "prompt": "Mario Kart World game. Game case with Mario racing artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_11",
+        "folder": "items",
+        "prompt": "Nintendo Switch 2 Camera. Black camera attachment, AR features, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_12",
+        "folder": "items",
+        "prompt": "Zelda Tears Of The Kingdom. Game case with Link artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_13",
+        "folder": "items",
+        "prompt": "Cyberpunk 2077 Ultimate Edition. Game case with cyberpunk artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_14",
+        "folder": "items",
+        "prompt": "Civilization VII. Strategy game case, historical artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_15",
+        "folder": "items",
+        "prompt": "Zelda Breath of the Wild. Game case with Link and Hyrule artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_16",
+        "folder": "items",
+        "prompt": "Joy-Con 2 Right Hand. Single red Joy-Con, wireless, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_17",
+        "folder": "items",
+        "prompt": "Joy-Con 2 Left Hand. Single blue Joy-Con, wireless, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_18",
+        "folder": "items",
+        "prompt": "Hori x Nintendo Piranha Plant Camera. Green plant-themed camera, fun design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_19",
+        "folder": "items",
+        "prompt": "Hogwarts Legacy game. Game case with Hogwarts castle artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_20",
+        "folder": "items",
+        "prompt": "Hitman World of Assassination. Game case with Agent 47 artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_21",
+        "folder": "items",
+        "prompt": "Street Fighter 6 Years 1-2. Fighting game case with character artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_22",
+        "folder": "items",
+        "prompt": "Split Fiction game. Co-op game case with split artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_23",
+        "folder": "items",
+        "prompt": "Raidou Remastered game. JRPG game case with anime artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_24",
+        "folder": "items",
+        "prompt": "Yakuza 0 Director's Cut. Game case with Kiryu artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_25",
+        "folder": "items",
+        "prompt": "Sonic x Shadow Generations. Game case with Sonic and Shadow artwork, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_26",
+        "folder": "items",
+        "prompt": "Nintendo eShop Gift Card €50. Digital card with Nintendo logo, red and white, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_27",
+        "folder": "items",
+        "prompt": "Joy-Con 2 Charging Grip. Black charging dock for Joy-Cons, USB-C cable, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_28",
+        "folder": "items",
+        "prompt": "Nintendo Switch 2 AC Adapter. White power adapter with USB-C, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_29",
+        "folder": "items",
+        "prompt": "Switch 2 Carrying Case and Screen Protector. Black case with tempered glass, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_30",
+        "folder": "items",
+        "prompt": "Joy-Con 2 Wheel Pair. Red and blue steering wheel attachments, racing accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_31",
+        "folder": "items",
+        "prompt": "LootVibe Squeaky Duck. Yellow rubber duck with LootVibe branding, humorous item, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "sw2_32",
+        "folder": "items",
+        "prompt": "Joy-Con 2 Strap. Black wrist strap for Joy-Con safety, simple accessory, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx1",
+        "folder": "items",
+        "prompt": "Gigabyte Nvidia GeForce RTX 5090 Aorus Master. Massive triple-fan GPU, RGB lighting, ultimate gaming card, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx2",
+        "folder": "items",
+        "prompt": "Gigabyte Nvidia GeForce RTX 4090 Gaming OC. Huge black GPU, triple fans, top-tier graphics, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx3",
+        "folder": "items",
+        "prompt": "Gigabyte Nvidia GeForce RTX 4080 OC. Large black GPU, dual fans, high-end gaming, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx4",
+        "folder": "items",
+        "prompt": "Asus Nvidia GeForce RTX 4080 TUF OC. Black and grey GPU, TUF branding, rugged design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx5",
+        "folder": "items",
+        "prompt": "Zotac Nvidia GeForce RTX 5080 Extreme Infinity. Black GPU with RGB, premium cooling, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx6",
+        "folder": "items",
+        "prompt": "Yeston Sakura Sugar Nvidia GeForce RTX 4080 Super. Pink and white GPU, anime aesthetic, kawaii design, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx7",
+        "folder": "items",
+        "prompt": "Yeston Sakura Nvidia GeForce RTX 4070 TI Super. Pink GPU with cherry blossom design, cute aesthetic, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx8",
+        "folder": "items",
+        "prompt": "Zotac Nvidia GeForce RTX 4070 Ti Trinity OC. Black triple-fan GPU, mid-high tier gaming, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx9",
+        "folder": "items",
+        "prompt": "Gigabyte Nvidia GeForce RTX 5070 Ti WINDFORCE OC. Black GPU with Windforce cooling, RGB accents, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx10",
+        "folder": "items",
+        "prompt": "Asus Nvidia GeForce RTX 4070 TUF OC. Black TUF-branded GPU, reliable gaming card, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    },
+    {
+        "name": "rtx11",
+        "folder": "items",
+        "prompt": "LootVibe €0.02 Voucher. Tiny glowing purple voucher, humorous low-value prize, floating in void, Cyberpunk style, dark background, glowing neon effects, high contrast, 3D render, 8k resolution, unreal engine 5 style."
+    }
+]

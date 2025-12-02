@@ -1,0 +1,1164 @@
+[
+  {
+    "id": "1__iphone",
+    "name": "1% iPhone",
+    "price": 20.29,
+    "salePrice": 2.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the 1% iPhone.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "1__pc",
+    "name": "1% PC",
+    "price": 4.13,
+    "salePrice": 2.89,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the 1% PC.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "acer",
+    "name": "Acer",
+    "price": 8.79,
+    "salePrice": 6.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Acer.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "adidas_x_bape",
+    "name": "Adidas x BAPE",
+    "price": 20.49,
+    "salePrice": 15.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Adidas x BAPE.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "adidas_x_gucci",
+    "name": "Adidas x Gucci",
+    "price": 84.49,
+    "salePrice": 69.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Adidas x Gucci.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "adin_ross",
+    "name": "Adin Ross",
+    "price": 14.49,
+    "salePrice": 12.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Adin Ross.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "alexander_mcqueen",
+    "name": "Alexander McQueen",
+    "price": 72.48,
+    "salePrice": 63.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Alexander McQueen.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "alfa_romeo",
+    "name": "Alfa Romeo",
+    "price": 564.99,
+    "salePrice": 469.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Alfa Romeo.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "alienware",
+    "name": "Alienware",
+    "price": 16.89,
+    "salePrice": 14.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Alienware.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "price": 8.49,
+    "salePrice": 6.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Amazon.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "amg_vs_bmw",
+    "name": "AMG Vs BMW",
+    "price": 954.49,
+    "salePrice": 829.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the AMG Vs BMW.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "antisocialsocialclub",
+    "name": "AntiSocialSocialClub",
+    "price": 9.59,
+    "salePrice": 7.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the AntiSocialSocialClub.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "ap_vs_rolex",
+    "name": "AP Vs Rolex",
+    "price": 2549.98,
+    "salePrice": 2189.98,
+    "tags": [
+      "SALEHALOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the AP Vs Rolex.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "apple_budget",
+    "name": "Apple Budget",
+    "price": 48.09,
+    "salePrice": 5.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Apple Budget.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "apple_deluxe",
+    "name": "Apple Deluxe",
+    "price": 118.89,
+    "salePrice": 109.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Apple Deluxe.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "apple_premium",
+    "name": "Apple Premium",
+    "price": 41.49,
+    "salePrice": 32.99,
+    "tags": [
+      "SALEHALOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Apple Premium.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "apple_vs_android",
+    "name": "Apple Vs Android",
+    "price": 97.99,
+    "salePrice": 44.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Apple Vs Android.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "apple_vs_samsung",
+    "name": "Apple Vs Samsung",
+    "price": 38.49,
+    "salePrice": 34.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Apple Vs Samsung.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "aston_martin",
+    "name": "Aston Martin",
+    "price": 2929.99,
+    "salePrice": 2599.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Aston Martin.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "audemars_piguet",
+    "name": "Audemars Piguet",
+    "price": 2179.99,
+    "salePrice": 1999.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Audemars Piguet.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "audi",
+    "name": "Audi",
+    "price": 909.49,
+    "salePrice": 719.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Audi.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "audio_vault",
+    "name": "Audio Vault",
+    "price": 11.29,
+    "salePrice": 9.39,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Audio Vault.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bad_boy_bikes",
+    "name": "Bad Boy Bikes",
+    "price": 254.99,
+    "salePrice": 239.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Bad Boy Bikes.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "balance_booster",
+    "name": "Balance Booster",
+    "price": 4.29,
+    "salePrice": 2.39,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Balance Booster.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "balenciaga_budget",
+    "name": "Balenciaga Budget",
+    "price": 9.49,
+    "salePrice": 6.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Balenciaga Budget.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "balenciaga_deluxe",
+    "name": "Balenciaga Deluxe",
+    "price": 239.99,
+    "salePrice": 219.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Balenciaga Deluxe.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "balmain",
+    "name": "Balmain",
+    "price": 59.99,
+    "salePrice": 52.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Balmain.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bape_budget",
+    "name": "BAPE Budget",
+    "price": 9.49,
+    "salePrice": 6.89,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the BAPE Budget.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bape_deluxe",
+    "name": "BAPE Deluxe",
+    "price": 137.99,
+    "salePrice": 104.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the BAPE Deluxe.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "barbie",
+    "name": "Barbie",
+    "price": 8.99,
+    "salePrice": 7.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Barbie.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "batman",
+    "name": "Batman",
+    "price": 459.49,
+    "salePrice": 389.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Batman.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bearbrick",
+    "name": "Bearbrick",
+    "price": 62.99,
+    "salePrice": 54.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Bearbrick.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bentley",
+    "name": "Bentley",
+    "price": 1999.99,
+    "salePrice": 1889.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Bentley.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "billionaire_boys_club",
+    "name": "Billionaire Boys Club",
+    "price": 14.49,
+    "salePrice": 12.09,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Billionaire Boys Club.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "birkin",
+    "name": "Birkin",
+    "price": 2414.99,
+    "salePrice": 2099.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Birkin.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "black_deals",
+    "name": "Black Deals",
+    "price": 3.49,
+    "salePrice": 2.69,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Black Deals.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bmw",
+    "name": "BMW",
+    "price": 949.99,
+    "salePrice": 749.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the BMW.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bose",
+    "name": "Bose",
+    "price": 9.19,
+    "salePrice": 7.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Bose.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "brabus",
+    "name": "BRABUS",
+    "price": 6249.99,
+    "salePrice": 5499.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the BRABUS.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "brokie",
+    "name": "BROKIE",
+    "price": 2.14,
+    "salePrice": 1.59,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the BROKIE.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "budget_beast",
+    "name": "Budget Beast",
+    "price": 1.34,
+    "salePrice": 0.89,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Budget Beast.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "budget_bentley",
+    "name": "Budget Bentley",
+    "price": 40.99,
+    "salePrice": 34.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Budget Bentley.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "burberry_budget",
+    "name": "Burberry Budget",
+    "price": 8.99,
+    "salePrice": 5.89,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Burberry Budget.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "burberry_deluxe",
+    "name": "Burberry Deluxe",
+    "price": 174.99,
+    "salePrice": 149.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Burberry Deluxe.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "bvlgari",
+    "name": "Bvlgari",
+    "price": 564.99,
+    "salePrice": 489.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Bvlgari.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "byd",
+    "name": "BYD",
+    "price": 529.99,
+    "salePrice": 459.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the BYD.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "cables",
+    "name": "Cables",
+    "price": 1.24,
+    "salePrice": 0.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Cables.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "call_of_duty",
+    "name": "Call Of Duty",
+    "price": 7.87,
+    "salePrice": 5.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Call Of Duty.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "cars_vs_watches",
+    "name": "Cars Vs Watches",
+    "price": 1849.99,
+    "salePrice": 1599.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Cars Vs Watches.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "cartier",
+    "name": "Cartier",
+    "price": 539.99,
+    "salePrice": 424.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Cartier.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "casablanca",
+    "name": "Casablanca",
+    "price": 68.48,
+    "salePrice": 60.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Casablanca.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "casio",
+    "name": "Casio",
+    "price": 4.99,
+    "salePrice": 3.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Casio.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "celine",
+    "name": "Celine",
+    "price": 172.49,
+    "salePrice": 149.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Celine.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "chanel",
+    "name": "Chanel",
+    "price": 26.39,
+    "salePrice": 21.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Chanel.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "cheap_finds",
+    "name": "Cheap Finds",
+    "price": 2.04,
+    "salePrice": 1.69,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Cheap Finds.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "china",
+    "name": "China",
+    "price": 2.84,
+    "salePrice": 2.24,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the China.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "chrome_hearts",
+    "name": "Chrome Hearts",
+    "price": 169.99,
+    "salePrice": 144.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Chrome Hearts.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "chrono_collection",
+    "name": "Chrono Collection",
+    "price": 514.49,
+    "salePrice": 449.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Chrono Collection.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "chrysler",
+    "name": "Chrysler",
+    "price": 509.99,
+    "salePrice": 444.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Chrysler.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "coach",
+    "name": "Coach",
+    "price": 26.99,
+    "salePrice": 22.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Coach.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "collectibles",
+    "name": "Collectibles",
+    "price": 112.29,
+    "salePrice": 99.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Collectibles.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "come_up",
+    "name": "Come Up",
+    "price": 12.99,
+    "salePrice": 9.69,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Come Up.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "comme_des_gar_ons",
+    "name": "Comme des Garçons",
+    "price": 18.99,
+    "salePrice": 14.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Comme des Garçons.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "console_vs_pc",
+    "name": "Console Vs PC",
+    "price": 5.99,
+    "salePrice": 3.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Console Vs PC.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "converse",
+    "name": "Converse",
+    "price": 14.99,
+    "salePrice": 12.19,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Converse.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "corsair",
+    "name": "Corsair",
+    "price": 21.99,
+    "salePrice": 18.89,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Corsair.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "corteiz",
+    "name": "Corteiz",
+    "price": 15.99,
+    "salePrice": 12.39,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Corteiz.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "crocs",
+    "name": "Crocs",
+    "price": 7.44,
+    "salePrice": 6.19,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Crocs.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "crypto_king",
+    "name": "Crypto King",
+    "price": 11.99,
+    "salePrice": 9.79,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Crypto King.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dacia",
+    "name": "Dacia",
+    "price": 444.99,
+    "salePrice": 409.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Dacia.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dark_drip",
+    "name": "Dark Drip",
+    "price": 6.89,
+    "salePrice": 5.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Dark Drip.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "datejust_vs_day_date",
+    "name": "Datejust Vs Day-Date",
+    "price": 1129.99,
+    "salePrice": 999.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Datejust Vs Day-Date.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "designers_dream",
+    "name": "Designers Dream",
+    "price": 396.49,
+    "salePrice": 344.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Designers Dream.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "diamond_vault",
+    "name": "Diamond Vault",
+    "price": 1099.99,
+    "salePrice": 949.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Diamond Vault.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dior_budget",
+    "name": "Dior Budget",
+    "price": 6.19,
+    "salePrice": 4.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Dior Budget.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dior_deluxe",
+    "name": "Dior Deluxe",
+    "price": 284.49,
+    "salePrice": 229.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Dior Deluxe.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dirty_money",
+    "name": "Dirty Money",
+    "price": 204.99,
+    "salePrice": 159.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Dirty Money.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "disney",
+    "name": "Disney",
+    "price": 5.89,
+    "salePrice": 4.59,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Disney.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dji",
+    "name": "DJI",
+    "price": 14.99,
+    "salePrice": 12.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the DJI.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dodge",
+    "name": "Dodge",
+    "price": 609.49,
+    "salePrice": 529.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Dodge.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "dragon_ball_z",
+    "name": "Dragon Ball Z",
+    "price": 16.98,
+    "salePrice": 13.89,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Dragon Ball Z.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "drake_ovo",
+    "name": "Drake OVO",
+    "price": 34.49,
+    "salePrice": 27.99,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Drake OVO.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  },
+  {
+    "id": "drip_or_drown",
+    "name": "Drip Or Drown",
+    "price": 1.89,
+    "salePrice": 1.49,
+    "tags": [
+      "HALLOWEEN"
+    ],
+    "category": "ALL",
+    "description": "Win big with the Drip Or Drown.",
+    "image": "",
+    "color": "from-slate-800 to-slate-900",
+    "items": []
+  }
+]
