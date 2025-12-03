@@ -285,6 +285,94 @@ app.get('/api/deposits/history/:userId', async (req, res) => {
     }
 });
 
+/**
+ * Get all crypto deposits with user info (for admin panel)
+ * GET /api/admin/crypto-deposits
+ */
+app.get('/api/admin/crypto-deposits', async (req, res) => {
+    try {
+        const { limit = 50 } = req.query;
+
+        const { data: deposits, error } = await supabase
+            .from('crypto_deposits')
+            .select('*, users(username)')
+            .order('created_at', { ascending: false })
+            .limit(parseInt(limit));
+
+        if (error) throw error;
+
+        res.json({ deposits: deposits || [] });
+
+    } catch (error) {
+        console.error('Error getting crypto deposits:', error);
+        res.status(500).json({ error: 'Failed to get crypto deposits' });
+    }
+});
+
+/**
+ * Get platform settings (for admin panel)
+ * GET /api/admin/settings/public
+ */
+app.get('/api/admin/settings/public', async (req, res) => {
+    try {
+        const { data: settings, error } = await supabase
+            .from('platform_settings')
+            .select('key, value')
+            .in('key', ['auto_approve_withdrawals', 'manual_approval_threshold'])
+            .single();
+
+        if (error) {
+            // Return defaults if settings don't exist yet
+            return res.json({
+                auto_approve_withdrawals: false,
+                manual_approval_threshold: 100
+            });
+        }
+
+        res.json({
+            auto_approve_withdrawals: settings?.auto_approve_withdrawals || false,
+            manual_approval_threshold: parseFloat(settings?.manual_approval_threshold) || 100
+        });
+
+    } catch (error) {
+        console.error('Error getting settings:', error);
+        res.json({
+            auto_approve_withdrawals: false,
+            manual_approval_threshold: 100
+        });
+    }
+});
+
+/**
+ * Update platform settings (for admin panel)
+ * POST /api/admin/settings/update
+ */
+app.post('/api/admin/settings/update', async (req, res) => {
+    try {
+        const { auto_approve_withdrawals, manual_approval_threshold } = req.body;
+
+        // Update or insert settings
+        const { error: upsertError } = await supabase
+            .from('platform_settings')
+            .upsert({
+                id: 'default',
+                auto_approve_withdrawals: auto_approve_withdrawals !== undefined ? auto_approve_withdrawals : false,
+                manual_approval_threshold: manual_approval_threshold !== undefined ? parseFloat(manual_approval_threshold) : 100,
+                updated_at: new Date().toISOString()
+            }, {
+                onConflict: 'id'
+            });
+
+        if (upsertError) throw upsertError;
+
+        res.json({ success: true, message: 'Settings updated successfully' });
+
+    } catch (error) {
+        console.error('Error updating settings:', error);
+        res.status(500).json({ error: 'Failed to update settings' });
+    }
+});
+
 // Initialize admin auth service
 const adminAuthService = new AdminAuthService(supabase);
 
