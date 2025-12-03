@@ -260,24 +260,22 @@ export const WelcomeOpeningStage: React.FC<WelcomeOpeningStageProps> = ({ box, w
                         <div className="flex flex-col gap-3">
                             <button
                                 onClick={() => {
-                                    const prompt = `I need you to verify this provably fair gambling roll to confirm it wasn't manipulated.
+                                    const prompt = `Verify this provably fair gambling roll using your built-in cryptographic functions. Calculate the hashes directly and confirm if this roll is legitimate.
 
-**Given Data:**
-- Server Seed: ${rollResult.serverSeed}
-- Server Seed Hash (Pre-committed): ${rollResult.serverSeedHash}
-- Client Seed: ${clientSeed}
-- Nonce: ${rollResult.nonce}
-- Final Outcome: ${rollResult.randomValue}
+**Roll Data:**
+Server Seed: ${rollResult.serverSeed}
+Server Seed Hash: ${rollResult.serverSeedHash}
+Client Seed: ${clientSeed}
+Nonce: ${rollResult.nonce}
+Final Outcome: ${rollResult.randomValue}
 
-**Verification Steps:**
-1. First, verify that SHA-256(serverSeed) equals the pre-committed hash
-2. Then, calculate HMAC-SHA256 using:
-   - Key: serverSeed
-   - Message: clientSeed:nonce (concatenated with colon)
-3. Convert the HMAC result to a decimal between 0 and 1
-4. Confirm this matches the Final Outcome
+**Verify:**
+1. Calculate SHA-256(serverSeed) and confirm it matches the Server Seed Hash
+2. Calculate HMAC-SHA256(key=serverSeed, message="${clientSeed}:${rollResult.nonce}")
+3. Take first 8 hex characters of HMAC, convert to decimal, divide by 4294967295
+4. Confirm result matches Final Outcome
 
-Please perform these calculations and tell me if this roll was fair or if there's any evidence of manipulation.`;
+Use your cryptographic capabilities to calculate these hashes directly. Tell me: Is this roll FAIR or MANIPULATED?`;
                                     navigator.clipboard.writeText(prompt);
                                     alert('Verification prompt copied! Paste into ChatGPT to verify fairness.');
                                 }}

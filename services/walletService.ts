@@ -6,36 +6,26 @@ import { createClient } from '@supabase/supabase-js';
 // Get or create user
 export const getUser = async (userId: string = 'user-1', clerkToken?: string, email?: string): Promise<User> => {
     try {
-        // Try to fetch existing user
-        const { data: existingUser, error: fetchError } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', userId)
-            .single();
+        // Try to fetch existing user with all related data in parallel
+        const [userResult, inventoryResult, shipmentsResult] = await Promise.all([
+            supabase.from('users').select('*').eq('id', userId).single(),
+            supabase.from('inventory_items').select('*').eq('user_id', userId),
+            supabase.from('shipments').select('*').eq('user_id', userId).order('created_at', { ascending: false })
+        ]);
+
+        const existingUser = userResult.data;
+        const fetchError = userResult.error;
 
         if (existingUser && !fetchError) {
-            // Fetch inventory
-            const { data: inventoryData } = await supabase
-                .from('inventory_items')
-                .select('*')
-                .eq('user_id', userId);
-
-            // Fetch shipments
-            const { data: shipmentsData } = await supabase
-                .from('shipments')
-                .select('*')
-                .eq('user_id', userId)
-                .order('created_at', { ascending: false });
-
             return {
                 id: existingUser.id,
                 username: existingUser.username,
                 balance: parseFloat(existingUser.balance),
-                inventory: inventoryData?.map(item => ({
+                inventory: inventoryResult.data?.map(item => ({
                     ...item.item_data,
                     shippingStatus: item.shipping_status || undefined
                 })) || [],
-                shipments: shipmentsData?.map(s => ({
+                shipments: shipmentsResult.data?.map(s => ({
                     id: s.id,
                     items: s.items,
                     address: s.address,
@@ -68,64 +58,42 @@ export const getUser = async (userId: string = 'user-1', clerkToken?: string, em
         };
 
         try {
-            // Check if user exists again before inserting (race condition check)
-            const { data: checkUser } = await supabase
-                .from('users')
-                .select('id')
-                .eq('id', userId)
-                .single();
+            // Create authenticated client if we have a Clerk token
+            let clientToUse = supabase;
+            if (clerkToken) {
+                console.log('🔑 Creating user with Clerk token');
+                const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 'https://hpflcuyxmwzrknxjgavd.supabase.co';
+                const SUPABASE_ANON_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || '';
 
-            if (!checkUser) {
-                // Create authenticated client if we have a Clerk token
-                let clientToUse = supabase;
-                if (clerkToken) {
-                    console.log('🔑 getUser received clerkToken:', clerkToken.substring(0, 20) + '...');
-                    const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || 'https://hpflcuyxmwzrknxjgavd.supabase.co';
-                    const SUPABASE_ANON_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || '';
-
-                    clientToUse = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-                        global: {
-                            headers: {
-                                Authorization: `Bearer ${clerkToken}`
-                            }
+                clientToUse = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+                    global: {
+                        headers: {
+                            Authorization: `Bearer ${clerkToken}`
                         }
-                    });
-                } else {
-                    console.log('⚠️ getUser received NO clerkToken');
-                }
-
-                const { error: insertError} = await clientToUse
-                    .from('users')
-                    .insert({
-                        id: newUser.id,
-                        username: newUser.username,
-                        email: email || null,
-                        balance: newUser.balance,
-                        avatar: newUser.avatar,
-                        client_seed: newUser.clientSeed,
-                        nonce: newUser.nonce,
-                        free_box_claimed: false,
-                    });
-
-                if (insertError) {
-                    // Ignore 409 conflict if another request created it
-                    if (insertError.code !== '23505') {
-                        console.error('❌ Error creating user in database:', insertError);
-                        console.error('Details:', JSON.stringify(insertError, null, 2));
                     }
-                } else {
-                    console.log('✅ User created successfully in database:', newUser.id);
-                }
+                });
+            }
 
-                if (insertError) {
-                    // Ignore 409 conflict if another request created it
-                    if (insertError.code !== '23505') {
-                        console.error('❌ Error creating user in database:', insertError);
-                        console.error('Details:', JSON.stringify(insertError, null, 2));
-                    }
-                } else {
-                    console.log('✅ User created successfully in database:', newUser.id);
+            const { error: insertError } = await clientToUse
+                .from('users')
+                .insert({
+                    id: newUser.id,
+                    username: newUser.username,
+                    email: email || null,
+                    balance: newUser.balance,
+                    avatar: newUser.avatar,
+                    client_seed: newUser.clientSeed,
+                    nonce: newUser.nonce,
+                    free_box_claimed: false,
+                });
+
+            if (insertError) {
+                // Ignore duplicate key errors (race condition)
+                if (insertError.code !== '23505') {
+                    console.error('❌ Error creating user:', insertError);
                 }
+            } else {
+                console.log('✅ User created successfully:', newUser.id);
             }
         } catch (dbError) {
             console.error('❌ Database error during user creation:', dbError);
