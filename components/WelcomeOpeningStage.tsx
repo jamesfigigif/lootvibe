@@ -29,15 +29,19 @@ export const WelcomeOpeningStage: React.FC<WelcomeOpeningStageProps> = ({ box, w
     const TOTAL_CARD_WIDTH = CARD_WIDTH + MARGIN_X;
     const WINNER_INDEX = 60;
 
+    // Don't auto-load reel items - wait for user to click spin
+    // This prevents the animation from being ready too early
     useEffect(() => {
-        if (rollResult?.preGeneratedReel && reelItems.length === 0) {
+        // Only load reel when we're in SPINNING state
+        if (step === 'SPINNING' && rollResult?.preGeneratedReel && reelItems.length === 0) {
             setReelItems(rollResult.preGeneratedReel);
         }
-    }, [rollResult, reelItems.length]);
+    }, [step, rollResult, reelItems.length]);
 
     const startSpin = () => {
         setStep('SPINNING');
 
+        // Increased delay to ensure reel items are loaded and rendered before animation starts
         setTimeout(() => {
             if (scrollContainerRef.current) {
                 const containerWidth = window.innerWidth;
@@ -55,7 +59,7 @@ export const WelcomeOpeningStage: React.FC<WelcomeOpeningStageProps> = ({ box, w
                     setStep('WINNER');
                 }, 6500);
             }
-        }, 100);
+        }, 300); // Increased from 100ms to 300ms to ensure reel is fully rendered
     };
 
     // Auto-advance removed to allow verification
@@ -129,34 +133,36 @@ export const WelcomeOpeningStage: React.FC<WelcomeOpeningStageProps> = ({ box, w
                     {/* Center Indicator */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[320px] w-[4px] bg-yellow-400 z-30 shadow-[0_0_20px_rgba(250,204,21,1)] pointer-events-none"></div>
 
-                    {/* The Reel */}
-                    <div className="w-full overflow-hidden">
-                        <div
-                            ref={scrollContainerRef}
-                            className="flex items-center"
-                            style={{ width: 'max-content', willChange: 'transform' }}
-                        >
-                            {reelItems.map((item, index) => (
-                                <div
-                                    key={`${item.id}-${index}`}
-                                    className={`
+                    {/* The Reel - Only show when items are loaded */}
+                    {reelItems.length > 0 && (
+                        <div className="w-full overflow-hidden">
+                            <div
+                                ref={scrollContainerRef}
+                                className="flex items-center"
+                                style={{ width: 'max-content', willChange: 'transform' }}
+                            >
+                                {reelItems.map((item, index) => (
+                                    <div
+                                        key={`${item.id}-${index}`}
+                                        className={`
                      relative flex-shrink-0 w-[220px] h-[280px] mx-2 rounded-2xl 
                      bg-[#0b0f19] border-2 border-white/5 flex flex-col items-center justify-center p-6
                      ${RARITY_COLORS[item.rarity]}
                      ${item.rarity === Rarity.LEGENDARY ? 'shadow-[0_0_30px_rgba(234,179,8,0.2)]' : ''}
                    `}
-                                >
-                                    <div className="relative w-40 h-40 mb-6">
-                                        <img src={item.image} alt={item.name} className="w-full h-full object-contain drop-shadow-2xl" />
+                                    >
+                                        <div className="relative w-40 h-40 mb-6">
+                                            <img src={item.image} alt={item.name} className="w-full h-full object-contain drop-shadow-2xl" />
+                                        </div>
+                                        <div className="text-center w-full">
+                                            <div className="text-sm font-bold truncate text-white mb-1">{item.name}</div>
+                                            <div className="text-xs font-mono text-emerald-400">${item.value}</div>
+                                        </div>
                                     </div>
-                                    <div className="text-center w-full">
-                                        <div className="text-sm font-bold truncate text-white mb-1">{item.name}</div>
-                                        <div className="text-xs font-mono text-emerald-400">${item.value}</div>
-                                    </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             )}
 
