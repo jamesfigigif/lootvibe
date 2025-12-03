@@ -1,6 +1,6 @@
 -- ============================================
--- WITHDRAWAL SYSTEM MIGRATION - PART 1
--- Run this in Supabase SQL Editor first
+-- WITHDRAWAL SYSTEM MIGRATION - FIXED VERSION
+-- Run this in Supabase SQL Editor
 -- ============================================
 
 -- Step 1: Add columns to users table (without constraints first)
