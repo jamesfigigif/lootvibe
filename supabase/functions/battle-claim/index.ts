@@ -1,15 +1,13 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { createRemoteJWKSet, jwtVerify, decodeJwt } from 'https://deno.land/x/jose@v4.14.4/index.ts';
+import { importSPKI, jwtVerify } from 'https://deno.land/x/jose@v4.14.4/index.ts';
 
 const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type'
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-// Get Clerk domain from environment variable (fallback to dev for now)
-const CLERK_DOMAIN = Deno.env.get('CLERK_DOMAIN') || 'clerk.lootvibe.com';
-const CLERK_JWKS_URL = new URL(`https://${CLERK_DOMAIN}/.well-known/jwks.json`);
-const JWKS = createRemoteJWKSet(CLERK_JWKS_URL);
+const CLERK_PEM_PUBLIC_KEY = Deno.env.get('CLERK_PEM_PUBLIC_KEY')!;
 
 Deno.serve(async (req) => {
     if (req.method === 'OPTIONS') {
@@ -25,23 +23,18 @@ Deno.serve(async (req) => {
         let userId: string;
 
         try {
-            // Try to verify the JWT signature using Clerk's JWKS
-            const { payload } = await jwtVerify(token, JWKS, {
-                issuer: `https://${CLERK_DOMAIN}`
-            });
+            // Import the PEM public key
+            const publicKey = await importSPKI(CLERK_PEM_PUBLIC_KEY, 'RS256');
 
+            // Verify the JWT token
+            const { payload } = await jwtVerify(token, publicKey);
             userId = payload.sub as string;
-            if (!userId) throw new Error('Invalid token: missing sub claim');
 
-            console.log(`✅ Verified Clerk User via JWKS: ${userId}`);
+            if (!userId) throw new Error('Invalid token: missing sub claim');
+            console.log(`✅ Verified Clerk User: ${userId}`);
         } catch (verifyError: any) {
-            // If verification fails, decode without verification (fallback)
-            console.warn('⚠️ JWT verification failed, falling back to decode:', verifyError?.message || String(verifyError));
-            const decoded = decodeJwt(token);
-            userId = decoded.sub as string;
-
-            if (!userId) throw new Error('Invalid token: missing sub claim');
-            console.log(`⚠️ Using decoded (unverified) Clerk User: ${userId}`);
+            console.error('Token verification failed:', verifyError);
+            throw new Error('Invalid token');
         }
 
         // 2. Initialize Supabase Admin Client
