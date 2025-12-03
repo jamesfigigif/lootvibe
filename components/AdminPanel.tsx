@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { supabase } from '../services/supabaseClient';
-import { ArrowLeft, Users, DollarSign, Package, TrendingUp, Shield, Settings, FileText, LogOut, Search, Ban, CheckCircle, XCircle, Eye, Edit, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Users, DollarSign, Package, TrendingUp, Shield, Settings, FileText, LogOut, Search, Ban, CheckCircle, XCircle, Eye, Edit, AlertTriangle, Box, Plus, Trash2, BarChart3 } from 'lucide-react';
 
 export const AdminPanel: React.FC = () => {
     const { user: clerkUser, isLoaded } = useUser();
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [activeTab, setActiveTab] = useState<'dashboard' | 'users' | 'deposits' | 'shipments' | 'withdrawals' | 'transactions' | 'logs' | 'settings'>('dashboard');
+    const [activeTab, setActiveTab] = useState<'dashboard' | 'users' | 'deposits' | 'shipments' | 'withdrawals' | 'transactions' | 'boxes' | 'settings'>('dashboard');
 
     // Data states
     const [stats, setStats] = useState<any>(null);
@@ -17,7 +17,12 @@ export const AdminPanel: React.FC = () => {
     const [shipments, setShipments] = useState<any[]>([]);
     const [withdrawals, setWithdrawals] = useState<any[]>([]);
     const [transactions, setTransactions] = useState<any[]>([]);
-    const [logs, setLogs] = useState<any[]>([]);
+    const [boxes, setBoxes] = useState<any[]>([]);
+
+    // Settings states
+    const [autoWithdrawEnabled, setAutoWithdrawEnabled] = useState(false);
+    const [autoWithdrawLimit, setAutoWithdrawLimit] = useState(100);
+    const [savingSettings, setSavingSettings] = useState(false);
 
     useEffect(() => {
         checkAdminStatus();
@@ -86,14 +91,43 @@ export const AdminPanel: React.FC = () => {
                     setUsers(usersData || []);
                     break;
                 case 'deposits':
-                    const { data: depositsData, error: depositsError } = await supabase
-                        .from('transactions')
-                        .select('*, users(username)')
-                        .eq('type', 'DEPOSIT')
-                        .order('created_at', { ascending: false })
-                        .limit(50);
-                    if (depositsError) throw depositsError;
-                    setDeposits(depositsData || []);
+                    // Fetch both transaction deposits and crypto deposits
+                    const [
+                        { data: txDepositsData, error: depositsError },
+                        { data: cryptoDepositsData, error: cryptoError }
+                    ] = await Promise.all([
+                        supabase
+                            .from('transactions')
+                            .select('*, users(username)')
+                            .eq('type', 'DEPOSIT')
+                            .order('created_at', { ascending: false })
+                            .limit(50),
+                        supabase
+                            .from('crypto_deposits')
+                            .select('*, users(username)')
+                            .order('created_at', { ascending: false })
+                            .limit(50)
+                    ]);
+
+                    if (depositsError) console.error('Transaction deposits error:', depositsError);
+                    if (cryptoError) console.error('Crypto deposits error:', cryptoError);
+
+                    // Combine both types of deposits
+                    const allDeposits = [
+                        ...(txDepositsData || []),
+                        ...(cryptoDepositsData || []).map((cd: any) => ({
+                            id: cd.id,
+                            user_id: cd.user_id,
+                            users: cd.users || { username: 'Unknown' },
+                            amount: cd.usd_value || cd.amount,
+                            type: `DEPOSIT (${cd.currency})`,
+                            created_at: cd.created_at,
+                            status: cd.status,
+                            tx_hash: cd.tx_hash
+                        }))
+                    ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+                    setDeposits(allDeposits);
                     break;
                 case 'shipments':
                     const { data: shipmentsData, error: shipmentsError } = await supabase
@@ -122,6 +156,18 @@ export const AdminPanel: React.FC = () => {
                         .limit(50);
                     if (txError) throw txError;
                     setTransactions(txData || []);
+                    break;
+                case 'boxes':
+                    await fetchBoxesAnalytics();
+                    break;
+                case 'settings':
+                    // Fetch current settings from backend
+                    const settingsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001'}/api/admin/settings/public`);
+                    if (settingsResponse.ok) {
+                        const settingsData = await settingsResponse.json();
+                        setAutoWithdrawEnabled(settingsData.auto_approve_withdrawals || false);
+                        setAutoWithdrawLimit(settingsData.manual_approval_threshold || 100);
+                    }
                     break;
             }
         } catch (err: any) {
@@ -152,6 +198,98 @@ export const AdminPanel: React.FC = () => {
             battles: { total: battleCount || 0 },
             revenue: { allTime: totalRevenue }
         });
+    };
+
+    const saveSettings = async () => {
+        try {
+            setSavingSettings(true);
+            setError(null);
+
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001'}/api/admin/settings/update`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    auto_approve_withdrawals: autoWithdrawEnabled,
+                    manual_approval_threshold: autoWithdrawLimit
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to save settings');
+            }
+
+            // Show success message (you can add a toast/notification here)
+            console.log('Settings saved successfully');
+
+        } catch (err: any) {
+            console.error('Save settings error:', err);
+            setError(err.message || 'Failed to save settings');
+        } finally {
+            setSavingSettings(false);
+        }
+    };
+
+    const fetchBoxesAnalytics = async () => {
+        // Fetch all boxes with their items
+        const { data: boxesData, error: boxesError } = await supabase
+            .from('boxes')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (boxesError) throw boxesError;
+
+        // Fetch box openings for analytics
+        const { data: openings, error: openingsError } = await supabase
+            .from('box_openings')
+            .select('box_id, item_won');
+
+        if (openingsError) throw openingsError;
+
+        // Calculate analytics for each box
+        const boxesWithAnalytics = boxesData?.map(box => {
+            const boxOpenings = openings?.filter(o => o.box_id === box.id) || [];
+            const totalOpens = boxOpenings.length;
+
+            // Parse items
+            const items = typeof box.items === 'string' ? JSON.parse(box.items) : box.items;
+
+            // Calculate total value of items won
+            const totalValueWon = boxOpenings.reduce((sum, opening) => {
+                const item = items.find((i: any) => i.name === opening.item_won);
+                return sum + (item ? parseFloat(item.value) : 0);
+            }, 0);
+
+            // Calculate revenue (box price * opens) - payouts
+            const boxPrice = parseFloat(box.sale_price || box.price);
+            const revenue = (boxPrice * totalOpens) - totalValueWon;
+            const houseEdge = totalOpens > 0 ? ((revenue / (boxPrice * totalOpens)) * 100) : 0;
+
+            // Calculate expected value
+            const expectedValue = items.reduce((sum: number, item: any) => {
+                return sum + (parseFloat(item.value) * (parseFloat(item.odds) / 100));
+            }, 0);
+
+            const theoreticalHouseEdge = ((boxPrice - expectedValue) / boxPrice) * 100;
+
+            return {
+                ...box,
+                items,
+                analytics: {
+                    totalOpens,
+                    totalValueWon,
+                    revenue,
+                    houseEdge,
+                    theoreticalHouseEdge,
+                    expectedValue
+                }
+            };
+        }) || [];
+
+        setBoxes(boxesWithAnalytics);
     };
 
     if (loading) {
@@ -219,10 +357,12 @@ export const AdminPanel: React.FC = () => {
                     {[
                         { id: 'dashboard', label: 'Dashboard', icon: TrendingUp },
                         { id: 'users', label: 'Users', icon: Users },
+                        { id: 'boxes', label: 'Boxes', icon: Box },
                         { id: 'deposits', label: 'Deposits', icon: DollarSign },
                         { id: 'shipments', label: 'Shipments', icon: Package },
                         { id: 'withdrawals', label: 'Withdrawals', icon: DollarSign },
                         { id: 'transactions', label: 'Transactions', icon: FileText },
+                        { id: 'settings', label: 'Settings', icon: Settings },
                     ].map((tab) => (
                         <button
                             key={tab.id}
@@ -306,8 +446,61 @@ export const AdminPanel: React.FC = () => {
                         </div>
                     )}
 
+                    {/* Deposits tab with crypto transaction details */}
+                    {activeTab === 'deposits' && (
+                        <div>
+                            <h2 className="text-xl font-bold mb-6">Deposits</h2>
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <thead>
+                                        <tr className="border-b border-white/10">
+                                            <th className="text-left p-3 text-slate-400">ID</th>
+                                            <th className="text-left p-3 text-slate-400">User</th>
+                                            <th className="text-left p-3 text-slate-400">Amount</th>
+                                            <th className="text-left p-3 text-slate-400">Type</th>
+                                            <th className="text-left p-3 text-slate-400">Status</th>
+                                            <th className="text-left p-3 text-slate-400">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {deposits.map((item) => (
+                                            <tr key={item.id} className="border-b border-white/5">
+                                                <td className="p-3 font-mono text-xs">
+                                                    {item.id.substring(0, 8)}...
+                                                    {item.tx_hash && (
+                                                        <div className="text-xs text-slate-500 mt-1">
+                                                            TX: {item.tx_hash.substring(0, 10)}...
+                                                        </div>
+                                                    )}
+                                                </td>
+                                                <td className="p-3 text-sm">{item.users?.username || item.user_id.substring(0, 8)}</td>
+                                                <td className="p-3 font-bold">${parseFloat(item.amount || 0).toFixed(2)}</td>
+                                                <td className="p-3 text-sm text-slate-400">{item.type}</td>
+                                                <td className="p-3">
+                                                    {item.status && (
+                                                        <span className={`px-2 py-1 rounded text-xs ${
+                                                            item.status === 'CREDITED' ? 'bg-green-500/20 text-green-400' :
+                                                            item.status === 'PENDING' ? 'bg-yellow-500/20 text-yellow-400' :
+                                                            item.status === 'CONFIRMING' ? 'bg-blue-500/20 text-blue-400' :
+                                                            'bg-slate-500/20 text-slate-400'
+                                                        }`}>
+                                                            {item.status}
+                                                        </span>
+                                                    )}
+                                                </td>
+                                                <td className="p-3 text-slate-400 text-sm">
+                                                    {new Date(item.created_at || item.timestamp).toLocaleDateString()}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Other tabs can be implemented similarly using the fetched data */}
-                    {(activeTab === 'deposits' || activeTab === 'withdrawals' || activeTab === 'transactions') && (
+                    {(activeTab === 'withdrawals' || activeTab === 'transactions') && (
                         <div>
                             <h2 className="text-xl font-bold mb-6">{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
                             <div className="overflow-x-auto">
@@ -322,7 +515,7 @@ export const AdminPanel: React.FC = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {(activeTab === 'deposits' ? deposits : activeTab === 'withdrawals' ? withdrawals : transactions).map((item) => (
+                                        {(activeTab === 'withdrawals' ? withdrawals : transactions).map((item) => (
                                             <tr key={item.id} className="border-b border-white/5">
                                                 <td className="p-3 font-mono text-xs">{item.id.substring(0, 8)}...</td>
                                                 <td className="p-3 text-sm">{item.users?.username || item.user_id.substring(0, 8)}</td>
@@ -335,6 +528,180 @@ export const AdminPanel: React.FC = () => {
                                         ))}
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === 'boxes' && (
+                        <div className="space-y-6">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-xl font-bold">Boxes Analytics</h2>
+                                <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
+                                    <Plus className="w-4 h-4" />
+                                    Add New Box
+                                </button>
+                            </div>
+
+                            {boxes.map((box) => (
+                                <div key={box.id} className="bg-[#0b0f19] rounded-lg border border-white/5 p-6">
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div className="flex items-center gap-4">
+                                            <img src={box.image} alt={box.name} className="w-20 h-20 rounded-lg object-cover" />
+                                            <div>
+                                                <h3 className="text-lg font-bold">{box.name}</h3>
+                                                <p className="text-slate-400 text-sm">{box.description}</p>
+                                                <div className="flex items-center gap-4 mt-2">
+                                                    <span className="text-purple-400 font-bold">${parseFloat(box.sale_price || box.price).toFixed(2)}</span>
+                                                    <span className="text-xs text-slate-500">ID: {box.id}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button className="text-red-400 hover:text-red-300 p-2 rounded-lg hover:bg-red-500/10 transition-colors">
+                                            <Trash2 className="w-5 h-5" />
+                                        </button>
+                                    </div>
+
+                                    {/* Analytics */}
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                                        <div className="bg-[#131b2e] rounded-lg p-3">
+                                            <p className="text-xs text-slate-400 mb-1">Total Opens</p>
+                                            <p className="text-lg font-bold">{box.analytics.totalOpens}</p>
+                                        </div>
+                                        <div className="bg-[#131b2e] rounded-lg p-3">
+                                            <p className="text-xs text-slate-400 mb-1">Revenue</p>
+                                            <p className="text-lg font-bold text-green-400">${box.analytics.revenue.toFixed(2)}</p>
+                                        </div>
+                                        <div className="bg-[#131b2e] rounded-lg p-3">
+                                            <p className="text-xs text-slate-400 mb-1">House Edge (Actual)</p>
+                                            <p className="text-lg font-bold text-blue-400">{box.analytics.houseEdge.toFixed(2)}%</p>
+                                        </div>
+                                        <div className="bg-[#131b2e] rounded-lg p-3">
+                                            <p className="text-xs text-slate-400 mb-1">House Edge (Theo)</p>
+                                            <p className="text-lg font-bold text-purple-400">{box.analytics.theoreticalHouseEdge.toFixed(2)}%</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Items List */}
+                                    <div>
+                                        <div className="flex items-center justify-between mb-3">
+                                            <h4 className="font-bold flex items-center gap-2">
+                                                <BarChart3 className="w-4 h-4" />
+                                                Items ({box.items.length})
+                                            </h4>
+                                            <button className="text-purple-400 hover:text-purple-300 text-sm flex items-center gap-1">
+                                                <Plus className="w-4 h-4" />
+                                                Add Item
+                                            </button>
+                                        </div>
+                                        <div className="space-y-2">
+                                            {box.items.map((item: any, idx: number) => (
+                                                <div key={idx} className="bg-[#131b2e] rounded-lg p-3 flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        <img src={item.image} alt={item.name} className="w-12 h-12 rounded object-cover" />
+                                                        <div>
+                                                            <p className="font-medium">{item.name}</p>
+                                                            <div className="flex items-center gap-3 text-xs">
+                                                                <span className="text-green-400">${parseFloat(item.value).toFixed(2)}</span>
+                                                                <span className="text-slate-400">Odds: {parseFloat(item.odds).toFixed(2)}%</span>
+                                                                <span className={`px-2 py-0.5 rounded ${
+                                                                    item.rarity === 'legendary' ? 'bg-yellow-500/20 text-yellow-400' :
+                                                                    item.rarity === 'epic' ? 'bg-purple-500/20 text-purple-400' :
+                                                                    item.rarity === 'rare' ? 'bg-blue-500/20 text-blue-400' :
+                                                                    'bg-slate-500/20 text-slate-400'
+                                                                }`}>
+                                                                    {item.rarity}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <button className="text-slate-400 hover:text-white p-2 rounded hover:bg-white/5 transition-colors">
+                                                            <Edit className="w-4 h-4" />
+                                                        </button>
+                                                        <button className="text-red-400 hover:text-red-300 p-2 rounded hover:bg-red-500/10 transition-colors">
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {boxes.length === 0 && (
+                                <div className="text-center py-12 text-slate-400">
+                                    <Box className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                                    <p>No boxes found</p>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {activeTab === 'settings' && (
+                        <div className="space-y-6">
+                            <h2 className="text-xl font-bold">Settings</h2>
+
+                            {/* Auto-Withdraw Settings */}
+                            <div className="bg-[#0b0f19] rounded-lg border border-white/5 p-6">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <DollarSign className="w-6 h-6 text-purple-500" />
+                                    <div>
+                                        <h3 className="text-lg font-bold">Auto-Withdraw Settings</h3>
+                                        <p className="text-sm text-slate-400">Configure automatic withdrawal approval</p>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between p-4 bg-[#131b2e] rounded-lg">
+                                        <div>
+                                            <p className="font-medium">Enable Auto-Withdraw</p>
+                                            <p className="text-sm text-slate-400">Automatically approve withdrawals under the specified limit</p>
+                                        </div>
+                                        <button
+                                            onClick={() => setAutoWithdrawEnabled(!autoWithdrawEnabled)}
+                                            className={`relative w-14 h-7 rounded-full transition-colors ${
+                                                autoWithdrawEnabled ? 'bg-purple-600' : 'bg-slate-600'
+                                            }`}
+                                        >
+                                            <div className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform ${
+                                                autoWithdrawEnabled ? 'translate-x-7' : ''
+                                            }`} />
+                                        </button>
+                                    </div>
+
+                                    <div className="p-4 bg-[#131b2e] rounded-lg">
+                                        <label className="block mb-2">
+                                            <span className="font-medium">Auto-Withdraw Limit</span>
+                                            <p className="text-sm text-slate-400 mb-3">Withdrawals over this amount require manual approval</p>
+                                        </label>
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-slate-400">$</span>
+                                            <input
+                                                type="number"
+                                                value={autoWithdrawLimit}
+                                                onChange={(e) => setAutoWithdrawLimit(parseFloat(e.target.value) || 0)}
+                                                className="flex-1 bg-[#0b0f19] border border-white/10 rounded-lg px-4 py-2 text-white focus:border-purple-500 focus:outline-none"
+                                                placeholder="100.00"
+                                                step="0.01"
+                                                min="0"
+                                            />
+                                        </div>
+                                        <p className="text-xs text-slate-500 mt-2">
+                                            {autoWithdrawEnabled
+                                                ? `Withdrawals under $${autoWithdrawLimit.toFixed(2)} will be automatically approved`
+                                                : 'All withdrawals require manual approval'}
+                                        </p>
+                                    </div>
+
+                                    <button
+                                        onClick={saveSettings}
+                                        disabled={savingSettings}
+                                        className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {savingSettings ? 'Saving...' : 'Save Settings'}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     )}
