@@ -1,6 +1,7 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { importSPKI, jwtVerify } from 'https://deno.land/x/jose@v4.14.4/index.ts';
+import { createHash, createHmac } from 'https://deno.land/std@0.177.0/node/crypto.ts';
 
 const CLERK_PEM_PUBLIC_KEY = Deno.env.get('CLERK_PEM_PUBLIC_KEY')!;
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
@@ -11,6 +12,13 @@ const corsHeaders = {
     'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
+
+// Helper function to generate random hex string
+function generateRandomHex(length: number): string {
+    const bytes = new Uint8Array(length / 2);
+    crypto.getRandomValues(bytes);
+    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 serve(async (req) => {
     // Handle CORS preflight requests
@@ -66,7 +74,15 @@ serve(async (req) => {
             });
         }
 
-        // 4. Get the Welcome Gift box items
+        // 4. Get user's client seed and nonce
+        const clientSeed = user.client_seed || generateRandomHex(32);
+        const nonce = user.nonce || 0;
+
+        // 5. Generate server seed and hash (provably fair)
+        const serverSeed = generateRandomHex(64);
+        const serverSeedHash = createHash('sha256').update(serverSeed).digest('hex');
+
+        // 6. Get the Welcome Gift box items
         const { data: welcomeBox, error: boxError } = await supabaseAdmin
             .from('boxes')
             .select('*')
@@ -78,21 +94,34 @@ serve(async (req) => {
             throw new Error('Welcome box not found');
         }
 
-        // 5. Select a random item from the box (weighted by odds)
+        // 7. Generate provably fair outcome using HMAC-SHA256
+        const message = `${clientSeed}:${nonce}`;
+        const hmac = createHmac('sha256', serverSeed).update(message).digest('hex');
+
+        // Convert first 8 hex chars to a number between 0 and 1
+        const subHash = hmac.substring(0, 8);
+        const randomValue = parseInt(subHash, 16) / 0xffffffff; // Divide by max 32-bit value
+
+        // 8. Select item based on provably fair random value (0-1)
         const items = welcomeBox.items;
-        const randomValue = Math.random() * 100; // Random value between 0-100
+        let totalOdds = 0;
+        for (const item of items) {
+            totalOdds += item.odds;
+        }
+
+        const scaledValue = randomValue * totalOdds;
         let cumulativeOdds = 0;
-        let winningItem = items[0]; // Default to first item
+        let winningItem = items[0];
 
         for (const item of items) {
             cumulativeOdds += item.odds;
-            if (randomValue <= cumulativeOdds) {
+            if (scaledValue <= cumulativeOdds) {
                 winningItem = item;
                 break;
             }
         }
 
-        // 6. Award the item and mark as claimed
+        // 9. Award the item and mark as claimed
         const newBalance = parseFloat(user.balance) + winningItem.value;
 
         const { error: updateError } = await supabaseAdmin
@@ -118,11 +147,11 @@ serve(async (req) => {
             newBalance,
             rollResult: {
                 item: winningItem,
-                serverSeed: 'welcome-bonus-seed',
-                serverSeedHash: 'hashed-welcome-seed',
-                nonce: 0,
-                randomValue: randomValue / 100, // Normalize to 0-1 for frontend display
-                block: { height: 840000, hash: '0000000000000000000mockhash' }
+                serverSeed: serverSeed,
+                serverSeedHash: serverSeedHash,
+                nonce: nonce,
+                randomValue: randomValue, // Already 0-1 from HMAC calculation
+                block: { height: 840000, hash: hmac.substring(0, 64) } // Use HMAC as "block hash" for verification
             }
         }), {
             status: 200,
