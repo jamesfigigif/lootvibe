@@ -1117,7 +1117,10 @@ export default function App() {
     }, [view.page, activeBattle?.id, activeBattle?.status, user?.id]); // Depend on status too
 
     const handleJoinBattle = async (battleId: string) => {
-        if (!user && !isSignedIn) { handleLogin(false); return; }
+        if (!user) {
+            handleLogin(false);
+            return;
+        }
 
         const target = battles.find(b => b.id === battleId);
         if (!target) return;
