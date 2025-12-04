@@ -6,11 +6,11 @@
     "server": "cd backend && nodemon server.js",
     "client": "vite",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "postinstall": "cd backend && npm install"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "engines": {
-    "node": "24.x",
-    "npm": "10.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.57.0",
