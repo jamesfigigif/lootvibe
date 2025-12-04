@@ -50,6 +50,10 @@ export default {
         },
         'spin-reverse': {
           'to': { transform: 'rotate(-360deg)' },
+        },
+        fadeWatermark: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0.12' },
         }
       }
     },

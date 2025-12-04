@@ -556,8 +556,8 @@ export const AdminPanel: React.FC = () => {
                                 <div key={box.id} className="bg-[#0b0f19] rounded-lg border border-white/5 p-6">
                                     <div className="flex items-start justify-between mb-4">
                                         <div className="flex items-center gap-4">
-                                            {box.image ? (
-                                                <img src={box.image} alt={box.name} className="w-20 h-20 rounded-lg object-cover" />
+                                            {box.image_url ? (
+                                                <img src={box.image_url} alt={box.name} className="w-20 h-20 rounded-lg object-cover" />
                                             ) : (
                                                 <div className="w-20 h-20 rounded-lg bg-[#131b2e] flex items-center justify-center border border-white/10">
                                                     <Box className="w-8 h-8 text-slate-600" />
