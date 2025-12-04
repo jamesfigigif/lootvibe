@@ -25,6 +25,14 @@ export const AdminPanel: React.FC = () => {
     const [autoWithdrawLimit, setAutoWithdrawLimit] = useState(100);
     const [savingSettings, setSavingSettings] = useState(false);
 
+    // Item management states
+    const [selectedBox, setSelectedBox] = useState<any>(null);
+    const [showAddItemModal, setShowAddItemModal] = useState(false);
+    const [newItemName, setNewItemName] = useState('');
+    const [newItemValue, setNewItemValue] = useState('');
+    const [newItemOdds, setNewItemOdds] = useState('');
+    const [savingItem, setSavingItem] = useState(false);
+
     useEffect(() => {
         checkAdminStatus();
     }, [isLoaded, clerkUser]);
@@ -233,6 +241,83 @@ export const AdminPanel: React.FC = () => {
             setError(err.message || 'Failed to save settings');
         } finally {
             setSavingSettings(false);
+        }
+    };
+
+    const handleAddItem = async () => {
+        if (!selectedBox || !newItemName || !newItemValue || !newItemOdds) {
+            setError('Please fill in all fields');
+            return;
+        }
+
+        try {
+            setSavingItem(true);
+            setError(null);
+
+            // Create new item with placeholder image
+            const newItem = {
+                id: `item_${Date.now()}`,
+                name: newItemName,
+                value: parseFloat(newItemValue),
+                odds: parseFloat(newItemOdds),
+                image: 'https://via.placeholder.com/150?text=' + encodeURIComponent(newItemName),
+                rarity: newItemValue >= 1000 ? 'LEGENDARY' : newItemValue >= 500 ? 'EPIC' : newItemValue >= 100 ? 'RARE' : newItemValue >= 50 ? 'UNCOMMON' : 'COMMON'
+            };
+
+            // Add item to box's items array
+            const updatedItems = [...selectedBox.items, newItem];
+
+            // Update box in database
+            const { error: updateError } = await supabase
+                .from('boxes')
+                .update({ items: updatedItems })
+                .eq('id', selectedBox.id);
+
+            if (updateError) throw updateError;
+
+            // Refresh boxes data
+            await fetchBoxesAnalytics();
+
+            // Reset form and close modal
+            setNewItemName('');
+            setNewItemValue('');
+            setNewItemOdds('');
+            setShowAddItemModal(false);
+            setSelectedBox(null);
+
+            console.log('✅ Item added successfully');
+        } catch (err: any) {
+            console.error('Add item error:', err);
+            setError(err.message || 'Failed to add item');
+        } finally {
+            setSavingItem(false);
+        }
+    };
+
+    const handleDeleteItem = async (box: any, itemIndex: number) => {
+        if (!confirm('Are you sure you want to delete this item?')) return;
+
+        try {
+            setError(null);
+
+            // Remove item from box's items array
+            const updatedItems = box.items.filter((_: any, idx: number) => idx !== itemIndex);
+
+            // Update box in database
+            const { error: updateError } = await supabase
+                .from('boxes')
+                .update({ items: updatedItems })
+                .eq('id', box.id);
+
+            if (updateError) throw updateError;
+
+            // Refresh boxes data
+            await fetchBoxesAnalytics();
+
+            console.log('✅ Item deleted successfully');
+        } catch (err: any) {
+            console.error('Delete item error:', err);
+            setError(err.message || 'Failed to delete item');
         }
     };
 
@@ -604,7 +689,13 @@ export const AdminPanel: React.FC = () => {
                                                 <BarChart3 className="w-4 h-4" />
                                                 Items ({box.items.length})
                                             </h4>
-                                            <button className="text-purple-400 hover:text-purple-300 text-sm flex items-center gap-1">
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedBox(box);
+                                                    setShowAddItemModal(true);
+                                                }}
+                                                className="text-purple-400 hover:text-purple-300 text-sm flex items-center gap-1"
+                                            >
                                                 <Plus className="w-4 h-4" />
                                                 Add Item
                                             </button>
@@ -639,10 +730,10 @@ export const AdminPanel: React.FC = () => {
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center gap-2">
-                                                        <button className="text-slate-400 hover:text-white p-2 rounded hover:bg-white/5 transition-colors">
-                                                            <Edit className="w-4 h-4" />
-                                                        </button>
-                                                        <button className="text-red-400 hover:text-red-300 p-2 rounded hover:bg-red-500/10 transition-colors">
+                                                        <button
+                                                            onClick={() => handleDeleteItem(box, idx)}
+                                                            className="text-red-400 hover:text-red-300 p-2 rounded hover:bg-red-500/10 transition-colors"
+                                                        >
                                                             <Trash2 className="w-4 h-4" />
                                                         </button>
                                                     </div>
@@ -730,6 +821,89 @@ export const AdminPanel: React.FC = () => {
                         </div>
                     )}
                 </div>
+
+                {/* Add Item Modal */}
+                {showAddItemModal && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                        <div className="bg-[#131b2e] rounded-2xl border border-white/10 p-6 max-w-md w-full">
+                            <h3 className="text-xl font-bold mb-4">Add Item to {selectedBox?.name}</h3>
+
+                            {error && (
+                                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 mb-4">
+                                    <p className="text-red-400 text-sm">{error}</p>
+                                </div>
+                            )}
+
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">Item Name</label>
+                                    <input
+                                        type="text"
+                                        value={newItemName}
+                                        onChange={(e) => setNewItemName(e.target.value)}
+                                        placeholder="e.g., Rare Pokemon Card"
+                                        className="w-full bg-[#0b0f19] border border-white/10 rounded-lg px-4 py-2 text-white focus:border-purple-500 focus:outline-none"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">Value ($)</label>
+                                    <input
+                                        type="number"
+                                        value={newItemValue}
+                                        onChange={(e) => setNewItemValue(e.target.value)}
+                                        placeholder="e.g., 100.00"
+                                        step="0.01"
+                                        min="0"
+                                        className="w-full bg-[#0b0f19] border border-white/10 rounded-lg px-4 py-2 text-white focus:border-purple-500 focus:outline-none"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">Odds (%)</label>
+                                    <input
+                                        type="number"
+                                        value={newItemOdds}
+                                        onChange={(e) => setNewItemOdds(e.target.value)}
+                                        placeholder="e.g., 5.00 or 0.01"
+                                        step="0.01"
+                                        min="0"
+                                        max="100"
+                                        className="w-full bg-[#0b0f19] border border-white/10 rounded-lg px-4 py-2 text-white focus:border-purple-500 focus:outline-none"
+                                    />
+                                    <p className="text-xs text-slate-400 mt-1">Enter percentage (e.g., 5 for 5%, 0.01 for 0.01%)</p>
+                                </div>
+
+                                <p className="text-xs text-slate-400 bg-[#0b0f19] rounded-lg p-3">
+                                    <strong>Note:</strong> A placeholder image will be used. Rarity will be auto-assigned based on value.
+                                </p>
+                            </div>
+
+                            <div className="flex gap-3 mt-6">
+                                <button
+                                    onClick={() => {
+                                        setShowAddItemModal(false);
+                                        setSelectedBox(null);
+                                        setNewItemName('');
+                                        setNewItemValue('');
+                                        setNewItemOdds('');
+                                        setError(null);
+                                    }}
+                                    className="flex-1 bg-slate-600 hover:bg-slate-700 text-white py-2 px-4 rounded-lg font-medium transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleAddItem}
+                                    disabled={savingItem}
+                                    className="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {savingItem ? 'Adding...' : 'Add Item'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
