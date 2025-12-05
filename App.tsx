@@ -606,10 +606,7 @@ export default function App() {
         }
 
         try {
-            // Show "Generating seed" suspense
-            setIsOpening(true);
-            setView({ page: 'OPENING' });
-
+            // NOTE: Don't set view to OPENING yet - wait for rollResult to be ready
             // Add 1.5 second delay for suspense
             await new Promise(resolve => setTimeout(resolve, 1500));
 
@@ -765,14 +762,20 @@ export default function App() {
             const newTotalWagered = (user.totalWagered || 0) + 1; // Increment box count
             const newTotalProfit = (user.totalProfit || 0) + outcome.itemValue; // Add item value
 
-            // 4. Update Local User State with stats and new balance
-            // Note: nonce is already incremented by edge function, don't overwrite it
+            // 4. Update Local User State with stats, balance, and nonce
+            // Edge function incremented nonce, so we increment locally to stay in sync
             await updateUserState(user.id, {
                 totalWagered: newTotalWagered,
                 totalProfit: newTotalProfit
             });
             const updatedUser = await getUser(user.id);
-            setUser(updatedUser);
+
+            // CRITICAL: Immediately update nonce to prevent desync
+            setUser({
+                ...updatedUser,
+                nonce: (user.nonce || 0) + 1, // Increment to match edge function
+                balance: outcome.newBalance    // Update balance from edge function
+            });
 
             // 5. Set result with pre-generated reel and openingId for tracking
             setRollResult({
@@ -780,6 +783,10 @@ export default function App() {
                 preGeneratedReel: reelItems,
                 openingId: outcome.openingId // Store openingId for exchange tracking
             });
+
+            // 6. NOW show the opening animation (after all data is ready)
+            setIsOpening(true);
+            setView({ page: 'OPENING' });
 
         } catch (error) {
             console.error("❌ Open Box Error:", error);
