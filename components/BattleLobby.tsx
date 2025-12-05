@@ -32,15 +32,18 @@ export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, on
         });
 
         if (error) {
-          console.error('Error creating random battle:', error);
+          console.error('❌ Error creating random battle:', error);
+          console.error('❌ Error details:', JSON.stringify(error, null, 2));
           return;
         }
 
         if (data && data.success) {
           console.log('✅ Random battle created:', data.battle.id);
+        } else if (data) {
+          console.error('❌ Failed to create battle:', data);
         }
       } catch (error) {
-        console.error('Error calling create-random-battle function:', error);
+        console.error('❌ Exception calling create-random-battle:', error);
       }
     };
 

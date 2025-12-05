@@ -1325,8 +1325,15 @@ export default function App() {
                 }
             });
 
-            if (error) throw error;
-            if (!data.success) throw new Error(data.error || 'Failed to join battle');
+            if (error) {
+                console.error('❌ battle-join error object:', error);
+                console.error('❌ battle-join error details:', JSON.stringify(error, null, 2));
+                throw error;
+            }
+            if (!data.success) {
+                console.error('❌ battle-join failed:', data);
+                throw new Error(data.error || 'Failed to join battle');
+            }
 
             // Update local user balance
             const updatedUser = await getUser(user.id);
