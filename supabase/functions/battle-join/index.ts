@@ -1,10 +1,5 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-import { importSPKI, jwtVerify } from 'https://deno.land/x/jose@v4.14.4/index.ts';
-
-const CLERK_PEM_PUBLIC_KEY = Deno.env.get('CLERK_PEM_PUBLIC_KEY')!;
-const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
-const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
 const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -19,38 +14,42 @@ serve(async (req) => {
     }
 
     try {
-        // 1. Verify Clerk JWT
+        // Get Authorization header (Clerk JWT)
         const authHeader = req.headers.get('Authorization');
         if (!authHeader) {
             console.error('❌ Missing authorization header');
-            return new Response(JSON.stringify({ error: 'Missing authorization header' }), {
+            return new Response(JSON.stringify({ success: false, error: 'Missing authorization header' }), {
                 status: 401,
                 headers: { 'Content-Type': 'application/json', ...corsHeaders },
             });
         }
 
-        const token = authHeader.replace('Bearer ', '');
-        let clerkUserId: string;
+        // Create Supabase client with user's auth (similar to box-open)
+        const supabaseClient = createClient(
+            Deno.env.get('SUPABASE_URL') ?? '',
+            Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+            { global: { headers: { Authorization: authHeader } } }
+        );
 
-        try {
-            const publicKey = await importSPKI(CLERK_PEM_PUBLIC_KEY, 'RS256');
-            const { payload } = await jwtVerify(token, publicKey);
-            clerkUserId = payload.sub as string;
+        // Get authenticated user from Supabase (validates the JWT)
+        const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
 
-            if (!clerkUserId) {
-                throw new Error('No user ID in token');
-            }
-            console.log('✅ Token verified for user:', clerkUserId);
-        } catch (error) {
-            console.error('❌ Token verification failed:', error);
-            return new Response(JSON.stringify({ error: 'Invalid token', details: error.message }), {
+        if (authError || !user) {
+            console.error('❌ Auth failed:', authError);
+            return new Response(JSON.stringify({ success: false, error: 'Unauthorized' }), {
                 status: 401,
                 headers: { 'Content-Type': 'application/json', ...corsHeaders },
             });
         }
 
-        // 2. Initialize Supabase Admin Client
-        const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+        const clerkUserId = user.id;
+        console.log('✅ User authenticated:', clerkUserId);
+
+        // Initialize Supabase Admin Client for DB writes
+        const supabaseAdmin = createClient(
+            Deno.env.get('SUPABASE_URL') ?? '',
+            Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+        );
 
         // 3. Get request body
         const { battleId } = await req.json();
