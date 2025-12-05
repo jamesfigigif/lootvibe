@@ -22,11 +22,11 @@ serve(async (req) => {
         )
 
         console.log('📦 Fetching boxes...');
-        // Get all boxes with price under $250
+        // Get all active boxes
         const { data: boxes, error: boxesError } = await supabaseAdmin
             .from('boxes')
-            .select('id, name, price, sale_price, items')
-            .or('enabled.eq.true,active.eq.true')
+            .select('id, name, price, sale_price, items, active')
+            .eq('active', true)
             .order('created_at', { ascending: false })
 
         if (boxesError) {
