@@ -80,6 +80,19 @@ class ETHWalletService {
 
         return new ethers.JsonRpcProvider(rpcUrl);
     }
+    /**
+     * Get balance of hot wallet
+     */
+    async getBalance() {
+        try {
+            const wallet = this.getHotWallet();
+            const balance = await this.getProvider().getBalance(wallet.address);
+            return ethers.formatEther(balance);
+        } catch (error) {
+            console.error('Error getting ETH balance:', error);
+            return '0.0';
+        }
+    }
 }
 
 module.exports = ETHWalletService;

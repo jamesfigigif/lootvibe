@@ -119,13 +119,8 @@ class HotWalletMonitor {
             }
 
             // ETH Balance
-            const ethWallet = this.ethWallet.getHotWallet();
-            if (ethWallet) {
-                const ethBalance = await ethWallet.getBalance();
-                balances.ETH = parseFloat(ethers.utils.formatEther(ethBalance));
-            } else {
-                balances.ETH = 0;
-            }
+            const ethBalance = await this.ethWallet.getBalance();
+            balances.ETH = parseFloat(ethBalance);
 
             return balances;
 

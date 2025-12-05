@@ -67,6 +67,10 @@ export interface User {
   totalWagered?: number; // Total amount spent on boxes
   totalProfit?: number; // (Total item value won) - (Total spent)
   role?: string;
+  is_streamer?: boolean; // Whether user is a streamer
+  streamer_odds_multiplier?: number; // Odds multiplier for streamers (1.00 - 10.00)
+  can_withdraw?: boolean; // Whether user can withdraw funds
+  streamer_note?: string; // Admin note for streamers
 }
 
 export interface Transaction {
