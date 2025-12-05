@@ -21,12 +21,23 @@ const createAdminRoutes = require('./routes/admin');
 const createBoxRoutes = require('./routes/boxes');
 const createAffiliateRoutes = require('./routes/affiliates');
 const createBattleRoutes = require('./routes/battles');
+const createStreamerRoutes = require('./routes/streamers');
 
 const app = express();
 const PORT = process.env.PORT || process.env.BACKEND_PORT || 3001;
 
-// Middleware
-app.use(cors());
+// Middleware - Configure CORS to allow production and development origins
+app.use(cors({
+    origin: [
+        'https://www.lootvibe.com',
+        'https://lootvibe.com',
+        'http://localhost:5173',
+        'http://localhost:3000'
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-client-info', 'apikey']
+}));
 app.use(express.json());
 
 // Initialize Supabase
@@ -423,6 +434,9 @@ app.use('/api/admin', createAdminRoutes(supabase));
 
 // Box management routes (admin only)
 app.use('/api/admin/boxes', createBoxRoutes(supabase, adminAuthService, authenticateAdmin, requirePermission));
+
+// Streamer management routes (admin only)
+app.use('/api/admin/streamers', createStreamerRoutes(supabase));
 
 // Affiliate routes
 app.use('/api/affiliates', createAffiliateRoutes(supabase));
