@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { User } from '../types';
+import { supabase } from '../services/supabaseClient';
 import { ArrowLeft, Users, DollarSign, TrendingUp, Copy, Check, Gift, Trophy } from 'lucide-react';
 
 interface AffiliatesPageProps {
@@ -31,9 +32,6 @@ export const AffiliatesPage: React.FC<AffiliatesPageProps> = ({ user, onBack }) 
     const [copied, setCopied] = useState(false);
     const [generatingCode, setGeneratingCode] = useState(false);
 
-    // Get backend URL from environment variable
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-
     useEffect(() => {
         if (user) {
             fetchAffiliateStats();
@@ -47,20 +45,69 @@ export const AffiliatesPage: React.FC<AffiliatesPageProps> = ({ user, onBack }) 
             setLoading(true);
             setError(null);
 
-            // Use the backend URL from environment variable
-            const response = await fetch(`${backendUrl}/api/affiliates/stats/${user.id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            // Fetch affiliate code
+            const { data: codeData } = await supabase
+                .from('affiliate_codes')
+                .select('code')
+                .eq('user_id', user.id)
+                .single();
+
+            // Fetch referrals with user details
+            const { data: referralsData } = await supabase
+                .from('affiliate_referrals')
+                .select(`
+                    *,
+                    referred_user:users!affiliate_referrals_referred_user_id_fkey(username, email, balance)
+                `)
+                .eq('referrer_user_id', user.id);
+
+            // Calculate total wager volume
+            const totalWagerVolume = (referralsData || []).reduce((sum, ref) =>
+                sum + parseFloat(ref.total_wagers || 0), 0
+            );
+
+            // Fetch earnings
+            const { data: earningsData } = await supabase
+                .from('affiliate_earnings')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false });
+
+            const totalEarnings = (earningsData || []).reduce((sum, e) =>
+                sum + parseFloat(e.amount || 0), 0
+            );
+
+            const claimedEarnings = (earningsData || []).filter(e => e.claimed)
+                .reduce((sum, e) => sum + parseFloat(e.amount || 0), 0);
+
+            const unclaimedEarnings = totalEarnings - claimedEarnings;
+
+            // Fetch tiers and determine current tier
+            const { data: tiersData } = await supabase
+                .from('affiliate_tiers')
+                .select('*')
+                .order('min_wager_volume', { ascending: false });
+
+            const currentTier = (tiersData || []).find(
+                tier => totalWagerVolume >= parseFloat(tier.min_wager_volume || 0)
+            ) || (tiersData && tiersData[tiersData.length - 1]);
+
+            setStats({
+                code: codeData?.code || null,
+                referralCount: referralsData?.length || 0,
+                totalWagerVolume,
+                currentTier: currentTier ? {
+                    name: currentTier.name,
+                    rate: parseFloat(currentTier.commission_rate),
+                    color: currentTier.color,
+                    minWagerVolume: parseFloat(currentTier.min_wager_volume)
+                } : null,
+                unclaimedEarnings,
+                totalEarnings,
+                claimedEarnings,
+                recentEarnings: earningsData?.slice(0, 10) || [],
+                referrals: referralsData || []
             });
-
-            if (!response.ok) {
-                throw new Error(`Failed to fetch affiliate stats: ${response.statusText}`);
-            }
-
-            const data = await response.json();
-            setStats(data);
         } catch (err) {
             console.error('Get affiliate stats error:', err);
             setError(err instanceof Error ? err.message : 'Failed to load affiliate stats');
@@ -74,19 +121,37 @@ export const AffiliatesPage: React.FC<AffiliatesPageProps> = ({ user, onBack }) 
 
         try {
             setGeneratingCode(true);
-            const response = await fetch(`${backendUrl}/api/affiliates/generate-code`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId: user.id }),
-            });
 
-            if (!response.ok) {
-                throw new Error('Failed to generate affiliate code');
+            // Generate a unique code (user's username or random string)
+            const baseCode = user.username.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+            let code = baseCode;
+            let attempt = 0;
+
+            // Try to find a unique code
+            while (attempt < 10) {
+                const { data: existing } = await supabase
+                    .from('affiliate_codes')
+                    .select('id')
+                    .eq('code', code)
+                    .single();
+
+                if (!existing) break;
+
+                attempt++;
+                code = `${baseCode}${Math.floor(Math.random() * 1000)}`;
             }
 
-            const data = await response.json();
+            // Insert the new code
+            const { error: insertError } = await supabase
+                .from('affiliate_codes')
+                .insert({
+                    id: `aff_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                    user_id: user.id,
+                    code: code
+                });
+
+            if (insertError) throw insertError;
+
             await fetchAffiliateStats(); // Refresh stats
         } catch (err) {
             console.error('Generate affiliate code error:', err);
