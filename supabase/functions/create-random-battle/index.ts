@@ -175,8 +175,16 @@ serve(async (req) => {
 
     } catch (error) {
         console.error('❌ Error creating random battle:', error)
+        const errorDetails = {
+            success: false,
+            error: error.message,
+            stack: error.stack,
+            name: error.name,
+            details: error
+        };
+        console.error('Full error details:', JSON.stringify(errorDetails, null, 2));
         return new Response(
-            JSON.stringify({ success: false, error: error.message }),
+            JSON.stringify(errorDetails),
             { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
         )
     }
