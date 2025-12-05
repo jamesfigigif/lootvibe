@@ -36,7 +36,7 @@ export const AffiliatesPage: React.FC<AffiliatesPageProps> = ({ user, onBack }) 
         if (user) {
             fetchAffiliateStats();
         }
-    }, [user]);
+    }, [user?.id]); // Only refetch when user ID changes, not when user object reference changes
 
     const fetchAffiliateStats = async () => {
         if (!user) return;
@@ -174,17 +174,27 @@ export const AffiliatesPage: React.FC<AffiliatesPageProps> = ({ user, onBack }) 
         if (!user || !stats || stats.unclaimedEarnings <= 0) return;
 
         try {
-            const response = await fetch(`${backendUrl}/api/affiliates/claim-earnings`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId: user.id }),
-            });
+            // Update unclaimed earnings to claimed
+            const { error: updateError } = await supabase
+                .from('affiliate_earnings')
+                .update({
+                    claimed: true,
+                    claimed_at: new Date().toISOString()
+                })
+                .eq('user_id', user.id)
+                .eq('claimed', false);
 
-            if (!response.ok) {
-                throw new Error('Failed to claim earnings');
-            }
+            if (updateError) throw updateError;
+
+            // Add earnings to user balance
+            const { error: balanceError } = await supabase
+                .from('users')
+                .update({
+                    balance: parseFloat(user.balance.toString()) + stats.unclaimedEarnings
+                })
+                .eq('id', user.id);
+
+            if (balanceError) throw balanceError;
 
             await fetchAffiliateStats(); // Refresh stats
         } catch (err) {
