@@ -484,11 +484,8 @@ export default function App() {
 
                 const authHeader = `Bearer ${anonKey}`;
 
-                // Show opening animation
-                setView({ page: 'OPENING' });
-                setIsOpening(true);
-
                 // Call secure Edge Function (matches box-open pattern)
+                // NOTE: Don't set view to OPENING yet - wait for response first
                 const response = await supabase.functions.invoke('claim-free-box', {
                     headers: {
                         Authorization: authHeader,
@@ -561,6 +558,10 @@ export default function App() {
                 ...data.rollResult,
                 preGeneratedReel: reelItems
             });
+
+            // NOW show the opening animation (after rollResult is set)
+            setView({ page: 'OPENING' });
+            setIsOpening(true);
 
             // Wait for animation - REMOVED to let WelcomeOpeningStage control the flow
             // The WelcomeOpeningStage will call onComplete when the user is done
