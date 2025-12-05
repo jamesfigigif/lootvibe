@@ -768,13 +768,17 @@ export default function App() {
                 totalWagered: newTotalWagered,
                 totalProfit: newTotalProfit
             });
+
+            // Fetch fresh user data from database
             const updatedUser = await getUser(user.id);
 
-            // CRITICAL: Immediately update nonce to prevent desync
+            // CRITICAL: Immediately update nonce and balance to prevent desync
+            // Edge function returns the OLD nonce (the one that was used)
+            // and increments it in the DB, so we need to set nonce + 1 locally
             setUser({
                 ...updatedUser,
-                nonce: (user.nonce || 0) + 1, // Increment to match edge function
-                balance: outcome.newBalance    // Update balance from edge function
+                nonce: outcome.nonce + 1,    // Edge function used this nonce, DB now has nonce+1
+                balance: outcome.newBalance   // Use edge function balance
             });
 
             // 5. Set result with pre-generated reel and openingId for tracking
