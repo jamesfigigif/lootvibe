@@ -13,12 +13,15 @@ serve(async (req) => {
     }
 
     try {
+        console.log('🎲 Creating random battle...');
+
         // Create a service role client for DB writes (secure)
         const supabaseAdmin = createClient(
             Deno.env.get('SUPABASE_URL') ?? '',
             Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
         )
 
+        console.log('📦 Fetching boxes...');
         // Get all boxes with price under $250
         const { data: boxes, error: boxesError } = await supabaseAdmin
             .from('boxes')
@@ -27,8 +30,11 @@ serve(async (req) => {
             .order('created_at', { ascending: false })
 
         if (boxesError) {
+            console.error('❌ Failed to fetch boxes:', boxesError);
             throw new Error(`Failed to fetch boxes: ${boxesError.message}`)
         }
+
+        console.log(`✅ Found ${boxes?.length || 0} boxes`);
 
         if (!boxes || boxes.length === 0) {
             return new Response(

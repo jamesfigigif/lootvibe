@@ -22,7 +22,11 @@ serve(async (req) => {
         // 1. Verify Clerk JWT
         const authHeader = req.headers.get('Authorization');
         if (!authHeader) {
-            throw new Error('Missing authorization header');
+            console.error('❌ Missing authorization header');
+            return new Response(JSON.stringify({ error: 'Missing authorization header' }), {
+                status: 401,
+                headers: { 'Content-Type': 'application/json', ...corsHeaders },
+            });
         }
 
         const token = authHeader.replace('Bearer ', '');
@@ -36,9 +40,13 @@ serve(async (req) => {
             if (!clerkUserId) {
                 throw new Error('No user ID in token');
             }
+            console.log('✅ Token verified for user:', clerkUserId);
         } catch (error) {
-            console.error('Token verification failed:', error);
-            throw new Error('Invalid token');
+            console.error('❌ Token verification failed:', error);
+            return new Response(JSON.stringify({ error: 'Invalid token', details: error.message }), {
+                status: 401,
+                headers: { 'Content-Type': 'application/json', ...corsHeaders },
+            });
         }
 
         // 2. Initialize Supabase Admin Client
