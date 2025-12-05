@@ -14,8 +14,29 @@ interface BattleLobbyProps {
 
 export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, onJoin, onCreate, onWatch }) => {
   const [activeTab, setActiveTab] = useState<'ALL' | '1v1' | '2v2' | '3v3'>('ALL');
-  
-  // Periodically create random battles every 15 minutes
+  const [newBattleIds, setNewBattleIds] = useState<Set<string>>(new Set());
+
+  // Track new battles for animation
+  useEffect(() => {
+    if (battles.length > 0) {
+      const currentIds = new Set(battles.map(b => b.id));
+      const previousIds = new Set(Array.from(newBattleIds));
+
+      // Find newly added battles
+      const added = battles.filter(b => !previousIds.has(b.id)).map(b => b.id);
+
+      if (added.length > 0) {
+        setNewBattleIds(currentIds);
+
+        // Remove animation class after 1 second
+        setTimeout(() => {
+          setNewBattleIds(new Set());
+        }, 1000);
+      }
+    }
+  }, [battles.length]);
+
+  // Periodically create random battles every 2-3 minutes
   useEffect(() => {
     const createRandomBattle = async () => {
       try {
@@ -38,7 +59,7 @@ export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, on
         }
 
         if (data && data.success) {
-          console.log('✅ Random battle created:', data.battle.id);
+          console.log('✅ Random battle created:', data.battle?.id);
         } else if (data) {
           console.error('❌ Failed to create battle:', data);
         }
@@ -50,10 +71,18 @@ export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, on
     // Create a battle immediately on mount
     createRandomBattle();
 
-    // Then create one every 15 minutes (900000 ms)
-    const interval = setInterval(createRandomBattle, 15 * 60 * 1000);
+    // Random interval between 2-3 minutes (120-180 seconds)
+    const scheduleNext = () => {
+      const randomDelay = (120 + Math.random() * 60) * 1000; // 2-3 minutes
+      return setTimeout(() => {
+        createRandomBattle();
+        scheduleNext();
+      }, randomDelay);
+    };
 
-    return () => clearInterval(interval);
+    const timeout = scheduleNext();
+
+    return () => clearTimeout(timeout);
   }, []);
 
   if (!battles) return <div className="min-h-screen flex items-center justify-center text-slate-500">Loading Battles...</div>;
@@ -159,13 +188,14 @@ export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, on
 
                  const isFull = battle.players.every(p => p !== null);
                  const isPlayerInBattle = user && battle.players.some(p => p?.id === user.id);
+                 const isNew = newBattleIds.has(battle.id);
 
                  return (
                      <div key={battle.id} className={`group relative bg-[#131b2e] rounded-xl border overflow-hidden transition-all ${
-                         battle.status === 'FINISHED' 
-                             ? 'border-red-500/30 opacity-75' 
+                         battle.status === 'FINISHED'
+                             ? 'border-red-500/30 opacity-75'
                              : 'border-white/5 hover:border-white/10'
-                     }`}>
+                     } ${isNew ? 'animate-slideIn' : ''}`}>
                          <div className={`absolute inset-0 bg-gradient-to-br ${box.color} opacity-5 group-hover:opacity-10 transition-opacity`}></div>
                          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                          

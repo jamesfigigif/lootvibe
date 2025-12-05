@@ -1572,7 +1572,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                     <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-xl mb-6">
                                         <div className="text-red-400 text-sm font-bold uppercase tracking-widest mb-1">Your Total</div>
                                         <div className="text-2xl font-mono font-bold text-red-400">
-                                            ${(finalSorted.find(r => r.id === user?.id)?.totalValue || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                                            $0.00
                                         </div>
                                     </div>
 

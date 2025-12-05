@@ -1,20 +1,21 @@
-import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { importSPKI, jwtVerify } from 'https://deno.land/x/jose@v4.14.4/index.ts';
+
+const CLERK_PEM_PUBLIC_KEY = Deno.env.get('CLERK_PEM_PUBLIC_KEY')!;
 
 const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-serve(async (req) => {
+Deno.serve(async (req) => {
     // Handle CORS preflight requests
     if (req.method === 'OPTIONS') {
         return new Response('ok', { headers: corsHeaders });
     }
 
     try {
-        // Get Authorization header (Clerk JWT)
+        // 1. Verify Clerk JWT
         const authHeader = req.headers.get('Authorization');
         if (!authHeader) {
             console.error('❌ Missing authorization header');
@@ -24,25 +25,45 @@ serve(async (req) => {
             });
         }
 
-        // Create Supabase client with user's auth (similar to box-open)
-        const supabaseClient = createClient(
-            Deno.env.get('SUPABASE_URL') ?? '',
-            Deno.env.get('SUPABASE_ANON_KEY') ?? '',
-            { global: { headers: { Authorization: authHeader } } }
-        );
+        const token = authHeader.replace('Bearer ', '');
 
-        // Get authenticated user from Supabase (validates the JWT)
-        const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
+        let clerkUserId: string;
+        try {
+            if (!CLERK_PEM_PUBLIC_KEY) {
+                console.error('❌ CLERK_PEM_PUBLIC_KEY environment variable is not set');
+                throw new Error('Server configuration error: CLERK_PEM_PUBLIC_KEY missing');
+            }
 
-        if (authError || !user) {
-            console.error('❌ Auth failed:', authError);
-            return new Response(JSON.stringify({ success: false, error: 'Unauthorized' }), {
+            // Import the PEM public key
+            const publicKey = await importSPKI(CLERK_PEM_PUBLIC_KEY, 'RS256');
+
+            // Verify the JWT token
+            const { payload } = await jwtVerify(token, publicKey);
+            clerkUserId = payload.sub as string;
+
+            if (!clerkUserId) {
+                throw new Error('No user ID in token');
+            }
+
+            console.log('✅ JWT verified successfully for user:', clerkUserId);
+        } catch (error) {
+            console.error('❌ JWT verification failed:', error);
+            console.error('Error details:', {
+                name: error.name,
+                message: error.message,
+                hasKey: !!CLERK_PEM_PUBLIC_KEY,
+                tokenLength: token?.length
+            });
+            return new Response(JSON.stringify({
+                success: false,
+                error: 'Invalid authentication token',
+                debug: error.message
+            }), {
                 status: 401,
                 headers: { 'Content-Type': 'application/json', ...corsHeaders },
             });
         }
 
-        const clerkUserId = user.id;
         console.log('✅ User authenticated:', clerkUserId);
 
         // Initialize Supabase Admin Client for DB writes
@@ -98,17 +119,17 @@ serve(async (req) => {
         const cost = parseFloat(battle.price);
 
         // 7. Get user and check balance
-        const { data: user, error: userError } = await supabaseAdmin
+        const { data: userData, error: userError } = await supabaseAdmin
             .from('users')
             .select('*')
             .eq('id', clerkUserId)
             .single();
 
-        if (userError || !user) {
+        if (userError || !userData) {
             throw new Error('User not found');
         }
 
-        const currentBalance = parseFloat(user.balance);
+        const currentBalance = parseFloat(userData.balance);
         if (currentBalance < cost) {
             return new Response(JSON.stringify({
                 success: false,
@@ -153,9 +174,9 @@ serve(async (req) => {
 
         // 10. Add user to battle
         players[emptyIndex] = {
-            id: user.id,
-            username: user.username,
-            avatar: user.avatar,
+            id: userData.id,
+            username: userData.username,
+            avatar: userData.avatar,
             balance: newBalance,
             inventory: [],
             shipments: []
