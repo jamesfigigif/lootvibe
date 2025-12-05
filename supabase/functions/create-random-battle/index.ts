@@ -43,10 +43,12 @@ serve(async (req) => {
             )
         }
 
-        // Filter boxes by price (use sale_price if available, otherwise price)
+        // Filter boxes by price and exclude 1% boxes (use sale_price if available, otherwise price)
         const affordableBoxes = boxes.filter(box => {
             const price = parseFloat(box.sale_price || box.price || '0')
-            return price > 0 && price < 250
+            // Exclude 1% boxes that have 99% chance of one item (boring for battles)
+            const isOnePercentBox = box.name.includes('1%') || box.name.includes('RTX 1%') || box.name.includes('RICH CLUB')
+            return price > 0 && price < 250 && !isOnePercentBox
         })
 
         if (affordableBoxes.length === 0) {
