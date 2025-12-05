@@ -475,12 +475,14 @@ export default function App() {
 
             } else {
                 // Production mode - use Edge Function
-                const token = await clerk.session?.getToken({ template: 'supabase' });
-                if (!token) {
-                    console.error('❌ No Clerk token available');
-                    alert('Authentication error. Please sign in again.');
+                const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+                if (!anonKey) {
+                    console.error('❌ VITE_SUPABASE_ANON_KEY is missing!');
+                    alert('Configuration error. Please contact support.');
                     return;
                 }
+
+                const authHeader = `Bearer ${anonKey}`;
 
                 // Show opening animation
                 setView({ page: 'OPENING' });
@@ -489,7 +491,7 @@ export default function App() {
                 // Call secure Edge Function (matches box-open pattern)
                 const response = await supabase.functions.invoke('claim-free-box', {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: authHeader,
                     },
                     body: {
                         userId: user.id
