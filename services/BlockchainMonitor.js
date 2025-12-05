@@ -282,6 +282,32 @@ class BlockchainMonitor {
                     });
             }
 
+            // Create in-app notification
+            try {
+                const notificationId = `notif_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+                await this.supabase
+                    .from('notifications')
+                    .insert({
+                        id: notificationId,
+                        user_id: deposit.user_id,
+                        type: 'DEPOSIT_CREDITED',
+                        title: 'Deposit Received',
+                        message: `Your ${deposit.currency} deposit of $${usdValue.toFixed(2)} has been credited to your account!`,
+                        data: {
+                            currency: deposit.currency,
+                            amount: deposit.amount,
+                            usd_value: usdValue,
+                            tx_hash: deposit.tx_hash
+                        },
+                        read: false,
+                        created_at: new Date().toISOString()
+                    });
+                console.log(`  🔔 Notification created for deposit`);
+            } catch (notifError) {
+                console.error(`  ⚠️  Failed to create notification:`, notifError.message);
+                // Don't fail the deposit if notification fails
+            }
+
             console.log(`  💰 Credited $${usdValue.toFixed(2)} to user ${deposit.user_id}`);
         } catch (error) {
             console.error(`  ❌ Error crediting balance:`, error.message);

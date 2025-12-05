@@ -530,6 +530,33 @@ class WithdrawalProcessor {
      * Notify user of completed withdrawal
      */
     async notifyWithdrawalCompleted(withdrawal, txResult) {
+        try {
+            // Create in-app notification
+            const notificationId = `notif_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+            await this.supabase
+                .from('notifications')
+                .insert({
+                    id: notificationId,
+                    user_id: withdrawal.user_id,
+                    type: 'WITHDRAWAL_COMPLETED',
+                    title: 'Withdrawal Completed',
+                    message: `Your ${withdrawal.currency} withdrawal of $${withdrawal.amount.toFixed(2)} has been sent!`,
+                    data: {
+                        currency: withdrawal.currency,
+                        amount: withdrawal.amount,
+                        address: withdrawal.address,
+                        tx_hash: txResult.txHash,
+                        tx_url: txResult.txUrl
+                    },
+                    read: false,
+                    created_at: new Date().toISOString()
+                });
+            console.log(`  🔔 Notification created for withdrawal completion`);
+        } catch (notifError) {
+            console.error(`  ⚠️  Failed to create notification:`, notifError.message);
+            // Don't fail the withdrawal if notification fails
+        }
+
         // TODO: Integrate with email service
         console.log(`📧 Notification: Withdrawal ${withdrawal.id} completed for user ${withdrawal.user_id}`);
         console.log(`   TX: ${txResult.txUrl}`);
