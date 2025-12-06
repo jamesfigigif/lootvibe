@@ -68,7 +68,7 @@ export const RacePage = () => {
                 <div className="flex flex-col items-center relative group">
                     <div className="mb-4 flex flex-col items-center animate-float" style={{ animationDelay: '1s' }}>
                         <div className="text-emerald-400 font-bold font-mono mb-1 text-lg">${MOCK_LEADERBOARD[1].prize.toLocaleString()}</div>
-                        <img src={MOCK_LEADERBOARD[1].avatar} className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-slate-300 shadow-[0_0_20px_rgba(203,213,225,0.3)] bg-[#131b2e]" />
+                        <img src={MOCK_LEADERBOARD[1].avatar} loading="lazy" className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-slate-300 shadow-[0_0_20px_rgba(203,213,225,0.3)] bg-[#131b2e]" />
                         <div className="mt-2 font-bold text-slate-300">{MOCK_LEADERBOARD[1].user}</div>
                         <div className="text-xs text-slate-500 font-mono">${(MOCK_LEADERBOARD[1].wagered).toLocaleString()}</div>
                     </div>
@@ -85,7 +85,7 @@ export const RacePage = () => {
                     </div>
                     <div className="mb-4 flex flex-col items-center animate-float">
                         <div className="text-emerald-400 font-bold font-mono mb-1 text-xl">${MOCK_LEADERBOARD[0].prize.toLocaleString()}</div>
-                        <img src={MOCK_LEADERBOARD[0].avatar} className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-yellow-400 shadow-[0_0_30px_rgba(234,179,8,0.4)] bg-[#131b2e]" />
+                        <img src={MOCK_LEADERBOARD[0].avatar} loading="lazy" className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-yellow-400 shadow-[0_0_30px_rgba(234,179,8,0.4)] bg-[#131b2e]" />
                         <div className="mt-2 font-bold text-yellow-400 text-lg">{MOCK_LEADERBOARD[0].user}</div>
                         <div className="text-xs text-slate-500 font-mono">${(MOCK_LEADERBOARD[0].wagered).toLocaleString()}</div>
                     </div>
@@ -99,7 +99,7 @@ export const RacePage = () => {
                 <div className="flex flex-col items-center relative group">
                     <div className="mb-4 flex flex-col items-center animate-float" style={{ animationDelay: '2s' }}>
                         <div className="text-emerald-400 font-bold font-mono mb-1 text-lg">${MOCK_LEADERBOARD[2].prize.toLocaleString()}</div>
-                        <img src={MOCK_LEADERBOARD[2].avatar} className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-orange-700 shadow-[0_0_20px_rgba(194,65,12,0.3)] bg-[#131b2e]" />
+                        <img src={MOCK_LEADERBOARD[2].avatar} loading="lazy" className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-orange-700 shadow-[0_0_20px_rgba(194,65,12,0.3)] bg-[#131b2e]" />
                         <div className="mt-2 font-bold text-orange-400">{MOCK_LEADERBOARD[2].user}</div>
                         <div className="text-xs text-slate-500 font-mono">${(MOCK_LEADERBOARD[2].wagered).toLocaleString()}</div>
                     </div>
@@ -126,7 +126,7 @@ export const RacePage = () => {
                         <div className="col-span-1 text-center font-display font-bold text-slate-400 text-xs md:text-base">{player.rank}th</div>
                         <div className="col-span-4 md:col-span-4 flex items-center gap-2 md:gap-3">
                             <div className="w-6 h-6 md:w-8 md:h-8 rounded bg-slate-800 overflow-hidden flex-shrink-0">
-                                <img src={player.avatar} className="w-full h-full" />
+                                <img src={player.avatar} loading="lazy" className="w-full h-full" />
                             </div>
                             <span className="font-bold text-xs md:text-base truncate">{player.user}</span>
                         </div>

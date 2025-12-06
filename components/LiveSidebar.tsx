@@ -281,7 +281,7 @@ export const LiveSidebar = () => {
                             {/* Item Image */}
                             <div className="w-14 h-14 rounded-lg bg-[#0b0f19] border border-white/5 p-1 relative overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
                                 <div className={`absolute inset-0 opacity-20 ${rarity === Rarity.LEGENDARY ? 'bg-yellow-500' : 'bg-slate-500'}`}></div>
-                                <img src={drop.item_image} alt={drop.item_name} className="w-full h-full object-contain relative z-10" />
+                                <img src={drop.item_image} alt={drop.item_name} loading="lazy" className="w-full h-full object-contain relative z-10" />
                             </div>
 
                             {/* Info */}
@@ -293,7 +293,7 @@ export const LiveSidebar = () => {
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-1.5">
-                                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${drop.user_name}`} className="w-4 h-4 rounded-full bg-slate-700" />
+                                        <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${drop.user_name}`} loading="lazy" className="w-4 h-4 rounded-full bg-slate-700" />
                                         <span className="text-[10px] text-slate-400 truncate max-w-[80px]">{drop.user_name}</span>
                                     </div>
                                     <div className="text-[10px] text-slate-600">

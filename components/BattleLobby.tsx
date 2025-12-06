@@ -205,7 +205,7 @@ export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, on
                                  <div className="flex items-center gap-3">
                                      <div className="relative w-12 h-12">
                                         <div className={`absolute inset-0 bg-gradient-to-br ${box.color} blur-lg opacity-40`}></div>
-                                        <img src={box.image} className="w-full h-full object-cover rounded-lg border border-white/10 relative z-10" />
+                                        <img src={box.image} loading="lazy" className="w-full h-full object-cover rounded-lg border border-white/10 relative z-10" />
                                      </div>
                                      <div>
                                          <div className="text-white font-bold leading-none mb-1">{box.name}</div>
@@ -245,7 +245,7 @@ export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, on
                                  <div className="flex items-center gap-[-8px]">
                                      {battle.players.slice(0, battle.playerCount / 2).map((p, i) => (
                                          <div key={i} className="w-8 h-8 rounded-full border-2 border-[#131b2e] bg-slate-800 -ml-2 first:ml-0 overflow-hidden relative z-10">
-                                             {p ? <img src={p.avatar} className="w-full h-full" /> : <div className="w-full h-full flex items-center justify-center text-slate-600"><Users className="w-3 h-3"/></div>}
+                                             {p ? <img src={p.avatar} loading="lazy" className="w-full h-full" /> : <div className="w-full h-full flex items-center justify-center text-slate-600"><Users className="w-3 h-3"/></div>}
                                          </div>
                                      ))}
                                  </div>
@@ -255,7 +255,7 @@ export const BattleLobby: React.FC<BattleLobbyProps> = ({ battles = [], user, on
                                  <div className="flex items-center gap-[-8px] flex-row-reverse">
                                      {battle.players.slice(battle.playerCount / 2).map((p, i) => (
                                          <div key={i} className="w-8 h-8 rounded-full border-2 border-[#131b2e] bg-slate-800 -mr-2 first:mr-0 overflow-hidden relative z-10">
-                                              {p ? <img src={p.avatar} className="w-full h-full" /> : <div className="w-full h-full flex items-center justify-center text-slate-600 opacity-50"><Plus className="w-3 h-3"/></div>}
+                                              {p ? <img src={p.avatar} loading="lazy" className="w-full h-full" /> : <div className="w-full h-full flex items-center justify-center text-slate-600 opacity-50"><Plus className="w-3 h-3"/></div>}
                                          </div>
                                      ))}
                                  </div>

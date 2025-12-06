@@ -93,7 +93,7 @@ export const ShippingModal: React.FC<ShippingModalProps> = ({ items, onClose, on
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                             {items.map((item, idx) => (
                                 <div key={idx} className="bg-[#0b0f19] border border-white/5 rounded-xl p-3 flex flex-col items-center text-center">
-                                    <img src={item.image} className="w-16 h-16 object-contain mb-2" alt={item.name} />
+                                    <img src={item.image} loading="lazy" className="w-16 h-16 object-contain mb-2" alt={item.name} />
                                     <div className="text-xs font-bold truncate w-full">{item.name}</div>
                                     <div className="text-xs text-emerald-400 font-mono">${item.value}</div>
                                 </div>

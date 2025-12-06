@@ -80,26 +80,44 @@ Deno.serve(async (req) => {
             throw new Error(`User not found: ${userId}`)
         }
 
-        // 2. Get the box opening record to verify ownership and get item data
+        // 2. ✅ SECURITY FIX: Atomic check-and-set for item exchange
+        // This prevents race conditions where the same item could be exchanged twice
+        // We atomically update the status from KEPT -> SOLD and retrieve the data in one operation
         const { data: openingData, error: openingError } = await supabaseAdmin
             .from('box_openings')
-            .select('id, user_id, item_won, item_value, outcome')
+            .update({ outcome: 'SOLD' })
             .eq('id', openingId)
             .eq('user_id', userId) // Security: verify user owns this opening
+            .eq('outcome', 'KEPT') // ✅ CRITICAL: Only update if outcome is still 'KEPT'
+            .select('id, user_id, item_won, item_value, outcome')
             .single();
 
+        // If no rows were updated, the item was already exchanged or doesn't exist
         if (openingError || !openingData) {
-            throw new Error(`Box opening not found: ${openingId}`)
-        }
+            // Try to fetch the opening to give a better error message
+            const { data: existingOpening } = await supabaseAdmin
+                .from('box_openings')
+                .select('id, user_id, outcome')
+                .eq('id', openingId)
+                .single();
 
-        // Check if already exchanged
-        if (openingData.outcome === 'SOLD') {
-            throw new Error(`This item has already been exchanged`)
-        }
+            if (!existingOpening) {
+                throw new Error(`Box opening not found: ${openingId}`)
+            }
 
-        // Check if already collected (added to inventory)
-        if (openingData.outcome === 'COLLECTED') {
-            throw new Error(`This item has already been collected. Cannot exchange from here.`)
+            if (existingOpening.user_id !== userId) {
+                throw new Error(`You do not own this item`)
+            }
+
+            if (existingOpening.outcome === 'SOLD') {
+                throw new Error(`This item has already been exchanged`)
+            }
+
+            if (existingOpening.outcome === 'COLLECTED') {
+                throw new Error(`This item has already been collected. Cannot exchange from here.`)
+            }
+
+            throw new Error(`Failed to exchange item: ${openingError?.message || 'Unknown error'}`)
         }
 
         // 3. Get item value from the opening data (server-side, can't be manipulated)
@@ -107,38 +125,44 @@ Deno.serve(async (req) => {
         const itemValue = parseFloat(openingData.item_value || itemData?.value || 0);
 
         if (itemValue <= 0) {
+            // Rollback the status change since value is invalid
+            await supabaseAdmin
+                .from('box_openings')
+                .update({ outcome: 'KEPT' })
+                .eq('id', openingId);
             throw new Error(`Invalid item value: ${itemValue}`)
         }
 
-        console.log('✅ Opening found:', {
+        console.log('✅ Opening atomically marked as SOLD:', {
             openingId: openingData.id,
             itemName: itemData?.name,
             itemValue: itemValue
         });
 
-        // 4. Add cash to balance (atomic)
-        const currentBalance = parseFloat(userData.balance);
-        const newBalance = currentBalance + itemValue;
-
+        // 4. Add cash to balance using RPC for atomicity
         const { error: balanceError } = await supabaseAdmin
-            .from('users')
-            .update({ balance: newBalance })
-            .eq('id', userId);
+            .rpc('increment_balance', {
+                user_id: userId,
+                amount: itemValue
+            });
 
         if (balanceError) {
+            // Rollback the status change
+            await supabaseAdmin
+                .from('box_openings')
+                .update({ outcome: 'KEPT' })
+                .eq('id', openingId);
             throw new Error(`Failed to update balance: ${balanceError.message}`)
         }
 
-        // 5. Mark the opening as SOLD
-        const { error: updateOpeningError } = await supabaseAdmin
-            .from('box_openings')
-            .update({ outcome: 'SOLD' })
-            .eq('id', openingId)
-            .eq('user_id', userId); // Extra security
+        // Get new balance for response
+        const { data: updatedUser } = await supabaseAdmin
+            .from('users')
+            .select('balance')
+            .eq('id', userId)
+            .single();
 
-        if (updateOpeningError) {
-            throw new Error(`Failed to update opening status: ${updateOpeningError.message}`)
-        }
+        const newBalance = updatedUser ? parseFloat(updatedUser.balance) : 0;
 
         // 6. Create transaction record
         const transactionId = `tx_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -155,9 +179,10 @@ Deno.serve(async (req) => {
 
         if (txError) {
             console.error('Failed to create transaction record:', txError);
+            // Don't rollback since balance already updated - just log the error
         }
 
-        console.log(`✅ Item exchanged: User ${userId} exchanged ${itemData?.name} for $${itemValue}`);
+        console.log(`✅ Item exchanged: User ${userId} exchanged ${itemData?.name} for $${itemValue} (new balance: $${newBalance})`);
 
         return new Response(
             JSON.stringify({

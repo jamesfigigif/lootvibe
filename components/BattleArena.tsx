@@ -145,7 +145,7 @@ const BattleReel = ({
             <div className={`p-3 border-b border-white/5 flex items-center gap-3 ${isWinner ? (isCrazyMode ? 'bg-purple-500/10' : 'bg-yellow-500/10') : 'bg-[#0d121f]'}`}>
                 <div className="relative">
                     {player ? (
-                        <img src={player.avatar} className={`w-10 h-10 rounded-full border-2 ${isWinner ? (isCrazyMode ? 'border-purple-500' : 'border-yellow-500') : 'border-white/10'}`} />
+                        <img src={player.avatar} loading="lazy" className={`w-10 h-10 rounded-full border-2 ${isWinner ? (isCrazyMode ? 'border-purple-500' : 'border-yellow-500') : 'border-white/10'}`} />
                     ) : (
                         <div className="w-10 h-10 rounded-full border-2 border-dashed border-white/10 bg-white/5 flex items-center justify-center">?</div>
                     )}
@@ -194,7 +194,7 @@ const BattleReel = ({
                                     <div className={`absolute inset-0 opacity-5 rounded-lg bg-gradient-to-br ${RARITY_GRADIENTS[reelItem.rarity]}`}></div>
 
                                     <div className="relative w-full flex-1 z-10 flex items-center justify-center min-h-0">
-                                        <img src={reelItem.image} alt={reelItem.name} className="w-full h-full object-contain" />
+                                        <img src={reelItem.image} alt={reelItem.name} loading="lazy" className="w-full h-full object-contain" />
                                     </div>
 
                                     <div className="relative z-10 text-center w-full mt-auto pb-2 flex-shrink-0">
@@ -1246,6 +1246,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                         <div className={`absolute inset-0 ${isCrazyMode ? 'bg-purple-500' : 'bg-yellow-500'} rounded-full blur-xl opacity-50 animate-pulse`}></div>
                                         <img
                                             src={user?.avatar || battle.players.find(p => p?.id === overallWinnerId)?.avatar}
+                                            loading="lazy"
                                             className={`relative z-10 w-full h-full rounded-full border-4 ${isCrazyMode ? 'border-purple-500' : 'border-yellow-500'} shadow-2xl`}
                                         />
                                         <div className={`absolute -bottom-2 -right-2 ${isCrazyMode ? 'bg-purple-500' : 'bg-yellow-500'} text-black p-2 rounded-full border-4 border-[#0b0f19] z-20`}>
@@ -1257,6 +1258,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                         <div className="absolute inset-0 bg-red-500 rounded-full blur-xl opacity-30"></div>
                                         <img
                                             src={user?.avatar}
+                                            loading="lazy"
                                             className="relative z-10 w-full h-full rounded-full border-4 border-red-500/50 shadow-2xl opacity-70"
                                         />
                                         <div className="absolute -bottom-2 -right-2 bg-red-500 text-white p-2 rounded-full border-4 border-[#0b0f19] z-20">
@@ -1266,6 +1268,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                             <div className="bg-yellow-500 rounded-full p-2 border-4 border-[#0b0f19]">
                                                 <img
                                                     src={battle.players.find(p => p?.id === overallWinnerId)?.avatar}
+                                                    loading="lazy"
                                                     className="w-16 h-16 rounded-full border-2 border-yellow-500"
                                                 />
                                                 <div className="absolute -bottom-1 -right-1 bg-yellow-500 text-black p-1 rounded-full border-2 border-[#0b0f19]">
@@ -1397,6 +1400,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                                         <img
                                                                             src={item?.image}
                                                                             alt={item?.name}
+                                                                            loading="lazy"
                                                                             className="w-full h-full object-contain drop-shadow-2xl"
                                                                         />
                                                                     </div>
@@ -1473,6 +1477,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                                         <img
                                                                             src={item?.image}
                                                                             alt={item?.name}
+                                                                            loading="lazy"
                                                                             className="w-full h-full object-contain drop-shadow-2xl"
                                                                         />
                                                                     </div>
@@ -1536,6 +1541,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                                             <img
                                                                                 src={item?.image}
                                                                                 alt={item?.name}
+                                                                                loading="lazy"
                                                                                 className="w-full h-full object-contain drop-shadow-lg"
                                                                             />
                                                                         </div>

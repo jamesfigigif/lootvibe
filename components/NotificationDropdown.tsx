@@ -320,6 +320,7 @@ export const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ user
                                                         <img
                                                             src={notification.data.item_image}
                                                             alt={notification.data.item_name || 'Item'}
+                                                            loading="lazy"
                                                             className="w-16 h-16 object-contain rounded-lg bg-[#0b0f19] border border-white/10"
                                                         />
                                                     </div>

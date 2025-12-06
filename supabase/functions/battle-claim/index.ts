@@ -48,6 +48,42 @@ Deno.serve(async (req) => {
 
         console.log(`Processing claim for User ${userId}, Battle ${battleId}, Type: ${prizeChoice}`);
 
+        // ✅ SECURITY FIX: Verify user is the winner of this battle
+        const { data: battle, error: battleError } = await supabaseAdmin
+            .from('battles')
+            .select('id, winner_id, status, price, player_count')
+            .eq('id', battleId)
+            .single();
+
+        if (battleError || !battle) {
+            throw new Error('Battle not found');
+        }
+
+        // Verify battle is finished
+        if (battle.status !== 'FINISHED') {
+            throw new Error('Battle is not finished yet');
+        }
+
+        // Verify user is the winner
+        if (battle.winner_id !== userId) {
+            console.error(`❌ Unauthorized claim attempt: User ${userId} tried to claim Battle ${battleId} (winner: ${battle.winner_id})`);
+            throw new Error('You are not the winner of this battle');
+        }
+
+        // Check if prize already claimed
+        const { data: existingClaim } = await supabaseAdmin
+            .from('battle_results')
+            .select('claimed')
+            .eq('battle_id', battleId)
+            .eq('winner_id', userId)
+            .single();
+
+        if (existingClaim && existingClaim.claimed) {
+            throw new Error('Prize already claimed');
+        }
+
+        console.log(`✅ Verified: User ${userId} is winner of Battle ${battleId}`);
+
         if (prizeChoice === 'cash') {
             if (!amount || amount <= 0) throw new Error('Invalid amount');
 
@@ -90,6 +126,15 @@ Deno.serve(async (req) => {
         } else {
             throw new Error('Invalid prize choice');
         }
+
+        // ✅ Mark prize as claimed in battle_results table
+        await supabaseAdmin
+            .from('battle_results')
+            .update({ claimed: true })
+            .eq('battle_id', battleId)
+            .eq('winner_id', userId);
+
+        console.log(`✅ Prize claimed successfully for Battle ${battleId} by User ${userId}`);
 
         return new Response(
             JSON.stringify({ success: true, message: 'Prize claimed successfully' }),

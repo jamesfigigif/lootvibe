@@ -722,7 +722,7 @@ export const AdminPanel: React.FC = () => {
                                     <div className="flex items-start justify-between mb-4">
                                         <div className="flex items-center gap-4">
                                             {box.image_url ? (
-                                                <img src={box.image_url} alt={box.name} className="w-20 h-20 rounded-lg object-cover" />
+                                                <img src={box.image_url} alt={box.name} loading="lazy" className="w-20 h-20 rounded-lg object-cover" />
                                             ) : (
                                                 <div className="w-20 h-20 rounded-lg bg-[#131b2e] flex items-center justify-center border border-white/10">
                                                     <Box className="w-8 h-8 text-slate-600" />
@@ -784,7 +784,7 @@ export const AdminPanel: React.FC = () => {
                                             {box.items.map((item: any, idx: number) => (
                                                 <div key={idx} className="bg-[#131b2e] rounded-lg p-3 flex items-center justify-between">
                                                     <div className="flex items-center gap-3">
-                                                        <img src={item.image} alt={item.name} className="w-12 h-12 rounded object-cover" />
+                                                        <img src={item.image} alt={item.name} loading="lazy" className="w-12 h-12 rounded object-cover" />
                                                         <div>
                                                             <p className="font-medium">{item.name}</p>
                                                             <div className="flex items-center gap-3 text-xs">

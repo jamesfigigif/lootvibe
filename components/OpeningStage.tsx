@@ -171,7 +171,7 @@ export const OpeningStage: React.FC<OpeningStageProps> = ({ box, winner, onBack,
                 <div className={`absolute inset-0 opacity-10 rounded-xl bg-gradient-to-br ${RARITY_GRADIENTS[item.rarity]}`}></div>
 
                 <div className="relative w-32 h-32 mb-4 z-10">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-contain drop-shadow-2xl" />
+                  <img src={item.image} alt={item.name} loading="lazy" className="w-full h-full object-contain drop-shadow-2xl" />
                 </div>
 
                 <div className="relative z-10 text-center w-full">

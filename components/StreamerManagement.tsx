@@ -328,7 +328,7 @@ export const StreamerManagement: React.FC<StreamerManagementProps> = ({ adminUse
                             <tr key={streamer.id} className="border-b border-white/5 hover:bg-white/5">
                                 <td className="p-4">
                                     <div className="flex items-center gap-3">
-                                        <img src={streamer.avatar} alt="" className="w-10 h-10 rounded-full" />
+                                        <img src={streamer.avatar} alt="" loading="lazy" className="w-10 h-10 rounded-full" />
                                         <div>
                                             <div className="text-white font-medium flex items-center gap-2">
                                                 {streamer.username}

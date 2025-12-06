@@ -147,8 +147,21 @@ export default function App() {
     // Balance Animation State
     const [balanceIncrease, setBalanceIncrease] = useState<number | null>(null);
 
+    // Inventory Animation State
+    const [inventoryItemAdded, setInventoryItemAdded] = useState<LootItem | null>(null);
+
     // Demo Mode State
     const [isDemoMode, setIsDemoMode] = useState(false);
+
+    // Clear inventory animation after 2 seconds
+    useEffect(() => {
+        if (inventoryItemAdded) {
+            const timer = setTimeout(() => {
+                setInventoryItemAdded(null);
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [inventoryItemAdded]);
 
     // Scroll to top on view change
     useEffect(() => {
@@ -606,8 +619,10 @@ export default function App() {
             return;
         }
 
+        // Set opening state immediately to show "OPENING..." on button
+        setIsOpening(true);
+
         try {
-            // NOTE: Don't set view to OPENING yet - wait for rollResult to be ready
             // Add 1.5 second delay for suspense
             await new Promise(resolve => setTimeout(resolve, 1500));
 
@@ -790,7 +805,6 @@ export default function App() {
             });
 
             // 6. NOW show the opening animation (after all data is ready)
-            setIsOpening(true);
             setView({ page: 'OPENING' });
 
         } catch (error) {
@@ -1012,10 +1026,17 @@ export default function App() {
                 );
             }
 
+            // Trigger inventory animation
+            if (rollResult.item) {
+                setInventoryItemAdded(rollResult.item);
+            }
+
+            // Close modal immediately
+            resetOpenState();
+
             // Refresh user state to get latest inventory
             const updatedUser = await getUser(user.id);
             setUser(updatedUser);
-            resetOpenState();
         } catch (error) {
             console.error('❌ Error refreshing inventory:', error);
             alert('Failed to refresh inventory. Please try again.');
@@ -1595,6 +1616,21 @@ export default function App() {
                         </div>
                         <div className="text-emerald-200 font-bold text-xl mt-2 animate-pulse">
                             BALANCE UPDATED
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Centered Inventory Added Animation Overlay */}
+            {inventoryItemAdded && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none">
+                    <div className="animate-[float-up-center_2s_ease-out_forwards] flex flex-col items-center">
+                        <div className="flex items-center gap-4 bg-gradient-to-r from-purple-600/90 to-indigo-600/90 backdrop-blur-sm rounded-2xl p-6 shadow-[0_0_50px_rgba(147,51,234,0.5)] border border-purple-400/30">
+                            <img src={inventoryItemAdded.image} alt={inventoryItemAdded.name} className="w-16 h-16 rounded-lg object-cover" />
+                            <div className="text-left">
+                                <div className="text-white font-bold text-2xl">{inventoryItemAdded.name}</div>
+                                <div className="text-purple-200 text-sm mt-1">Added to Inventory</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2237,9 +2273,9 @@ export default function App() {
                                                 className="group relative overflow-hidden bg-white hover:bg-slate-200 text-black rounded-2xl py-4 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <div className="flex flex-col items-center gap-1 relative z-10">
-                                                    <span className="text-[10px] font-bold opacity-60 uppercase tracking-wide">{isClaimingPrize ? 'Adding...' : 'Add To Inventory'}</span>
+                                                    <span className="text-[10px] font-bold opacity-60 uppercase tracking-wide">{isClaimingPrize ? 'Adding to Inventory...' : 'Add To Inventory'}</span>
                                                     <span className="flex items-center gap-2 font-bold text-lg">
-                                                        {isClaimingPrize ? 'Processing' : 'Collect'} <Check className="w-4 h-4" />
+                                                        {isClaimingPrize ? <Loader2 className="w-5 h-5 animate-spin" /> : <Check className="w-4 h-4" />} {isClaimingPrize ? 'Please wait' : 'Collect'}
                                                     </span>
                                                 </div>
                                             </button>

@@ -286,7 +286,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
                     <span className="text-[10px] text-slate-400">Level 42</span>
                   </div>
                   <div className="w-10 h-10 rounded-lg bg-slate-800 border border-white/10 overflow-hidden shadow-lg shadow-purple-900/20">
-                    <img src={user.avatar} alt={user.username} className="w-full h-full object-cover" />
+                    <img src={user.avatar} alt={user.username} loading="lazy" className="w-full h-full object-cover" />
                   </div>
                 </button>
 

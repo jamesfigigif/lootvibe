@@ -125,7 +125,7 @@ serve(async (req) => {
                 nonce: nonce + 1, // Increment nonce for next roll
                 server_seed_hash: serverSeedHash // Store hash for provably fair verification
             })
-            .eq('id', clerkUserId)
+            .eq('id', userId)
             .eq('free_box_claimed', false);
 
         if (updateError) {
@@ -143,7 +143,7 @@ serve(async (req) => {
             .insert({
                 id: openingId,
                 box_id: 'welcome_gift',
-                user_id: clerkUserId,
+                user_id: userId,
                 item_won: winningItem,
                 box_price: 0, // Free box
                 item_value: winningItem.value,
@@ -167,7 +167,7 @@ serve(async (req) => {
             .from('inventory_items')
             .insert({
                 id: inventoryId,
-                user_id: clerkUserId,
+                user_id: userId,
                 item_data: winningItem,
                 created_at: new Date().toISOString()
             });

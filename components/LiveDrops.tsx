@@ -48,7 +48,7 @@ export const LiveDrops: React.FC = () => {
             <ul className="space-y-3">
                {drops.map(d => (
                   <li key={d.id} className="flex items-center gap-3">
-                     <img src={d.item_image} alt={d.item_name} className="w-10 h-10 rounded object-cover" />
+                     <img src={d.item_image} alt={d.item_name} loading="lazy" className="w-10 h-10 rounded object-cover" />
                      <div className="flex-1">
                         <p className="text-sm text-white">
                            <span className="font-medium">{d.user_name}</span> just won{' '}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Copy, Check, ExternalLink, Loader2, Wallet, Sparkles, AlertCircle, CheckCircle2, Clock } from 'lucide-react';
 import { QRCodeCanvas } from 'qrcode.react';
+import { useAuth } from '@clerk/clerk-react';
 
 interface CryptoDepositModalProps {
     isOpen: boolean;
@@ -11,6 +12,7 @@ interface CryptoDepositModalProps {
 }
 
 export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, onClose, userId, currency, onDepositCredited }) => {
+    const { getToken } = useAuth();
     const [address, setAddress] = useState<string>('');
     const [loading, setLoading] = useState(true);
     const [copied, setCopied] = useState(false);
@@ -35,8 +37,21 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
 
         const checkForDeposits = async () => {
             try {
+                // ✅ SECURITY FIX: Added authentication header
+                const token = await getToken({ template: 'supabase' });
+                if (!token) {
+                    console.error('No auth token available');
+                    return;
+                }
+
                 // Get recent deposits for this user and currency
-                const response = await fetch(`${BACKEND_URL}/api/deposits/history/${userId}`);
+                // ✅ SECURITY FIX: Removed userId from URL (comes from auth token now)
+                const response = await fetch(`${BACKEND_URL}/api/deposits/history`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 const data = await response.json();
                 
                 if (data.deposits && data.deposits.length > 0) {
@@ -99,10 +114,21 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
     const generateAddress = async () => {
         try {
             setLoading(true);
+
+            // ✅ SECURITY FIX: Added authentication header
+            const token = await getToken({ template: 'supabase' });
+            if (!token) {
+                throw new Error('Not authenticated');
+            }
+
+            // ✅ SECURITY FIX: Removed userId from body (comes from auth token now)
             const response = await fetch(`${BACKEND_URL}/api/deposits/generate-address`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId, currency, testnet: IS_TESTNET })
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ currency, testnet: IS_TESTNET })
             });
 
             const data = await response.json();
