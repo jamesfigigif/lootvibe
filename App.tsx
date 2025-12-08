@@ -1514,21 +1514,15 @@ export default function App() {
             const prizeChoice = items && items.length > 0 ? 'items' : 'cash';
             console.log(`🏆 Claiming battle prize via Secure Edge Function: ${prizeChoice}`);
 
-            // Get Clerk session token for authentication
-            const clerkToken = await getToken({ template: 'supabase' });
-            console.log('🔑 Clerk Token Debug:', {
-                hasToken: !!clerkToken,
-                tokenStart: clerkToken ? clerkToken.substring(0, 30) + '...' : 'NULL',
-                tokenLength: clerkToken?.length
-            });
-
-            if (!clerkToken) {
-                throw new Error('Not authenticated with Clerk');
+            // Use Anon Key for Edge Function (matches other functioning calls)
+            const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+            if (!anonKey) {
+                throw new Error('VITE_SUPABASE_ANON_KEY is missing!');
             }
 
             const { data, error } = await supabase.functions.invoke('battle-claim', {
                 headers: {
-                    Authorization: `Bearer ${clerkToken}`
+                    Authorization: `Bearer ${anonKey}`
                 },
                 body: {
                     battleId: activeBattle?.id || 'unknown',

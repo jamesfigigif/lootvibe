@@ -434,7 +434,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
     // It avoids depending on 'battle' object to prevent re-running mid-spin.
     useEffect(() => {
         if (!box) return;
-        
+
         console.log(`🎮 Game loop: gameStatus=${gameStatus}, currentRound=${currentRound}, battle.roundCount=${battle.roundCount}, battle.status=${battle.status}`);
 
         // Prevent game loop from running if battle is finished
@@ -708,7 +708,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                         // Check for tie - handling differs for single-round vs multi-round games
                         const uniqueValues = new Set(allValues);
                         const isTie = uniqueValues.size === 1 && allValues.length > 1;
-                        
+
                         let rWinner: string | null = null;
                         let bestValue = isCrazyMode ? Infinity : -1;
 
@@ -717,11 +717,11 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                 // Single-round game: Re-roll on tie (don't add items, just re-spin)
                                 console.log('🔄 TIE DETECTED in single-round game: All players got same value, re-spinning round (attempt:', tieAttempts + 1, ')');
                                 triggerEmote('😱');
-                                
+
                                 setTieAttempts(prev => prev + 1);
                                 setRoundWinnerId(null);
                                 setGameStatus('REVEALED');
-                                
+
                                 // Clear items and reset for re-roll (don't add items to results)
                                 setTimeout(() => {
                                     if (!mountedRef.current) return;
@@ -847,21 +847,21 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                 // This includes ties - in best-of-3, ties just continue to next round
                 // Check End Condition or Sudden Death
                 const nextRound = currentRound + 1;
-                
+
                 console.log(`🔄 Round progression check: currentRound=${currentRound}, nextRound=${nextRound}, battle.roundCount=${battle.roundCount}`);
-                
+
                 // IMPORTANT: Store final round items BEFORE clearing roundItems
                 // Check if this is the final round BEFORE incrementing
                 if (nextRound > battle.roundCount) {
                     console.log(`🏁 All ${battle.roundCount} rounds complete, checking for winner...`);
                     console.log('📦 Storing final round items (current round:', currentRound, '):', roundItems);
-                    
+
                     // Store final round items BEFORE finishing (roundItems still has current round's items)
                     // Make a copy to avoid reference issues
                     const finalRoundItemsCopy = { ...roundItems };
                     setLastRoundItems(finalRoundItemsCopy);
                     console.log('✅ Final round items stored:', finalRoundItemsCopy);
-                    
+
                     const sortedPlayers = (Object.values(currentScores) as BattlePlayerResult[]).sort((a, b) =>
                         isCrazyMode ? a.totalValue - b.totalValue : b.totalValue - a.totalValue
                     );
@@ -1111,13 +1111,14 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                     <ArrowLeft className="w-4 h-4" /> LEAVE
                 </button>
 
-                <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-2 text-xs text-slate-500 font-bold tracking-widest uppercase mb-1">
+                <div className="flex flex-col items-center max-w-[50%] md:max-w-none text-center">
+                    <div className="flex items-center gap-2 text-xs text-slate-500 font-bold tracking-widest uppercase mb-1 justify-center">
                         {isCrazyMode ? <Skull className="w-3 h-3 text-purple-500" /> : <Zap className="w-3 h-3 text-yellow-500 fill-current" />}
                         {currentRound > battle.roundCount ? <span className="text-red-500 animate-pulse">SUDDEN DEATH</span> : `Round ${currentRound} / ${battle.roundCount}`}
                     </div>
-                    <div className="text-white font-display font-bold text-2xl tracking-wide drop-shadow-md flex items-center gap-2">
-                        {box.name} {isCrazyMode && <span className="bg-purple-600 text-white text-[10px] px-2 py-0.5 rounded ml-2">CRAZY MODE</span>}
+                    <div className="text-white font-display font-bold text-lg md:text-2xl tracking-wide drop-shadow-md flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 leading-tight">
+                        <span>{box.name}</span>
+                        {isCrazyMode && <span className="bg-purple-600 text-white text-[10px] px-2 py-0.5 rounded">CRAZY MODE</span>}
                     </div>
                 </div>
 
@@ -1285,7 +1286,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                     <h2 className="text-4xl font-display font-bold text-white mb-2 drop-shadow-lg tracking-wide">VICTORY</h2>
                                     <div className={`${isCrazyMode ? 'text-purple-500' : 'text-yellow-500'} font-bold text-lg mb-2 uppercase tracking-widest`}>You Win!</div>
                                     {isCrazyMode && <div className="text-xs text-slate-500 uppercase tracking-widest font-bold mb-2">(LOWEST TOTAL VALUE)</div>}
-                                    
+
                                     {/* Multi-round game notice */}
                                     {battle.roundCount > 1 && (
                                         <div className="mb-4 p-3 rounded-xl bg-yellow-500/10 border border-yellow-500/30">
@@ -1297,7 +1298,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                 {(() => {
                                                     const userResult = finalSorted.find(r => r.id === user?.id);
                                                     if (!userResult || !userResult.items || userResult.items.length === 0) return null;
-                                                    
+
                                                     // Items are stored in order: one item per round for this player
                                                     // items[0] = round 1, items[1] = round 2, items[2] = round 3, etc.
                                                     const rounds = [];
@@ -1309,7 +1310,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                         rounds[roundNum - 1].items.push(userResult.items[i]);
                                                         rounds[roundNum - 1].total += userResult.items[i].value;
                                                     }
-                                                    
+
                                                     return (
                                                         <div className="space-y-1">
                                                             {rounds.map((roundData, idx) => (
@@ -1369,18 +1370,18 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                                     claimableItems = [lastItem];
                                                                 }
                                                             }
-                                                            console.log('🎁 Multi-round claimable items:', { 
-                                                                userId: user?.id, 
-                                                                lastRoundItems, 
+                                                            console.log('🎁 Multi-round claimable items:', {
+                                                                userId: user?.id,
+                                                                lastRoundItems,
                                                                 finalRoundItem: lastRoundItems[user?.id || ''],
                                                                 userResultItems: finalSorted.find(r => r.id === user?.id)?.items,
-                                                                claimableItems 
+                                                                claimableItems
                                                             });
                                                         } else {
                                                             // Single round: all items the winner won
                                                             claimableItems = finalSorted.find(r => r.id === user?.id)?.items || [];
                                                         }
-                                                        
+
                                                         if (claimableItems.length === 0) {
                                                             return (
                                                                 <div className="text-slate-400 text-sm py-8">
@@ -1388,7 +1389,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                                 </div>
                                                             );
                                                         }
-                                                        
+
                                                         return claimableItems.filter(Boolean).slice(0, 2).map((item, idx) => (
                                                             <div key={idx} className="relative flex-1 max-w-[180px] bg-gradient-to-br from-black/60 to-black/40 rounded-xl p-5 border-2 border-white/20 group-hover:border-yellow-500/50 transition-all">
                                                                 {/* Rarity glow effect */}
@@ -1448,7 +1449,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                     ) : (
                                         <div className="bg-gradient-to-r from-[#1a2336] to-[#131b2e] p-6 rounded-2xl border border-white/10 mb-6 flex flex-col items-center">
                                             <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">
-                                                {prizeChoice === 'items' 
+                                                {prizeChoice === 'items'
                                                     ? (battle.roundCount > 1 ? 'Final Round Items Selected' : 'Items Selected')
                                                     : 'Prize Pool Cash Selected'}
                                             </div>
@@ -1514,7 +1515,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                         {(() => {
                                             const winnerResult = finalSorted.find(r => r.id === overallWinnerId);
                                             let winnerItems: LootItem[] = [];
-                                            
+
                                             if (battle.roundCount > 1) {
                                                 // Multi-round: show winner's final round item
                                                 const finalRoundItem = lastRoundItems[overallWinnerId || ''];
@@ -1525,7 +1526,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                 // Single round: show all winner's items
                                                 winnerItems = winnerResult?.items || [];
                                             }
-                                            
+
                                             if (winnerItems.length > 0) {
                                                 return (
                                                     <div className="w-full">
@@ -1534,7 +1535,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                                 <div key={idx} className="relative flex-1 max-w-[160px] bg-gradient-to-br from-black/60 to-black/40 rounded-xl p-4 border border-white/10">
                                                                     {/* Rarity glow effect */}
                                                                     <div className={`absolute inset-0 opacity-30 rounded-xl bg-gradient-to-br ${RARITY_GRADIENTS[item?.rarity || 'COMMON'] || RARITY_GRADIENTS.COMMON} blur-2xl`}></div>
-                                                                    
+
                                                                     {/* Item image */}
                                                                     <div className="relative z-10 flex flex-col items-center">
                                                                         <div className="w-24 h-24 mb-3 flex items-center justify-center bg-black/40 rounded-xl p-2 shadow-xl">
@@ -1545,7 +1546,7 @@ export const BattleArena: React.FC<BattleArenaProps> = ({ battle, user, onBack, 
                                                                                 className="w-full h-full object-contain drop-shadow-lg"
                                                                             />
                                                                         </div>
-                                                                        
+
                                                                         {/* Item name and value */}
                                                                         <div className="text-center w-full">
                                                                             <div className="text-sm font-bold text-white mb-1 line-clamp-2">{item?.name}</div>
