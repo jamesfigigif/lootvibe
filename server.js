@@ -67,7 +67,7 @@ app.use(express.json());
 
 // Initialize Supabase
 const supabase = createClient(
-    'https://cbjdasfnwzizfphnwxfd.supabase.co',
+    process.env.VITE_SUPABASE_URL || 'https://hpflcuyxmwzrknxjgavd.supabase.co',
     process.env.VITE_SUPABASE_ANON_KEY || ''
 );
 
