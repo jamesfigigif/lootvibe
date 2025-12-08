@@ -62,7 +62,7 @@ app.use(cors({
 }));
 
 // Enable pre-flight for all routes
-app.options('*', cors());
+app.options(/(.*)/, cors());
 app.use(express.json());
 
 // Initialize Supabase
