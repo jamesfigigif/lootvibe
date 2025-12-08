@@ -1,25 +1,28 @@
-# Backend CORS Issue - Deposit Address Generation
+# Backend CORS Issue - DepositThe Heroku backend at `https://lootvibe-backend-12913253d7a4.herokuapp.com` is not responding with CORS headers, blocking deposit address generation.
 
-## Problem
-The Heroku backend at `https://lootvibe-backend-12913253d7a4.herokuapp.com` is not responding with CORS headers, blocking deposit address generation.
+## Error Details
 
-## Error
-```
 Access to fetch at 'https://lootvibe-backend-12913253d7a4.herokuapp.com/api/deposits/generate-address'
-from origin 'https://www.lootvibe.com' has been blocked by CORS policy:
-Response to preflight request doesn't pass access control check:
-No 'Access-Control-Allow-Origin' header is present on the requested resource.
-```
+from origin 'https://www.lootvibe.com' has been blocked by CORS policy.
 
-## Root Causes
-1. **Heroku Free Tier Sleeping**: Backend sleeps after 30min inactivity (~30s wake time)
-2. **CORS Configuration**: May not be properly configured for production domain
+## Resolution Steps
+
+1. Visit the backend URL to wake it: `https://lootvibe-backend-12913253d7a4.herokuapp.com`
+2. Backend MUST have `cors` middleware enabled for `https://www.lootvibe.com`
+3. Check Heroku logs: `heroku logs --tail -a lootvibe-backend`
+
+## Debug Command
+
+curl -X OPTIONS https://lootvibe-backend-12913253d7a4.herokuapp.com/api/deposits/generate-address \
+-H "Origin: https://www.lootvibe.com" \
+-H "Access-Control-Request-Method: POST" \
+-vnot be properly configured for production domain
 3. **Backend may need redeployment**
 
 ## Solutions
 
 ### Immediate Fix (Wake Backend)
-1. Visit the backend URL to wake it: `https://lootvibe-backend-12913253d7a4.herokuapp.com`
+1. Visit the backend URL to wake it: `https://lootvibe-backend.herokuapp.com`
 2. Wait 30 seconds for it to wake up
 3. Try generating deposit address again
 

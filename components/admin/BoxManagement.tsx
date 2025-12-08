@@ -30,14 +30,14 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
     // Calculate profitability for a box
     const calculateProfitability = (box: Box): number => {
         if (!box.items || box.items.length === 0 || !box.price) return 0;
-        
+
         // Calculate expected value: sum of (item.value * item.odds / 100)
         const expectedValue = box.items.reduce((sum: number, item: any) => {
             const value = item.value || 0;
             const odds = item.odds || 0;
             return sum + (value * odds / 100);
         }, 0);
-        
+
         // Profitability = (box price - expected value) / box price * 100
         const profitability = ((box.price - expectedValue) / box.price) * 100;
         return profitability;
@@ -60,6 +60,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
     const [expandedBoxes, setExpandedBoxes] = useState<Set<string>>(new Set());
     const [editingOdds, setEditingOdds] = useState<string | null>(null);
     const [tempOdds, setTempOdds] = useState<{ [itemId: string]: number }>({});
+    const [tempValues, setTempValues] = useState<{ [itemId: string]: number }>({});
     const [addingItem, setAddingItem] = useState<string | null>(null);
     const [newItem, setNewItem] = useState<{
         name: string;
@@ -91,7 +92,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                 const { count, error } = await supabase
                     .from('boxes')
                     .select('*', { count: 'exact', head: true });
-                
+
                 if (error) {
                     console.error('❌ [BoxManagement] Supabase boxes table access error:', error);
                     console.error('Error details:', JSON.stringify(error, null, 2));
@@ -119,14 +120,14 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
             const { count: totalCount, error: countError } = await supabase
                 .from('boxes')
                 .select('*', { count: 'exact', head: true });
-            
+
             if (countError) {
                 console.error('❌ [BoxManagement] Cannot access boxes table:', countError);
                 setError(`Database access error: ${countError.message}`);
                 setBoxes([]);
                 return;
             }
-            
+
             console.log(`✅ [BoxManagement] Found ${totalCount || 0} total boxes in database`);
 
             // Now build the filtered query
@@ -185,7 +186,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                         .range(offset, offset + limit - 1);
 
                     const { data: retryData, error: retryError, count: retryCount } = await retryQuery;
-                    
+
                     if (retryError) {
                         throw retryError;
                     }
@@ -294,7 +295,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                         .from('boxes')
                         .update({ enabled: !box.enabled })
                         .eq('id', boxId);
-                    
+
                     if (!error) {
                         fetchBoxes();
                     } else {
@@ -312,7 +313,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                     .from('boxes')
                     .update({ enabled: !box.enabled })
                     .eq('id', boxId);
-                
+
                 if (!error) {
                     fetchBoxes();
                 } else {
@@ -343,7 +344,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                     .from('boxes')
                     .delete()
                     .eq('id', boxId);
-                
+
                 if (!error) {
                     fetchBoxes();
                 } else {
@@ -358,7 +359,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                 .from('boxes')
                 .delete()
                 .eq('id', boxId);
-            
+
             if (!deleteError) {
                 fetchBoxes();
             } else {
@@ -469,7 +470,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                         )}
                         {!error && (
                             <p className="text-slate-500 text-sm mb-4">
-                                {search || categoryFilter || enabledFilter 
+                                {search || categoryFilter || enabledFilter
                                     ? 'No boxes match your filters. Try adjusting your search criteria.'
                                     : 'Your database appears to be empty. Create your first box to get started!'}
                             </p>
@@ -486,9 +487,8 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                         {boxes.map((box) => (
                             <div
                                 key={box.id}
-                                className={`bg-[#0b0f19] border rounded-xl overflow-hidden transition-all ${
-                                    box.enabled ? 'border-white/10 hover:border-purple-500/50' : 'border-red-500/30 opacity-60'
-                                }`}
+                                className={`bg-[#0b0f19] border rounded-xl overflow-hidden transition-all ${box.enabled ? 'border-white/10 hover:border-purple-500/50' : 'border-red-500/30 opacity-60'
+                                    }`}
                             >
                                 <div className="flex gap-4 p-4">
                                     {/* Box Image */}
@@ -530,11 +530,10 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                             </div>
                                             <div>
                                                 <span className="text-slate-400">Total Odds: </span>
-                                                <span className={`font-bold ${
-                                                    (box.items || []).reduce((sum: number, item: any) => sum + (item.odds || 0), 0) === 100 
-                                                        ? 'text-green-400' 
+                                                <span className={`font-bold ${(box.items || []).reduce((sum: number, item: any) => sum + (item.odds || 0), 0) === 100
+                                                        ? 'text-green-400'
                                                         : 'text-red-400'
-                                                }`}>
+                                                    }`}>
                                                     {((box.items || []).reduce((sum: number, item: any) => sum + (item.odds || 0), 0)).toFixed(2)}%
                                                 </span>
                                             </div>
@@ -636,23 +635,86 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                         onClick={() => {
                                                             setEditingOdds(editingOdds === box.id ? null : box.id);
                                                             if (editingOdds !== box.id) {
-                                                                // Initialize temp odds
+                                                                // Initialize temp odds and values
                                                                 const odds: { [key: string]: number } = {};
+                                                                const values: { [key: string]: number } = {};
                                                                 box.items.forEach((item: any) => {
-                                                                    odds[item.id || item.name] = item.odds || 0;
+                                                                    const key = item.id || item.name;
+                                                                    odds[key] = item.odds || 0;
+                                                                    values[key] = item.value || 0;
                                                                 });
                                                                 setTempOdds(odds);
+                                                                setTempValues(values);
                                                             } else {
                                                                 setTempOdds({});
+                                                                setTempValues({});
                                                             }
                                                         }}
                                                         className="text-xs px-2 py-1 bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 rounded transition-colors"
                                                     >
-                                                        {editingOdds === box.id ? 'Cancel Edit' : 'Edit Odds'}
+                                                        {editingOdds === box.id ? 'Cancel Edit' : 'Edit Items'}
                                                     </button>
                                                 )}
                                             </div>
                                         </div>
+
+                                        {/* Save Buttons (Top) */}
+                                        {editingOdds === box.id && (
+                                            <div className="mb-4 pb-4 border-b border-white/10 flex items-center justify-between">
+                                                <div className="text-sm">
+                                                    <span className="text-slate-400">Total Odds: </span>
+                                                    <span className={`font-bold ${Math.abs(Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0) - 100) < 0.01
+                                                            ? 'text-green-400'
+                                                            : 'text-red-400'
+                                                        }`}>
+                                                        {Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0).toFixed(2)}%
+                                                    </span>
+                                                    <span className="text-slate-500"> / 100%</span>
+                                                </div>
+                                                <div className="flex gap-2">
+                                                    <button
+                                                        onClick={async () => {
+                                                            // Save items
+                                                            const updatedItems = box.items.map((item: any) => {
+                                                                const itemKey = item.id || item.name;
+                                                                return {
+                                                                    ...item,
+                                                                    odds: tempOdds[itemKey] ?? item.odds ?? 0,
+                                                                    value: tempValues[itemKey] ?? item.value ?? 0
+                                                                };
+                                                            });
+
+                                                            try {
+                                                                const { error } = await supabase
+                                                                    .from('boxes')
+                                                                    .update({ items: updatedItems })
+                                                                    .eq('id', box.id);
+
+                                                                if (error) throw error;
+
+                                                                // Update local state
+                                                                setBoxes(boxes.map(b =>
+                                                                    b.id === box.id
+                                                                        ? { ...b, items: updatedItems }
+                                                                        : b
+                                                                ));
+                                                                setEditingOdds(null);
+                                                                setTempOdds({});
+                                                                setTempValues({});
+                                                            } catch (err: any) {
+                                                                console.error('Error updating items:', err);
+                                                                setError(`Failed to update items: ${err.message}`);
+                                                            }
+                                                        }}
+                                                        disabled={Math.abs(Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0) - 100) > 0.01}
+                                                        className="flex items-center gap-2 px-3 py-1.5 bg-green-600/20 hover:bg-green-600/30 text-green-400 rounded-lg transition-colors text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    >
+                                                        <Save className="w-3 h-3" />
+                                                        Save Changes
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
 
                                         {/* Add Item Form */}
                                         {addingItem === box.id && (
@@ -726,11 +788,10 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                                     key={rarity}
                                                                     type="button"
                                                                     onClick={() => setNewItem({ ...newItem, rarity })}
-                                                                    className={`px-3 py-2 rounded-lg font-bold text-xs transition-colors ${
-                                                                        newItem.rarity === rarity
+                                                                    className={`px-3 py-2 rounded-lg font-bold text-xs transition-colors ${newItem.rarity === rarity
                                                                             ? 'bg-green-600 text-white'
                                                                             : 'bg-[#131b2e] border border-white/10 text-slate-400'
-                                                                    }`}
+                                                                        }`}
                                                                 >
                                                                     {rarity}
                                                                 </button>
@@ -767,8 +828,8 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                                 if (error) throw error;
 
                                                                 // Update local state
-                                                                setBoxes(boxes.map(b => 
-                                                                    b.id === box.id 
+                                                                setBoxes(boxes.map(b =>
+                                                                    b.id === box.id
                                                                         ? { ...b, items: updatedItems }
                                                                         : b
                                                                 ));
@@ -794,7 +855,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                 </div>
                                             </div>
                                         )}
-                                        
+
                                         {(!box.items || box.items.length === 0) && !addingItem && (
                                             <div className="text-center py-8 text-slate-500 text-sm">
                                                 <Package className="w-8 h-8 mx-auto mb-2 text-slate-600" />
@@ -807,7 +868,7 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                 const itemKey = item.id || item.name || idx;
                                                 const isEditing = editingOdds === box.id;
                                                 const currentOdds = isEditing ? (tempOdds[itemKey] ?? item.odds ?? 0) : (item.odds ?? 0);
-                                                
+
                                                 return (
                                                     <div
                                                         key={itemKey}
@@ -821,26 +882,41 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                                 <Package className="w-6 h-6 text-slate-600" />
                                                             )}
                                                         </div>
-                                                        
+
                                                         {/* Item Info */}
                                                         <div className="flex-1 min-w-0">
                                                             <div className="flex items-center gap-2 mb-1">
                                                                 <span className="text-sm font-bold text-white truncate">{item.name || 'Unnamed Item'}</span>
-                                                                <span className={`text-xs px-2 py-0.5 rounded font-bold ${
-                                                                    item.rarity === 'LEGENDARY' ? 'bg-yellow-500/20 text-yellow-400' :
-                                                                    item.rarity === 'EPIC' ? 'bg-pink-500/20 text-pink-400' :
-                                                                    item.rarity === 'RARE' ? 'bg-purple-500/20 text-purple-400' :
-                                                                    item.rarity === 'UNCOMMON' ? 'bg-blue-500/20 text-blue-400' :
-                                                                    'bg-slate-500/20 text-slate-400'
-                                                                }`}>
+                                                                <span className={`text-xs px-2 py-0.5 rounded font-bold ${item.rarity === 'LEGENDARY' ? 'bg-yellow-500/20 text-yellow-400' :
+                                                                        item.rarity === 'EPIC' ? 'bg-pink-500/20 text-pink-400' :
+                                                                            item.rarity === 'RARE' ? 'bg-purple-500/20 text-purple-400' :
+                                                                                item.rarity === 'UNCOMMON' ? 'bg-blue-500/20 text-blue-400' :
+                                                                                    'bg-slate-500/20 text-slate-400'
+                                                                    }`}>
                                                                     {item.rarity || 'COMMON'}
                                                                 </span>
                                                             </div>
                                                             <div className="flex items-center gap-4 text-xs text-slate-400">
-                                                                <span>Value: <span className="text-green-400 font-bold">${(item.value || 0).toFixed(2)}</span></span>
+                                                                {isEditing ? (
+                                                                    <div className="flex items-center gap-2">
+                                                                        <span>Value: $</span>
+                                                                        <input
+                                                                            type="number"
+                                                                            step="0.01"
+                                                                            value={tempValues[itemKey] ?? item.value ?? 0}
+                                                                            onChange={(e) => {
+                                                                                const newValue = parseFloat(e.target.value) || 0;
+                                                                                setTempValues({ ...tempValues, [itemKey]: newValue });
+                                                                            }}
+                                                                            className="w-24 bg-[#131b2e] border border-white/10 rounded px-2 py-1 text-white text-xs font-bold text-green-400 focus:border-purple-500 focus:outline-none"
+                                                                        />
+                                                                    </div>
+                                                                ) : (
+                                                                    <span>Value: <span className="text-green-400 font-bold">${(item.value || 0).toFixed(2)}</span></span>
+                                                                )}
                                                             </div>
                                                         </div>
-                                                        
+
                                                         {/* Odds Display/Editor */}
                                                         <div className="flex items-center gap-2">
                                                             {isEditing ? (
@@ -888,12 +964,12 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                                         if (error) throw error;
 
                                                                         // Update local state
-                                                                        setBoxes(boxes.map(b => 
-                                                                            b.id === box.id 
+                                                                        setBoxes(boxes.map(b =>
+                                                                            b.id === box.id
                                                                                 ? { ...b, items: updatedItems }
                                                                                 : b
                                                                         ));
-                                                                        
+
                                                                         // Update temp odds
                                                                         const newTempOdds = { ...tempOdds };
                                                                         delete newTempOdds[itemKey];
@@ -919,11 +995,10 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                             <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
                                                 <div className="text-sm">
                                                     <span className="text-slate-400">Total: </span>
-                                                    <span className={`font-bold ${
-                                                        Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0) === 100
+                                                    <span className={`font-bold ${Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0) === 100
                                                             ? 'text-green-400'
                                                             : 'text-red-400'
-                                                    }`}>
+                                                        }`}>
                                                         {Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0).toFixed(2)}%
                                                     </span>
                                                     <span className="text-slate-500"> / 100%</span>
@@ -931,12 +1006,13 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                 <div className="flex gap-2">
                                                     <button
                                                         onClick={async () => {
-                                                            // Save odds
+                                                            // Save items
                                                             const updatedItems = box.items.map((item: any) => {
                                                                 const itemKey = item.id || item.name;
                                                                 return {
                                                                     ...item,
-                                                                    odds: tempOdds[itemKey] ?? item.odds ?? 0
+                                                                    odds: tempOdds[itemKey] ?? item.odds ?? 0,
+                                                                    value: tempValues[itemKey] ?? item.value ?? 0
                                                                 };
                                                             });
 
@@ -949,23 +1025,24 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                                                 if (error) throw error;
 
                                                                 // Update local state
-                                                                setBoxes(boxes.map(b => 
-                                                                    b.id === box.id 
+                                                                setBoxes(boxes.map(b =>
+                                                                    b.id === box.id
                                                                         ? { ...b, items: updatedItems }
                                                                         : b
                                                                 ));
                                                                 setEditingOdds(null);
                                                                 setTempOdds({});
+                                                                setTempValues({});
                                                             } catch (err: any) {
-                                                                console.error('Error updating odds:', err);
-                                                                setError(`Failed to update odds: ${err.message}`);
+                                                                console.error('Error updating items:', err);
+                                                                setError(`Failed to update items: ${err.message}`);
                                                             }
                                                         }}
-                                                        disabled={Math.abs(Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0) - 100) > 0.1}
+                                                        disabled={Math.abs(Object.values(tempOdds).reduce((sum: number, odds: number) => sum + odds, 0) - 100) > 0.01}
                                                         className="flex items-center gap-2 px-3 py-1.5 bg-green-600/20 hover:bg-green-600/30 text-green-400 rounded-lg transition-colors text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed"
                                                     >
                                                         <Save className="w-3 h-3" />
-                                                        Save Odds
+                                                        Save Changes
                                                     </button>
                                                     <button
                                                         onClick={() => {
@@ -1000,11 +1077,10 @@ export const BoxManagement: React.FC<BoxManagementProps> = ({ token, onCreateBox
                                     </button>
                                     <button
                                         onClick={() => handleToggleEnabled(box.id)}
-                                        className={`p-2 rounded-lg transition-colors ${
-                                            box.enabled
+                                        className={`p-2 rounded-lg transition-colors ${box.enabled
                                                 ? 'bg-green-600/20 hover:bg-green-600/30 text-green-400'
                                                 : 'bg-slate-600/20 hover:bg-slate-600/30 text-slate-400'
-                                        }`}
+                                            }`}
                                         title={box.enabled ? 'Disable Box' : 'Enable Box'}
                                     >
                                         <Power className="w-4 h-4" />

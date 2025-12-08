@@ -192,35 +192,40 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
           {user ? (
             <>
               {/* Mobile Wallet Display with Dropdown */}
-              <div className="relative md:hidden group">
+              {/* Mobile Wallet Display with Dropdown */}
+              <div className="relative md:hidden group flex items-center gap-2">
+                {/* Visibility Toggle */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowBalance(!showBalance);
+                  }}
+                  className="p-2 bg-white/5 rounded-lg text-emerald-400 hover:bg-white/10 active:scale-95 transition-all"
+                  aria-label={showBalance ? "Hide Balance" : "Show Balance"}
+                >
+                  {showBalance ? <EyeOff className="w-4 h-4" /> : <Wallet className="w-4 h-4" />}
+                </button>
+
+                {/* Balance & Menu Toggle */}
                 <button
                   onClick={() => setIsMobileBalanceOpen(!isMobileBalanceOpen)}
-                  className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-900/40 to-emerald-950/40 border border-emerald-500/20 px-2 py-1 rounded-lg hover:border-emerald-500/50 transition-all"
+                  className="flex items-center gap-2 bg-gradient-to-r from-emerald-900/40 to-emerald-950/40 border border-emerald-500/20 px-3 py-1.5 rounded-lg hover:border-emerald-500/50 active:scale-95 transition-all"
                 >
-                  {showBalance ? <EyeOff className="w-4 h-4 text-emerald-400" /> : <Wallet className="w-4 h-4 text-emerald-400" />}
-                  <span className="font-mono font-bold text-emerald-400 text-sm">
+                  <span className="font-mono font-bold text-emerald-400 text-sm min-w-[60px] text-right">
                     {showBalance ? `$${displayedBalance.toFixed(2)}` : '****'}
                   </span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowBalance(!showBalance);
-                    }}
-                    className="ml-0.5 text-emerald-400/60 hover:text-emerald-400 transition-colors"
-                  >
-                    <ChevronDown className="w-3 h-3" />
-                  </button>
+                  <ChevronDown className={`w-3 h-3 text-emerald-400/60 transition-transform ${isMobileBalanceOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Mobile Balance Dropdown */}
                 {isMobileBalanceOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-40 bg-[#131b2e] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50">
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-[#131b2e] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
                     <button
                       onClick={() => {
                         onDeposit();
                         setIsMobileBalanceOpen(false);
                       }}
-                      className="w-full px-4 py-3 text-left text-emerald-400 hover:bg-emerald-500/10 transition-colors flex items-center gap-3 border-b border-white/5"
+                      className="w-full px-4 py-3 text-left text-emerald-400 hover:bg-emerald-500/10 transition-colors flex items-center gap-3 border-b border-white/5 active:bg-emerald-500/20"
                     >
                       <Wallet className="w-4 h-4" />
                       <span className="font-medium">Deposit</span>
@@ -230,9 +235,9 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
                         onWithdraw();
                         setIsMobileBalanceOpen(false);
                       }}
-                      className="w-full px-4 py-3 text-left text-purple-400 hover:bg-purple-500/10 transition-colors flex items-center gap-3"
+                      className="w-full px-4 py-3 text-left text-purple-400 hover:bg-purple-500/10 transition-colors flex items-center gap-3 active:bg-purple-500/20"
                     >
-                      <Wallet className="w-4 h-4" />
+                      <LogOut className="w-4 h-4 rotate-180" />
                       <span className="font-medium">Withdraw</span>
                     </button>
                   </div>

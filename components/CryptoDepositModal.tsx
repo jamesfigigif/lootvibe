@@ -53,11 +53,11 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
                     }
                 });
                 const data = await response.json();
-                
+
                 if (data.deposits && data.deposits.length > 0) {
                     // Find the most recent deposit for this currency that's not yet credited
-                    const recentDeposit = data.deposits.find((d: any) => 
-                        d.currency === currency && 
+                    const recentDeposit = data.deposits.find((d: any) =>
+                        d.currency === currency &&
                         d.status !== 'CREDITED' &&
                         d.address.toLowerCase() === address.toLowerCase()
                     );
@@ -75,7 +75,7 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
                             txHash: recentDeposit.tx_hash,
                             usdValue: recentDeposit.usd_value
                         });
-                        
+
                         // If deposit just got credited, trigger callback
                         if (recentDeposit.status === 'CREDITED' && !wasCredited && onDepositCredited) {
                             setTimeout(() => {
@@ -84,8 +84,8 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
                         }
                     } else {
                         // Check if there's a credited deposit to show success state
-                        const creditedDeposit = data.deposits.find((d: any) => 
-                            d.currency === currency && 
+                        const creditedDeposit = data.deposits.find((d: any) =>
+                            d.currency === currency &&
                             d.status === 'CREDITED' &&
                             d.address.toLowerCase() === address.toLowerCase()
                         );
@@ -111,14 +111,18 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
         return () => clearInterval(interval);
     }, [isOpen, userId, currency, address]);
 
+    const [error, setError] = useState<string | null>(null);
+
     const generateAddress = async () => {
         try {
             setLoading(true);
+            setError(null);
+            setAddress('');
 
             // ✅ SECURITY FIX: Added authentication header
             const token = await getToken({ template: 'supabase' });
             if (!token) {
-                throw new Error('Not authenticated');
+                throw new Error('Not authenticated - Please sign in again');
             }
 
             // ✅ SECURITY FIX: Removed userId from body (comes from auth token now)
@@ -129,6 +133,10 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ currency, testnet: IS_TESTNET })
+            }).catch(networkError => {
+                // Catch network errors (like CORS or offline)
+                console.error('Fetch error:', networkError);
+                throw new Error('Network Error: Could not connect to backend. Please check your internet connection.');
             });
 
             const data = await response.json();
@@ -140,7 +148,14 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
             setAddress(data.address);
         } catch (error: any) {
             console.error('Error generating address:', error);
-            alert(`Failed to generate deposit address: ${error.message}`);
+
+            // Helpful error messages
+            let errorMessage = error.message;
+            if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                errorMessage = 'Backend Connection Failed. The server might be restarting or blocking the request (CORS).';
+            }
+
+            setError(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -204,7 +219,7 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
     return (
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-200">
             <div className="relative bg-[#0b0f19] border border-white/10 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl">
-                
+
                 {/* Gradient Background Effects */}
                 <div className="absolute -top-32 -left-32 w-64 h-64 bg-purple-600/20 rounded-full blur-[100px]"></div>
                 <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-pink-600/20 rounded-full blur-[100px]"></div>
@@ -247,6 +262,21 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
                             </div>
                             <p className="text-slate-400 mt-4 font-bold">Generating your deposit address...</p>
                         </div>
+                    ) : error ? (
+                        <div className="flex flex-col items-center justify-center py-10 text-center">
+                            <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-4">
+                                <AlertCircle className="w-8 h-8 text-red-500" />
+                            </div>
+                            <h3 className="text-white font-bold text-lg mb-2">Connection Error</h3>
+                            <p className="text-red-400 text-sm max-w-xs mb-6">{error}</p>
+
+                            <button
+                                onClick={generateAddress}
+                                className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-bold text-sm transition-colors shadow-lg shadow-red-900/20"
+                            >
+                                Retry Connection
+                            </button>
+                        </div>
                     ) : (
                         <>
                             {/* QR Code Section */}
@@ -269,11 +299,10 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
                                     </div>
                                     <button
                                         onClick={copyAddress}
-                                        className={`p-4 rounded-xl transition-all ${
-                                            copied 
-                                                ? 'bg-emerald-500/20 border-2 border-emerald-500 text-emerald-400' 
-                                                : 'bg-purple-600/20 border-2 border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500'
-                                        }`}
+                                        className={`p-4 rounded-xl transition-all ${copied
+                                            ? 'bg-emerald-500/20 border-2 border-emerald-500 text-emerald-400'
+                                            : 'bg-purple-600/20 border-2 border-purple-500/50 text-purple-400 hover:bg-purple-500/30 hover:border-purple-500'
+                                            }`}
                                     >
                                         {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                                     </button>
@@ -333,16 +362,16 @@ export const CryptoDepositModal: React.FC<CryptoDepositModalProps> = ({ isOpen, 
                                                 )}
                                             </div>
                                         </div>
-                                        
+
                                         {depositStatus.status !== 'CREDITED' && (
                                             <div className="flex justify-between items-center">
                                                 <span className="text-sm text-slate-400">Confirmations</span>
                                                 <div className="flex items-center gap-2">
                                                     <div className="flex-1 bg-[#0b0f19] rounded-lg h-2 overflow-hidden">
-                                                        <div 
+                                                        <div
                                                             className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500"
-                                                            style={{ 
-                                                                width: `${Math.min(100, (depositStatus.confirmations / depositStatus.requiredConfirmations) * 100)}%` 
+                                                            style={{
+                                                                width: `${Math.min(100, (depositStatus.confirmations / depositStatus.requiredConfirmations) * 100)}%`
                                                             }}
                                                         ></div>
                                                     </div>
