@@ -454,12 +454,12 @@ export default function App() {
                 setIsOpening(true);
 
                 // Pick item based on odds (weighted random)
-                const totalOdds = box.items.reduce((sum, item) => sum + parseFloat(item.odds), 0);
+                const totalOdds = box.items.reduce((sum, item) => sum + item.odds, 0);
                 let random = Math.random() * totalOdds;
                 let selectedItem = box.items[0]; // fallback
 
                 for (const item of box.items) {
-                    random -= parseFloat(item.odds);
+                    random -= item.odds;
                     if (random <= 0) {
                         selectedItem = item;
                         break;
@@ -488,18 +488,23 @@ export default function App() {
                 console.log('✅ Free box simulated successfully:', data);
 
             } else {
+                // Show opening animation state immediately for feedback
+                // We don't change view to OPENING yet for production to avoid showing empty stage before success
+                // But we DO want to show loading state on buttons
+                setIsOpening(true);
+
                 // Production mode - use Edge Function
                 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
                 if (!anonKey) {
                     console.error('❌ VITE_SUPABASE_ANON_KEY is missing!');
                     alert('Configuration error. Please contact support.');
+                    setIsOpening(false);
                     return;
                 }
 
                 const authHeader = `Bearer ${anonKey}`;
 
                 // Call secure Edge Function (matches box-open pattern)
-                // NOTE: Don't set view to OPENING yet - wait for response first
                 const response = await supabase.functions.invoke('claim-free-box', {
                     headers: {
                         Authorization: authHeader,
@@ -520,6 +525,7 @@ export default function App() {
                         return;
                     }
 
+                    setIsOpening(false);
                     throw response.error;
                 }
 
@@ -575,7 +581,7 @@ export default function App() {
 
             // NOW show the opening animation (after rollResult is set)
             setView({ page: 'OPENING' });
-            setIsOpening(true);
+            // setIsOpening(true); // Already true
 
             // Wait for animation - REMOVED to let WelcomeOpeningStage control the flow
             // The WelcomeOpeningStage will call onComplete when the user is done

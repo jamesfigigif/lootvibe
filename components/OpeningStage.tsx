@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { LootBox, LootItem, Rarity } from '../types';
 import { RARITY_COLORS, RARITY_BG, RARITY_GRADIENTS } from '../constants';
-import { ChevronLeft, Volume2, ShieldCheck, Box, Hash, Percent } from 'lucide-react';
+import { ChevronLeft, Volume2, ShieldCheck, Box, Hash, Percent, Loader2 } from 'lucide-react';
 
 interface OpeningStageProps {
   box: LootBox;
@@ -14,12 +14,14 @@ interface OpeningStageProps {
   rollResult: {
     item: LootItem;
     block: { height: number; hash: string };
-    randomValue: number
+    randomValue: number;
+    preGeneratedReel?: LootItem[];
   } | null;
 }
 
 export const OpeningStage: React.FC<OpeningStageProps> = ({ box, winner, onBack, onComplete, isOpening, rollResult, isDemoMode = false }) => {
   const [reelItems, setReelItems] = useState<LootItem[]>([]);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const reelGeneratedRef = useRef(false); // Track if reel has been generated
 
@@ -40,6 +42,38 @@ export const OpeningStage: React.FC<OpeningStageProps> = ({ box, winner, onBack,
     }
   }, [rollResult, actualWinner, reelItems.length]);
 
+  // Preload Images Effect
+  useEffect(() => {
+    if (reelItems.length === 0) return;
+
+    const preloadImages = async () => {
+      console.log('🔄 Preloading reel images...');
+
+      // Get unique images to load
+      const uniqueImages = Array.from(new Set(reelItems.map(item => item.image)));
+
+      const loadPromises = uniqueImages.map(src => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = resolve; // Continue even if one fails
+        });
+      });
+
+      try {
+        await Promise.all(loadPromises);
+        console.log('✅ All reel images preloaded');
+        setImagesLoaded(true);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setImagesLoaded(true); // Proceed anyway
+      }
+    };
+
+    preloadImages();
+  }, [reelItems]);
+
   // Reset the ref when component unmounts (for next box opening)
   useEffect(() => {
     return () => {
@@ -48,7 +82,8 @@ export const OpeningStage: React.FC<OpeningStageProps> = ({ box, winner, onBack,
   }, []);
 
   useEffect(() => {
-    if (isOpening && scrollContainerRef.current && reelItems.length > 0) {
+    // Only start animation if opening, container exists, reel exists AND images are loaded
+    if (isOpening && scrollContainerRef.current && reelItems.length > 0 && imagesLoaded) {
       // Calculate final position
       const containerWidth = window.innerWidth;
 
@@ -79,18 +114,35 @@ export const OpeningStage: React.FC<OpeningStageProps> = ({ box, winner, onBack,
       // Force Reflow
       el.getBoundingClientRect();
 
-      // 2. Animate - Faster 4s animation for better UX
-      // cubic-bezier(0.15, 0.85, 0.35, 1.0) -> Starts fast, stays fast, then heavy braking at the end
-      el.style.transition = 'transform 4s cubic-bezier(0.15, 0.85, 0.35, 1.00)';
+      // 2. Animate - Longer 6s animation for better suspense
+      // cubic-bezier(0.05, 0.7, 0.1, 1.0) -> Fast start, then VERY long slow tail to simulate friction
+      el.style.transition = 'transform 6s cubic-bezier(0.05, 0.7, 0.1, 1.0)';
       el.style.transform = `translateX(-${finalPosition}px)`;
 
       const timer = setTimeout(() => {
         onComplete();
-      }, 4200); // Wait slightly longer than transition
+      }, 6500); // Wait for transition + sticking time
 
       return () => clearTimeout(timer);
     }
-  }, [isOpening, onComplete, reelItems.length, actualWinner]);
+  }, [isOpening, onComplete, reelItems.length, actualWinner, imagesLoaded]);
+
+  // Fun loading messages
+  const LOADING_MESSAGES = [
+    "GENERATING LUCK...",
+    "POLISHING GEMSTONES...",
+    "CALCULATING PROBABILITIES...",
+    "CONSULTING THE ORACLE...",
+    "MANIFESTING RARES...",
+    "SYNCING WITH BLOCKCHAIN..."
+  ];
+  const [loadingMsg, setLoadingMsg] = useState(LOADING_MESSAGES[0]);
+
+  useEffect(() => {
+    if (!imagesLoaded) {
+      setLoadingMsg(LOADING_MESSAGES[Math.floor(Math.random() * LOADING_MESSAGES.length)]);
+    }
+  }, [imagesLoaded]);
 
   return (
     <div className="fixed inset-0 z-40 bg-[#0b0f19] flex flex-col">
@@ -124,16 +176,24 @@ export const OpeningStage: React.FC<OpeningStageProps> = ({ box, winner, onBack,
       {/* Main Stage */}
       <div className="flex-1 relative flex flex-col items-center justify-center overflow-hidden">
 
+        {/* Loading Spinner for Assets */}
+        {!imagesLoaded && (
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#0b0f19]/80 backdrop-blur-sm">
+            <Loader2 className="w-10 h-10 text-purple-500 animate-spin mb-4" />
+            <div className="text-sm font-bold text-slate-400 tracking-widest uppercase animate-pulse">{loadingMsg}</div>
+          </div>
+        )}
+
         {/* Background Effects */}
         <div className={`absolute inset-0 bg-gradient-to-br ${box.color} opacity-5`}></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),transparent_70%)]"></div>
 
         {/* LootVibe Watermark Logo - Positioned at top to avoid interference */}
-        <div className="absolute top-24 left-0 right-0 flex justify-center pointer-events-none z-10">
+        <div className="absolute top-4 md:top-24 left-0 right-0 flex justify-center pointer-events-none z-10">
           <div className="text-center animate-[fadeWatermark_4s_ease-out_forwards]">
             <div className="flex items-center justify-center gap-2 mb-1">
               <svg className="w-12 h-12 md:w-16 md:h-16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
             <div className="text-2xl md:text-4xl font-bold">
