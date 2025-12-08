@@ -19,7 +19,7 @@ function hashSeed(seed) {
 /**
  * Generates a result using HMAC-SHA256(serverSeed, clientSeed: nonce)
  * This is the standard Provably Fair algorithm.
- */
+  */
 const generateOutcome = async (
     items,
     clientSeed,
@@ -52,7 +52,7 @@ const generateOutcome = async (
 
     const result = {
         item: selectedItem,
-        serverSeed: activeServerSeed, // In real app, you might only reveal this AFTER rotation or for this specific roll if design allows
+        serverSeed: activeServerSeed,
         serverSeedHash: hashSeed(activeServerSeed),
         nonce,
         randomValue,
@@ -98,7 +98,7 @@ const rotateServerSeed = () => {
 
 const getServerSeedHash = () => {
     return hashSeed(activeServerSeed);
-};
+}
 
 module.exports = {
     generateServerSeed,
