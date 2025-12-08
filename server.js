@@ -223,7 +223,7 @@ app.post('/api/deposits/generate-address', authenticateWithClerk(), async (req, 
  * Body: { currency, txHash, amount }
  * ✅ SECURITY FIX: Added authentication - userId now comes from verified token
  */
-app.post('/api/deposits/submit', authenticateUser(supabase), async (req, res) => {
+app.post('/api/deposits/submit', authenticateWithClerk(), async (req, res) => {
     try {
         const userId = req.user.id; // ✅ Get userId from authenticated user, not request body
         const { currency, txHash, amount } = req.body;
@@ -322,7 +322,7 @@ app.get('/api/admin/live-drops', authenticateAdmin, async (req, res) => {
  * GET /api/deposits/status/:depositId
  * ✅ SECURITY FIX: Added authentication and ownership verification
  */
-app.get('/api/deposits/status/:depositId', authenticateUser(supabase), async (req, res) => {
+app.get('/api/deposits/status/:depositId', authenticateWithClerk(), async (req, res) => {
     try {
         const { depositId } = req.params;
         const userId = req.user.id; // ✅ Get userId from authenticated user
@@ -359,7 +359,7 @@ app.get('/api/deposits/status/:depositId', authenticateUser(supabase), async (re
  * GET /api/deposits/history
  * ✅ SECURITY FIX: Added authentication - userId from verified token, not URL param
  */
-app.get('/api/deposits/history', authenticateUser(supabase), async (req, res) => {
+app.get('/api/deposits/history', authenticateWithClerk(), async (req, res) => {
     try {
         const userId = req.user.id; // ✅ Get userId from authenticated user, not URL param
 
@@ -498,7 +498,7 @@ app.get('/health', (req, res) => {
  * POST /api/withdrawals/request
  * Body: { amount, currency, address }
  */
-app.post('/api/withdrawals/request', authenticateUser(supabase), validateWithdrawalAddress, async (req, res) => {
+app.post('/api/withdrawals/request', authenticateWithClerk(), validateWithdrawalAddress, async (req, res) => {
     try {
         const { amount, currency, address } = req.body;
         const userId = req.user.id; // From auth middleware
