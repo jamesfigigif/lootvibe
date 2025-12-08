@@ -27,17 +27,42 @@ const app = express();
 const PORT = process.env.PORT || process.env.BACKEND_PORT || 3001;
 
 // Middleware - Configure CORS to allow production and development origins
+app.use((req, res, next) => {
+    // Debug log for CORS
+    const origin = req.headers.origin;
+    if (origin) {
+        console.log(`[CORS] Request from origin: ${origin}`);
+    }
+    next();
+});
+
+const allowedOrigins = [
+    'https://www.lootvibe.com',
+    'https://lootvibe.com',
+    'http://localhost:5173',
+    'http://localhost:3000'
+];
+
 app.use(cors({
-    origin: [
-        'https://www.lootvibe.com',
-        'https://lootvibe.com',
-        'http://localhost:5173',
-        'http://localhost:3000'
-    ],
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.lootvibe.com')) {
+            callback(null, true);
+        } else {
+            console.warn(`[CORS] Blocked request from origin: ${origin}`);
+            // Don't error, just don't return the header (standard security)
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-client-info', 'apikey']
 }));
+
+// Enable pre-flight for all routes
+app.options('*', cors());
 app.use(express.json());
 
 // Initialize Supabase
