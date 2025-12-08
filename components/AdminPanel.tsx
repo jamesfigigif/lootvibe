@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { supabase } from '../services/supabaseClient';
-import { ArrowLeft, Users, DollarSign, Package, TrendingUp, Shield, Settings, FileText, LogOut, Search, Ban, CheckCircle, XCircle, Eye, Edit, AlertTriangle, Box, Plus, Trash2, BarChart3, Video, Save, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, Users, DollarSign, Package, TrendingUp, Shield, Settings, FileText, LogOut, Search, Ban, CheckCircle, XCircle, Eye, Edit, AlertTriangle, Box, Plus, Trash2, BarChart3, Video, Save, X, ChevronDown, ChevronUp, Calculator, Wand2 } from 'lucide-react';
 import { StreamerManagement } from './StreamerManagement';
 
 export const AdminPanel: React.FC = () => {
@@ -305,6 +305,85 @@ export const AdminPanel: React.FC = () => {
         setAddItemMode('existing');
         setShowAddItemModal(true);
         setSelectedExistingItem('');
+    };
+
+    const handleOptimizeOdds = async (box: any) => {
+        if (!confirm('This will automatically adjust ALL item odds to achieve a ~45% Profit Margin for the house. Continue?')) return;
+
+        try {
+            const boxPrice = parseFloat(box.sale_price || box.price);
+            if (!boxPrice || boxPrice <= 0) {
+                alert('Box must have a valid price to optimize.');
+                return;
+            }
+
+            // Target EV = Box Price * (1 - House Edge)
+            // Target House Edge = 0.45 (45%)
+            // Target EV = Box Price * 0.55
+            const targetEV = boxPrice * 0.55;
+
+            // Calculate current EV contribution sum (Value * Odds) WITHOUT the percentage division yet
+            // actually, let's look at raw weights.
+            // Expected Value = Sum(Value * (Odds/100))
+            // We want Sum(Value * (NewOdds/100)) = TargetEV
+            // Let NewOdds = OldOdds * k
+            // Sum(Value * OldOdds * k / 100) = TargetEV
+            // k * Sum(Value * OldOdds / 100) = TargetEV
+            // k * CurrentEV = TargetEV
+            // k = TargetEV / CurrentEV
+
+            const currentEV = box.items.reduce((sum: number, item: any) => {
+                return sum + (parseFloat(item.value) * (parseFloat(item.odds) / 100));
+            }, 0);
+
+            if (currentEV === 0) {
+                alert('Current odds are zero. Cannot optimize. Please set initial odds.');
+                return;
+            }
+
+            const k = targetEV / currentEV;
+
+            const updatedItems = box.items.map((item: any) => {
+                let newOdds = parseFloat(item.odds) * k;
+                // Cap max odds at 100% and min at 0.00001%
+                if (newOdds > 100) newOdds = 100;
+                if (newOdds < 0.00001) newOdds = 0.00001;
+
+                return {
+                    ...item,
+                    odds: newOdds
+                };
+            });
+
+            // Normalize to ensure sum is <= 100% (optional, but good practice if sum > 100)
+            const totalOdds = updatedItems.reduce((sum: number, item: any) => sum + item.odds, 0);
+            if (totalOdds > 100) {
+                // Rescale down to 100
+                updatedItems.forEach((item: any) => {
+                    item.odds = (item.odds / totalOdds) * 100;
+                });
+            }
+
+            const { error: updateError } = await supabase
+                .from('boxes')
+                .update({ items: updatedItems })
+                .eq('id', box.id);
+
+            if (updateError) throw updateError;
+
+            // Optimistic update
+            const updatedBoxes = boxes.map(b =>
+                b.id === box.id ? { ...b, items: updatedItems } : b
+            );
+            await fetchBoxesAnalytics(); // Re-fetch to get fresh analytics
+
+            console.log('✅ Odds optimized for 45% House Edge');
+            alert(`Odds updated! New Estimated Profit Margin: ~${(100 - (targetEV / boxPrice) * 100).toFixed(2)}%`);
+
+        } catch (err) {
+            console.error('Failed to optimize odds:', err);
+            alert('Failed to optimize odds');
+        }
     };
 
     const handleAddItem = async () => {
@@ -834,11 +913,11 @@ export const AdminPanel: React.FC = () => {
                                         </div>
                                         <div className="bg-[#131b2e] rounded-lg p-3">
                                             <p className="text-xs text-slate-400 mb-1">Profit Margin</p>
-                                            <p className="text-lg font-bold text-blue-400">{box.analytics.houseEdge.toFixed(2)}%</p>
+                                            <p className="text-lg font-bold text-blue-400">{box.analytics.theoreticalHouseEdge.toFixed(2)}%</p>
                                         </div>
                                         <div className="bg-[#131b2e] rounded-lg p-3">
-                                            <p className="text-xs text-slate-400 mb-1">House Edge (Theo)</p>
-                                            <p className="text-lg font-bold text-purple-400">{box.analytics.theoreticalHouseEdge.toFixed(2)}%</p>
+                                            <p className="text-xs text-slate-400 mb-1">Avg Return</p>
+                                            <p className="text-lg font-bold text-yellow-400">${box.analytics.expectedValue.toFixed(2)}</p>
                                         </div>
                                     </div>
 
@@ -852,6 +931,14 @@ export const AdminPanel: React.FC = () => {
                                                 <BarChart3 className="w-4 h-4" />
                                                 Items ({box.items.length})
                                                 {expandedBoxes[box.id] ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                            </button>
+                                            <button
+                                                onClick={() => handleOptimizeOdds(box)}
+                                                className="text-yellow-400 hover:text-yellow-300 text-sm flex items-center gap-1 bg-yellow-500/10 px-3 py-1.5 rounded-lg hover:bg-yellow-500/20 transition-colors mr-2"
+                                                title="Auto-adjust odds for 45% Profit Margin"
+                                            >
+                                                <Wand2 className="w-4 h-4" />
+                                                Auto-Profit (45%)
                                             </button>
                                             <button
                                                 onClick={() => prepareAddItem(box)}
@@ -870,9 +957,9 @@ export const AdminPanel: React.FC = () => {
                                                             <div className="relative w-12 h-12">
                                                                 <img src={item.image} alt={item.name} loading="lazy" className="w-full h-full rounded object-cover bg-black/20" />
                                                                 <div className={`absolute inset-0 rounded ring-1 ring-inset ${item.rarity === 'LEGENDARY' ? 'ring-yellow-500/50' :
-                                                                        item.rarity === 'EPIC' ? 'ring-purple-500/50' :
-                                                                            item.rarity === 'RARE' ? 'ring-blue-500/50' :
-                                                                                'ring-slate-500/20'
+                                                                    item.rarity === 'EPIC' ? 'ring-purple-500/50' :
+                                                                        item.rarity === 'RARE' ? 'ring-blue-500/50' :
+                                                                            'ring-slate-500/20'
                                                                     }`}></div>
                                                             </div>
                                                             <div>
@@ -1001,8 +1088,8 @@ export const AdminPanel: React.FC = () => {
                                 <button
                                     onClick={() => setAddItemMode('existing')}
                                     className={`flex-1 py-3 text-sm font-bold transition-colors ${addItemMode === 'existing'
-                                            ? 'bg-purple-600/10 text-purple-400 border-b-2 border-purple-500'
-                                            : 'text-slate-400 hover:text-white hover:bg-white/5'
+                                        ? 'bg-purple-600/10 text-purple-400 border-b-2 border-purple-500'
+                                        : 'text-slate-400 hover:text-white hover:bg-white/5'
                                         }`}
                                 >
                                     Select Existing
@@ -1010,8 +1097,8 @@ export const AdminPanel: React.FC = () => {
                                 <button
                                     onClick={() => setAddItemMode('new')}
                                     className={`flex-1 py-3 text-sm font-bold transition-colors ${addItemMode === 'new'
-                                            ? 'bg-purple-600/10 text-purple-400 border-b-2 border-purple-500'
-                                            : 'text-slate-400 hover:text-white hover:bg-white/5'
+                                        ? 'bg-purple-600/10 text-purple-400 border-b-2 border-purple-500'
+                                        : 'text-slate-400 hover:text-white hover:bg-white/5'
                                         }`}
                                 >
                                     Create New

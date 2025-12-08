@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { User } from '../types';
 import { SignInButton } from '../components/ClerkAuthWrapper';
-import { Wallet, LogOut, Package, UserCircle2, Settings, Bell, Menu, X, Trophy, Users, Shield } from 'lucide-react';
+import { Wallet, LogOut, Package, UserCircle2, Settings, Bell, Menu, X, Trophy, Users, Shield, ChevronDown, EyeOff } from 'lucide-react';
 import { NotificationDropdown } from './NotificationDropdown';
 import { getUnreadCount } from '../services/notificationService';
 import { supabase } from '../services/supabaseClient';
@@ -25,6 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
   const [displayedBalance, setDisplayedBalance] = useState(0);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  // Balance visibility state
+  const [showBalance, setShowBalance] = useState(false);
   const [isMobileBalanceOpen, setIsMobileBalanceOpen] = useState(false);
 
   // Animate balance changes
@@ -196,7 +198,9 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
                   className="flex items-center gap-2 bg-gradient-to-r from-emerald-900/40 to-emerald-950/40 border border-emerald-500/20 px-2 py-1 rounded-lg hover:border-emerald-500/50 transition-all"
                 >
                   <Wallet className="w-4 h-4 text-emerald-400" />
-                  <span className="font-mono font-bold text-emerald-400 text-sm">${displayedBalance.toFixed(2)}</span>
+                  <span className="font-mono font-bold text-emerald-400 text-sm">
+                    {showBalance ? `$${displayedBalance.toFixed(2)}` : '****'}
+                  </span>
                 </button>
 
                 {/* Mobile Balance Dropdown */}
@@ -226,19 +230,26 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
                 )}
               </div>
 
-              {/* Desktop Wallet Display */}
               <button
-                onClick={onDeposit}
+                onClick={() => setShowBalance(!showBalance)}
                 className="hidden md:flex items-center gap-3 bg-gradient-to-r from-emerald-900/40 to-emerald-950/40 border border-emerald-500/20 px-4 py-2 rounded-lg hover:border-emerald-500/50 transition-all group relative"
               >
                 <div className="bg-emerald-500/20 p-1 rounded">
-                  <Wallet className="w-4 h-4 text-emerald-400" />
+                  {showBalance ? <EyeOff className="w-4 h-4 text-emerald-400" /> : <Wallet className="w-4 h-4 text-emerald-400" />}
                 </div>
-                <div className="flex flex-col items-start leading-none">
+                <div className="flex flex-col items-start leading-none min-w-[80px]">
                   <span className="text-[10px] text-emerald-500/80 font-bold uppercase">Balance</span>
-                  <span className="font-mono font-bold text-emerald-400">${displayedBalance.toFixed(2)}</span>
+                  <span className="font-mono font-bold text-emerald-400">
+                    {showBalance ? `$${displayedBalance.toFixed(2)}` : '****'}
+                  </span>
                 </div>
-                <div className="w-6 h-6 rounded bg-emerald-500 text-black flex items-center justify-center font-bold text-xs group-hover:bg-white transition-colors">+</div>
+                <div
+                  className="w-6 h-6 rounded bg-emerald-500 text-black flex items-center justify-center font-bold text-xs group-hover:bg-white transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDeposit();
+                  }}
+                >+</div>
               </button>
 
               <button
