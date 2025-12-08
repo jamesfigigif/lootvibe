@@ -176,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
             <span className="font-display font-bold text-2xl tracking-tighter text-white leading-none">
               LOOT<span className="text-purple-500">VIBE</span>
             </span>
-            <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Provably Fair</span>
+            <span className="hidden md:block text-[10px] text-slate-400 font-mono tracking-widest uppercase">Provably Fair</span>
           </div>
         </div>
 
@@ -193,7 +193,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
               <div className="relative md:hidden group">
                 <button
                   onClick={() => setIsMobileBalanceOpen(!isMobileBalanceOpen)}
-                  className="flex items-center gap-2 bg-gradient-to-r from-emerald-900/40 to-emerald-950/40 border border-emerald-500/20 px-3 py-1.5 rounded-lg hover:border-emerald-500/50 transition-all"
+                  className="flex items-center gap-2 bg-gradient-to-r from-emerald-900/40 to-emerald-950/40 border border-emerald-500/20 px-2 py-1 rounded-lg hover:border-emerald-500/50 transition-all"
                 >
                   <Wallet className="w-4 h-4 text-emerald-400" />
                   <span className="font-mono font-bold text-emerald-400 text-sm">${displayedBalance.toFixed(2)}</span>
@@ -339,6 +339,33 @@ export const Navbar: React.FC<NavbarProps> = ({ user, onLogin, onLogout, onDepos
               <SignInButton mode="modal">
                 <button onClick={() => setIsMobileMenuOpen(false)} className="bg-white text-black py-3 rounded-lg font-bold text-center">SIGN IN</button>
               </SignInButton>
+            )}
+
+            {user && (
+              <>
+                <div className="h-px bg-white/10 my-2"></div>
+                <button
+                  onClick={() => {
+                    onProfile();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-3 px-2 py-2 text-white hover:bg-white/5 rounded-lg transition-colors"
+                >
+                  <UserCircle2 className="w-5 h-5 text-purple-400" />
+                  <span className="font-bold">Profile</span>
+                  <span className="text-xs text-slate-400 ml-auto bg-white/5 px-2 py-0.5 rounded">{user.username}</span>
+                </button>
+                <button
+                  onClick={() => {
+                    onLogout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-3 px-2 py-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                >
+                  <LogOut className="w-5 h-5" />
+                  <span className="font-bold">Sign Out</span>
+                </button>
+              </>
             )}
           </div>
         )}

@@ -2380,31 +2380,85 @@ Use your cryptographic capabilities to calculate these hashes directly. Tell me:
                                 {!isDemoMode && (
                                     <button
                                         onClick={async () => {
+                                            if (isClaimingPrize) return; // Prevent double-click
+
                                             try {
-                                                // 1. Sell current item first (this updates balance)
-                                                await handleSellItem();
+                                                setIsClaimingPrize(true);
 
-                                                // 2. Wait a moment for state to settle
-                                                await new Promise(resolve => setTimeout(resolve, 100));
+                                                // Check if running in local dev mode
+                                                const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-                                                // 3. Refresh user to get updated nonce from database
-                                                if (user) {
+                                                if (isLocalDev) {
+                                                    // Local dev: Just exchange and spin
+                                                    if (rollResult?.item) {
+                                                        const itemValue = rollResult.item.value;
+                                                        const storageKey = `lootvibe_local_user_${user.id}`;
+                                                        const stored = localStorage.getItem(storageKey);
+                                                        if (stored) {
+                                                            const current = JSON.parse(stored);
+                                                            const updatedBalance = current.balance + itemValue;
+                                                            const updatedInventory = [...current.inventory];
+                                                            const indexToRemove = updatedInventory.findIndex((item: LootItem) =>
+                                                                item.id === rollResult.item.id &&
+                                                                item.name === rollResult.item.name
+                                                            );
+                                                            if (indexToRemove !== -1) {
+                                                                updatedInventory.splice(indexToRemove, 1);
+                                                            }
+                                                            const updatedUser = {
+                                                                ...current,
+                                                                balance: updatedBalance,
+                                                                inventory: updatedInventory
+                                                            };
+                                                            localStorage.setItem(storageKey, JSON.stringify(updatedUser));
+                                                            setUser(updatedUser);
+                                                        }
+                                                    }
+                                                } else {
+                                                    // Production: Call edge function to exchange item
+                                                    const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+                                                    const clerkToken = await getToken({ template: 'supabase' });
+
+                                                    const { data, error } = await supabase.functions.invoke('item-exchange', {
+                                                        headers: {
+                                                            Authorization: `Bearer ${anonKey}`,
+                                                            'X-Clerk-Token': clerkToken
+                                                        },
+                                                        body: {
+                                                            openingId: (rollResult as any).openingId
+                                                        }
+                                                    });
+
+                                                    if (error) throw error;
+                                                    if (!data.success) throw new Error(data.error || 'Failed to exchange item');
+
+                                                    // Update user with new balance from exchange
                                                     const refreshedUser = await getUser(user.id);
                                                     setUser(refreshedUser);
                                                 }
 
-                                                // 4. Then spin again with fresh nonce
-                                                handleOpenBox();
+                                                // Close modal and prepare for new spin
+                                                setShowResultModal(false);
+                                                setRollResult(null);
+                                                setIsClaimingPrize(false);
+
+                                                // Small delay to let modal close smoothly
+                                                await new Promise(resolve => setTimeout(resolve, 150));
+
+                                                // Trigger new spin
+                                                await handleOpenBox();
                                             } catch (error) {
                                                 console.error('Error in spin again:', error);
                                                 alert('Failed to spin again. Please try manually.');
+                                                setIsClaimingPrize(false);
                                             }
                                         }}
-                                        className="w-full bg-[#1a1f2e] hover:bg-[#252b3d] border border-white/10 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-between px-6 group"
+                                        disabled={isClaimingPrize}
+                                        className="w-full bg-[#1a1f2e] hover:bg-[#252b3d] border border-white/10 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-between px-6 group disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         <div className="flex items-center gap-2">
-                                            <RefreshCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
-                                            <span>SPIN AGAIN</span>
+                                            <RefreshCw className={`w-5 h-5 transition-transform duration-500 ${isClaimingPrize ? 'animate-spin' : 'group-hover:rotate-180'}`} />
+                                            <span>{isClaimingPrize ? 'SPINNING AGAIN...' : 'SPIN AGAIN'}</span>
                                         </div>
                                         <div className="bg-[#0b0f19] px-3 py-1 rounded text-sm font-mono">
                                             ${selectedBox?.price}
