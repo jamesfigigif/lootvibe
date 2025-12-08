@@ -146,7 +146,15 @@ scheduleLiveDrop();
  * Body: { currency }
  * ✅ SECURITY FIX: Added authentication - userId now comes from verified token
  */
-app.post('/api/deposits/generate-address', authenticateUser(supabase), async (req, res) => {
+const { authenticateWithClerk } = require('./middleware/clerkAuth');
+
+/**
+ * Generate deposit address for a user
+ * POST /api/deposits/generate-address
+ * Body: { currency }
+ * ✅ SECURITY FIX: Added authentication - userId now comes from verified token
+ */
+app.post('/api/deposits/generate-address', authenticateWithClerk(), async (req, res) => {
     try {
         const userId = req.user.id; // ✅ Get userId from authenticated user, not request body
         const { currency } = req.body;
